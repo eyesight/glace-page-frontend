@@ -1,0 +1,20 @@
+// fluid typography
+@mixin fluid-font-size(
+  $minFontSize: $font-size-body-s,
+  $maxFontSize: $font-size-body-m,
+  $minViewport: $font-breakpoints-m,
+  $maxViewport: $font-breakpoints-l
+) {
+  $slope: ($minFontSize - $maxFontSize) / ($minViewport - $maxViewport);
+  $base: $maxFontSize - $slope * $maxViewport;
+
+  font-size: $minFontSize;
+
+  @media (min-width: $minViewport) {
+    font-size: calc(#{$base} + 100vw * #{$slope});
+  }
+
+  @media (min-width: $maxViewport) {
+    font-size: $maxFontSize;
+  }
+}

@@ -1,0 +1,35 @@
+@mixin gridItem($cols) {
+  $col-gap: (($cols - 1) * $gutter) / $cols;
+  $percentage: 100% / $cols;
+  width: calc(#{$percentage} - #{$col-gap});
+
+  &:nth-child(n + #{$cols + 1}) {
+    margin-top: $gutter;
+  }
+}
+
+// Mixin
+/* How tu use this mixin:
+ * include on the parent container argumemts are as follows:
+ * 1. selector: add the complete css selector, as a string
+ * 2. items per row: how many items are in a row max.
+ * 3++. to make this responsive add breakpoints, separating with a comma, the mixin automatically reduces by 1.
+ */
+@mixin alwaysFull($itemSelector, $itemsPerRow, $breakpoints...) {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
+  #{$itemSelector} {
+    flex: 1 0 calc(100% / #{$itemsPerRow});
+
+    @if length($breakpoints) != 0 {
+      @each $collapse in $breakpoints {
+        $i: $itemsPerRow - index($breakpoints, $collapse);
+        @media screen and (max-width: $collapse) {
+          flex: 1 0 calc(100% / #{$i});
+        }
+      }
+    }
+  }
+}

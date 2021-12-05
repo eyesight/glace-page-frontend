@@ -1,0 +1,107 @@
+@mixin col-width(
+  $col-count-md,
+  $offset-left-md,
+  $total-cols-in-container-md,
+  $col-count-xl,
+  $offset-left-xl,
+  $total-cols-in-container-xl
+) {
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+
+  @include md-max {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @include md-min {
+    @if ($offset-left-md != 0) {
+      padding-left: (100% / $total-cols-in-container-md * $offset-left-md);
+      $rest: $total-cols-in-container-md - ($col-count-md + $offset-left-md);
+      padding-right: (100% / $total-cols-in-container-md * $rest);
+    } @else {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    width: (100% / $total-cols-in-container-md * $col-count-md);
+  }
+
+  @include xl-min {
+    box-sizing: content-box;
+    @if ($offset-left-xl != 0) {
+      padding-left: (100% / $total-cols-in-container-xl * $offset-left-xl);
+      $rest: $total-cols-in-container-xl - ($col-count-xl + $offset-left-xl);
+      padding-right: (100% / $total-cols-in-container-xl * $rest);
+    }
+
+    width: (100% / $total-cols-in-container-xl * $col-count-xl);
+  }
+
+  @media (min-width: $max-width) {
+    box-sizing: content-box;
+    max-width: $max-width/100 *
+      (100 / $total-cols-in-container-xl * $col-count-xl);
+    @if ($offset-left-xl != 0) {
+      padding-left: $max-width/100 *
+        (100 / $total-cols-in-container-xl * $offset-left-xl);
+      $rest: $total-cols-in-container-xl - ($col-count-xl + $offset-left-xl);
+      padding-right: $max-width/100 *
+        (100 / $total-cols-in-container-xl * $rest);
+    }
+  }
+
+  @include print {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+%screen-width {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+%image-width {
+  @include col-width(12, 0, $col-count-md, 22, 0, $col-count-xl);
+}
+
+%accordion-width {
+  @include col-width(12, 0, $col-count-md, 20, 0, $col-count-xl);
+}
+
+%submenu-width {
+  @include col-width(12, 0, $col-count-md, 17, 0, $col-count-xl);
+}
+
+%portrait-width {
+  @include col-width(10, 0, $col-count-md, 14, 0, $col-count-xl);
+}
+
+%title-width {
+  @include col-width(10, 1, $col-count-md, 14, 3, $col-count-xl);
+}
+
+%lead-width {
+  @include col-width(9, 2, $col-count-md, 13, 7, $col-count-xl);
+}
+
+%content-width {
+  @include col-width(8, 0, $col-count-md, 10, 7, $col-count-xl);
+}
+
+%tiles-width {
+  @include col-width(11, 0, $col-count-md, 20, 0, $col-count-xl);
+}

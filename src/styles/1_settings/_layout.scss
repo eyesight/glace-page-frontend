@@ -1,0 +1,16 @@
+$container-with-design: 774px; //container-with in design to calculate the width in procent
+$width-of-design: 1024px; //width of design to calc
+$width-of-col-design: 68px; //width of one column in design
+
+$col-count: 9 !default;
+$gap-const: 2.5% !default;
+$gap-in-px: 20px !default;
+$gutter: $gap-in-px !default;
+
+// $max-width-full: 1980px !default;
+$max-width-full: 1980px !default;
+$max-width-content: 1440px !default;
+
+//for the fluid typography
+$vp-small: 480px;
+$vp-large: 1200px;

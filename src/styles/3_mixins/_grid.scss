@@ -1,0 +1,45 @@
+@mixin grid-container($col-count: $col-count) {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  --columns: #{$col-count};
+}
+
+@mixin grid(
+  $col: $col,
+  $shift-count: 0,
+  $col-count: $col-count,
+  $gap-constant: $gap-const
+) {
+  --width: #{$col};
+  --gap-constant: #{$gap-const};
+  --initialbasis: calc(
+    (var(--width, 0) / var(--columns, #{$col-count}) * 100%) - #{$gap-constant}
+  );
+  $gap-no-unit: strip-unit($gap-constant);
+  $shift: 100 / $col-count * $shift-count + ($gap-no-unit / 2) * 1%;
+  flex-basis: var(--initialbasis);
+  margin-right: calc(#{$gap-constant} / 2);
+
+  @if $shift-count > 0 {
+    margin-left: $shift;
+  } @else {
+    margin-left: calc(#{$gap-constant} / 2);
+  }
+}
+
+/* 
+https://github.com/jen4web/fem-adv-css-layout/blob/master/05-home%20page/end/css/layout.css
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  --columns: 16;
+}
+.children {
+    --width: 16;
+    --gap-constant: 0.3%;
+	--initialbasis: calc(var(--width, 0) / var(--columns, 16) * 100%);
+    --gap: calc((var(--columns, 16) - var(--width, 0)) * var(--gap-constant, 0.3%));
+	flex-basis: calc(var(--initialbasis) - var(--gap));
+} */

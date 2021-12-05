@@ -1,0 +1,67 @@
+$container-with-design: 774px; //container-with in design to calculate the width
+$width-of-design: 1024px; //width of design to calc
+$width-of-col-design: 68px; //width of one column in design
+
+@mixin full-width() {
+  width: calc(100% - #{$gutter * 2});
+  margin-left: auto;
+  margin-right: auto;
+
+  @include md-min() {
+    width: calc(100% - #{$gutter * 4});
+    max-width: $max-width-full;
+  }
+}
+
+@mixin content-width(
+  $isGridContainer: false,
+  $gap-constant: $gap-const,
+  $col-count: $col-count
+) {
+  $gap-no-unit: strip-unit($gap-constant);
+  $container-width-no-unit: strip-unit($container-with-design);
+  $screen-with-design-no-unit: strip-unit($width-of-design);
+
+  $final-width: calc(100% - #{$gutter * 2});
+  $final-width-sm: calc(100% - #{$gutter * 6});
+  $final-width-md: 100 / $screen-with-design-no-unit * $container-width-no-unit *
+    1%;
+
+  $final-max-width: $max-width-content;
+  $gap-in-px: $max-width-content / 100 * $gap-no-unit;
+
+  @if $isGridContainer {
+    $final-width: calc((100% - #{$gutter * 2}) + #{$gap-constant});
+    $final-width-sm: calc((100% - #{$gutter * 6}) + #{$gap-constant});
+    $final-width-md: (
+        ((100 / $screen-with-design-no-unit) * $container-width-no-unit) +
+          $gap-no-unit
+      ) *
+      1%;
+    $final-max-width: calc(#{$max-width-content} + #{$gap-in-px});
+
+    @include grid-container($col-count);
+  }
+
+  width: $final-width;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include sm-min {
+    width: $final-width-sm;
+  }
+
+  @include md-min() {
+    max-width: $max-width-content;
+    width: $final-width-md; //The design is build on a 1024 Screenwidth. Content-with is 774px with 20px gutter (half for left and right)slack
+  }
+
+  @media (min-width: $max-width-content) {
+    max-width: $final-max-width;
+  }
+}
+
+@mixin screen-width() {
+  width: 100%;
+  max-width: 100%;
+}

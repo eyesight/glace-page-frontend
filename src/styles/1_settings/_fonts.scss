@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Montserrat:wght@400;500;700&display=swap');
+
+// TYPE-FACE SETTINGS
+$type-face: 'Montserrat', sans-serif !default;
+$type-face-serif: 'Lora', serif !default;
+
+$font-weight-regular: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: 700 !default;
+
+// Breakpoints for the fluid fonts
+$font-breakpoints-s: 600px !default;
+$font-breakpoints-m: 900px !default;
+$font-breakpoints-l: 1440px !default;
+
+// FLUID FONT-SIZE SETTINGS
+$font-size-body-s: 16px;
+$font-size-body-m: 21px;
+$line-height-body: 1.65;
+
+$font-size-h1-s: 61px;
+$font-size-h1-m: 95px;
+$line-height-h1: 1.13;
+
+$font-size-h2-s: 31px;
+$font-size-h2-m: 48px;
+$line-height-h2: 1.13;
+
+$font-size-h3-s: 18px;
+$font-size-h3-m: 27px;
+$line-height-h3: 1.25;
+
+$font-size-info-s: 14px;
+$font-size-info-m: 16px;
+$line-height-info: 1.2;
+
+// FONT-SIZE SETTINGS
+$font-settings-body: (
+  null: (
+    17px,
+    20px,
+  ),
+) !default;
+
+$font-settings-h1: (
+  null: (
+    3.5rem,
+    4rem,
+  ),
+) !default;
+
+$font-settings-h2: (
+  null: (
+    3.5rem,
+    4rem,
+  ),
+) !default;
+
+$font-settings-h3: (
+  null: (
+    2.5rem,
+    2.8rem,
+  ),
+) !default;
+
+$font-settings-h4: (
+  null: (
+    2rem,
+    2.5rem,
+  ),
+) !default;
+
+$font-settings-small: (
+  null: (
+    1.5rem,
+    2.2rem,
+  ),
+) !default;
+
+$font-settings-tiles: $font-settings-h4;

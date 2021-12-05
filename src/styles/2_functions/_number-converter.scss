@@ -1,0 +1,32 @@
+@function number($string) {
+  // …
+  $result: 0;
+  $divider: 0;
+
+  @for $i from 1 through str-length($string) {
+    // …
+    @if $character == '-' {
+      // …
+    } @else if $character == '.' {
+      $divider: 1;
+    } @else {
+      // …
+
+      // Decimal dot hasn’t been found yet
+      @if $divider == 0 {
+        $result: $result * 10;
+      }
+
+      // Decimal dot has been found
+      @else {
+        // Move the decimal dot to the left
+        $divider: $divider * 10;
+        $number: $number / $divider;
+      }
+
+      $result: $result + $number;
+    }
+  }
+
+  @return if($minus, $result * -1, $result);
+}

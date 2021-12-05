@@ -1,0 +1,22 @@
+@mixin hoverani($color: $color-turkies) {
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: rgba($color, 0.7);
+    left: 0;
+    bottom: 3px;
+    transform: rotate(-4deg);
+    z-index: -1;
+    transition: all 0.2s ease-in;
+  }
+
+  &:hover,
+  &:focus {
+    &::after {
+      height: 10px;
+      transition: all 0.2s ease-in;
+    }
+  }
+}
