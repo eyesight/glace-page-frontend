@@ -1,0 +1,1 @@
+export const routeReceipt = 'http://localhost:1337/rezepts';
