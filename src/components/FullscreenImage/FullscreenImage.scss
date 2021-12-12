@@ -1,0 +1,22 @@
+.fullscreen-image {
+  width: 100%;
+  height: auto;
+
+  @include md-min {
+    height: 100vh;
+  }
+}
+
+.fullscreen-image__image {
+  position: relative;
+  z-index: -1;
+
+  @include md-min {
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    transform: translateY(-50%);
+    position: fixed;
+    top: 50%;
+  }
+}

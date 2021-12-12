@@ -1,0 +1,77 @@
+.tiles {
+  @include content-width(true);
+  @include ld-margin-bottom(2.5 * $gap-const);
+}
+
+.tiles__title {
+  @include font($type-face-serif, $font-weight-medium);
+  @include ld-margin-bottom($spacing-xs);
+  width: 100%;
+}
+
+.tiles__item {
+  @include grid(9);
+  margin-bottom: 3.5%;
+
+  @include md-min {
+    @include grid(4.5);
+  }
+
+  @include lg-min {
+    @include grid(3);
+  }
+}
+
+.tiles__image-wrapper {
+  @include responsive-ratio(100%, 16, 9, 'img');
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: background 0.5s ease;
+
+    .tiles__item:hover &,
+    .tiles__item:focus &,
+    .tiles__item:focus-visible & {
+      background-color: rgba($color-primary, 0.3);
+      transition: background 0.25s ease;
+    }
+  }
+}
+
+.tiles__img {
+  object-fit: cover;
+}
+
+.tiles__item-inner {
+  padding: 1.5rem;
+
+  @include lg-min {
+    padding: 1.5rem 4rem 4rem;
+  }
+}
+
+.tiles__button {
+  @include flexbox(row, wrap, flex-start, center);
+  cursor: pointer;
+}
+
+.tiles__icon-smile {
+  @include size(2.5rem);
+  margin-right: 1rem;
+}
+
+.tiles__anchor {
+  width: 100%;
+
+  .tiles__item:hover &,
+  .tiles__item:focus &,
+  .tiles__item:focus-visible & {
+    color: $color-primary;
+  }
+}

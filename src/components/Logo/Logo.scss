@@ -1,0 +1,19 @@
+.logo {
+  text-transform: uppercase;
+  @include font-size($font-settings-h3);
+  @include font($type-face, $font-weight-medium);
+
+  svg {
+    width: 2.05rem;
+    height: auto;
+    margin: 0 1rem;
+    color: $color-primary;
+  }
+}
+
+.logo__link {
+  display: inline-block;
+  padding: 30px 0;
+  @include flexbox(row, wrap, center, center);
+  letter-spacing: 4.05px;
+}

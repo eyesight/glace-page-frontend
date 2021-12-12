@@ -1,0 +1,7 @@
+.tags__item {
+  margin-right: 1em;
+  &::before {
+    content: '#';
+    color: $color-primary;
+  }
+}

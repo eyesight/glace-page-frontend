@@ -1,0 +1,42 @@
+.footer {
+  @include flexbox(row, wrap, space-between, flex-start);
+  width: 100%;
+  flex-shrink: 0;
+  background-color: $color-white;
+  padding-top: $spacing-ml;
+}
+
+.footer__inner {
+  padding: $gutter 0;
+  width: 100%;
+  background-color: $color-turkies;
+  color: $color-white;
+}
+
+.footer__wrap {
+  @include flexbox(row, wrap, space-between, flex-start);
+  @include full-width();
+}
+
+.footer__right {
+  @include flexbox();
+}
+
+.footer-nav__wrapper {
+  @include flexbox();
+}
+
+.footer-nav__item {
+  margin-left: 30px;
+}
+
+.footer-nav__link {
+  @include hoverani($color-turkies);
+  z-index: 1;
+  color: $color-white;
+
+  &:hover,
+  &:focus {
+    color: $color-white;
+  }
+}

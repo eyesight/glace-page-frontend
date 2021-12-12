@@ -1,0 +1,15 @@
+.title-h1 {
+  text-align: center;
+  @include content-width();
+  @include ld-margin-bottom($spacing-l);
+  @include ld-margin-bottom($spacing-m, '.searchbar');
+  @include ld-margin-bottom($spacing-xs, '.tags');
+}
+
+.title-h1--highlight {
+  color: $color-primary;
+}
+
+.content > .title-h1:first-child {
+  margin-top: $spacing-s;
+}

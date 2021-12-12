@@ -1,0 +1,25 @@
+.portion-calculation {
+  position: fixed;
+  bottom: $spacing-m;
+  @include content-width(true);
+  left: 50%;
+  z-index: 100;
+}
+.portion-calculation__inner {
+  transform: translateX(-50%);
+  background-color: $color-white;
+  @include grid(3);
+  @include flexbox(row, nowrap, center, center);
+  padding: $spacing-xs;
+}
+.portion-calculation__button {
+  @include size(2.3rem);
+  border-radius: 50%;
+  background-color: $color-primary;
+  cursor: pointer;
+}
+
+.portion-calculation__text {
+  margin: 0 15px;
+  white-space: nowrap;
+}

@@ -1,0 +1,29 @@
+.header {
+  width: 100%;
+  flex-shrink: 0;
+  z-index: 100;
+  background-color: $color-white;
+  position: fixed;
+
+  .header--small & {
+    top: 0;
+  }
+
+  .header--small-ani & {
+    top: 0;
+  }
+}
+
+.header__inner {
+  @include flexbox(row, wrap, space-between, center);
+  @include full-width();
+}
+
+.header__right {
+  justify-items: flex-end;
+}
+
+.header__center {
+  margin-top: 0;
+  @include flexbox(row, wrap, center, flex-start);
+}

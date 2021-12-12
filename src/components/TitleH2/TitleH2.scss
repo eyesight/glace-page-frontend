@@ -1,0 +1,10 @@
+.title-h2 {
+  color: $color-primary;
+  @include content-width();
+  @include font($type-face-serif, $font-weight-medium);
+  @include ld-margin-bottom(2 * $spacing-xxs);
+}
+
+.title-h2 + .portion-calculation {
+  @include ld-margin-bottom(2 * $spacing-xxs);
+}

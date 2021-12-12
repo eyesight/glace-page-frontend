@@ -1,0 +1,4 @@
+.title-h3 {
+  @include font($type-face-serif, $font-weight-medium);
+  color: $color-primary;
+}

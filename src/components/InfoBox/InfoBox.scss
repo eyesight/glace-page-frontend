@@ -1,0 +1,35 @@
+.info-box {
+  @include content-width();
+  border: 1px solid $color-primary;
+  padding: $spacing-xxs * 2;
+}
+
+.info-box__title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-50%);
+  background-color: $color-white;
+  padding: $spacing-xxs * 2;
+}
+
+.info-box__list {
+  column-gap: 1.17em;
+  column-count: 1;
+
+  @include sm-min {
+    column-count: 2;
+  }
+
+  @include md-min {
+    column-count: 3;
+  }
+}
+
+.info-box__list-item {
+  @include ld-margin-bottom($spacing-xs);
+}
+
+.info-box__text-bold {
+  font-weight: $font-weight-bold;
+}

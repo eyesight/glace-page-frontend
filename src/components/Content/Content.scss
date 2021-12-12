@@ -1,0 +1,6 @@
+.content {
+  width: 100%;
+  @include flexbox(column, nowrap, flex-start, flex-start);
+  flex: 1 0 auto;
+  margin-top: calc(#{$spacing-l} - 1px);
+}

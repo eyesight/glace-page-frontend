@@ -1,0 +1,47 @@
+.burger-menu {
+  display: flex;
+  justify-content: flex-end;
+  @include font-size($font-settings-small);
+  cursor: pointer;
+}
+
+.burger-menu__lines {
+  width: 20px;
+  height: 2px;
+  background-color: $color-black;
+  position: relative;
+  top: 4px;
+  margin-right: 5px;
+  transition: width 0.25s ease;
+
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    top: 6px;
+    background-color: $color-black;
+    right: 0;
+    transition: width 0.25s ease;
+  }
+
+  &::before {
+    top: 12px;
+    width: 15px;
+  }
+}
+
+.burger-menu:hover .burger-menu__lines::after,
+.burger-menu:hover .burger-menu__lines::before,
+.burger-menu:hover .burger-menu__lines,
+.burger-menu:focus .burger-menu__lines::after,
+.burger-menu:focus .burger-menu__lines::before,
+.burger-menu:focus .burger-menu__lines,
+.burger-menu:focus-visible .burger-menu__lines::after,
+.burger-menu:focus-visible .burger-menu__lines::before,
+.burger-menu:focus-visible .burger-menu__lines {
+  width: 2rem;
+  transition: width 0.25s ease;
+}
