@@ -1,3 +1,5 @@
+@import './../../styles/index.scss';
+
 .paragraph {
   @include content-width();
   @include ld-margin-bottom(1em);

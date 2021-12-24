@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './TilesRoundItem.scss'
 
 const TilesRoundItem = props => {
     return (
-        <li class="tiles-round__item">
-            <figure class="tiles-round__image-wrapper">
+        <li className="tiles-round__item">
+            <figure className="tiles-round__image-wrapper">
                 <img
                     alt=""
-                    class="tiles-round__image"
+                    className="tiles-round__image"
                     src="http://placekitten.com/200/150"
                 />
             </figure>
-            <div class="tiles-round__item-text-wrap">
-                <p class="tiles-round__item-nr">2</p>
-                <p class="tiles-round__item-text">Knopblauchzehen</p>
+            <div className="tiles-round__item-text-wrap">
+                <p className="tiles-round__item-nr">2</p>
+                <p className="tiles-round__item-text">Knopblauchzehen</p>
             </div>
         </li>
     );

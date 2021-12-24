@@ -4,8 +4,8 @@ import './Logo.scss';
 
 const Logo = props => {
     return (
-        <div class="logo">
-            <a class="logo__link" href="/">
+        <div className="logo">
+            <a className="logo__link" href="/">
                 Glace
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

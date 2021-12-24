@@ -4,7 +4,7 @@ import './TitleH2.scss';
 
 const TitleH2 = props => {
   return (
-    <h2 class="title-h2">
+    <h2 className="title-h2">
       Zutaten
     </h2>
   );

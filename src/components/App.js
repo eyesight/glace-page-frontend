@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
-import * as Routes from '../helper/constants/routes';
+import React from "react";
+import { Provider } from 'react-redux';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePageContainer from "../containers/HomePageContainer";
+import store from '../store/store';
+import './App.scss';
+import ReceiptPage from './_pages/ReceiptPage';
+import The404Page from './_pages/The404Page';
 
-const App = () => {
-  const [receipt, setReceipt] = useState('');
-  useEffect(() => {
-    const url = Routes.routeReceipt;
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        const json = await response.json();
-        setReceipt(json)
-        console.log(json);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
+export default class App extends React.Component {
 
-    fetchData();
-  }, []);
-
-  return <></>;
-};
-
-export default App;
+  render() {
+    return (
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePageContainer />}></Route>
+            <Route path="/receipt" element={<ReceiptPage />}></Route>
+            <Route path="*" element={<The404Page />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    );
+  }
+}

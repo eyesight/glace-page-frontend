@@ -16,18 +16,18 @@ const Cursor = props => {
                             transform="translate(0 0)"
                             fill="none"
                             stroke="currentColor"
-                            stroke-linecap="round"
+                            strokeLinecap="round"
                             stroke-linejoin="round"
-                            stroke-width="4"
+                            strokeWidth="4"
                         />
                         <path
                             d="M37.9,25.7A12.2,12.2,0,1,1,25.7,13.5,12.2,12.2,0,0,1,37.9,25.7Z"
                             transform="translate(20.528 12.83)"
                             fill="none"
                             stroke="currentColor"
-                            stroke-linecap="round"
+                            strokeLinecap="round"
                             stroke-linejoin="round"
-                            stroke-width="4"
+                            strokeWidth="4"
                         />
                     </g>
                 </svg>

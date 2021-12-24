@@ -4,9 +4,9 @@ import './Burger.scss';
 
 const Burger = props => {
     return (
-        <button class="burger-menu">
-            <span class="burger-menu__lines"></span>
-            <span class="burger-menu__text">Die Karte</span>
+        <button className="burger-menu">
+            <span className="burger-menu__lines"></span>
+            <span className="burger-menu__text">Die Karte</span>
         </button>
     );
 };

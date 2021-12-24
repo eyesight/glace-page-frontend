@@ -4,14 +4,14 @@ import './PortionCalculation.scss';
 
 const PortionCalculation = props => {
     return (
-        <div class="portion-calculation">
-            <div class="portion-calculation__inner">
-                <button class="portion-calculation__button">–</button>
-                <p class="portion-calculation__text">
-                    <span class="portion-calculation__portion">2</span>
+        <div className="portion-calculation">
+            <div className="portion-calculation__inner">
+                <button className="portion-calculation__button">–</button>
+                <p className="portion-calculation__text">
+                    <span className="portion-calculation__portion">2</span>
                     Portionen
                 </p>
-                <button class="portion-calculation__button">+</button>
+                <button className="portion-calculation__button">+</button>
             </div>
         </div>
     );

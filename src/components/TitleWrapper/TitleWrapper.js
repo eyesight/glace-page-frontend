@@ -2,18 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TitleWrapper.scss';
 
+//todo: add h1 with props
 const TitleWrapper = props => {
   return (
-    <header class="title-wrapper">
-      <h1 class="title-h1">
+    <header className="title-wrapper">
+      <h1 className="title-h1">
         Pasta mit Fenchel, Erbsen und Zitronen.
       </h1>
-      <div class="tags">
-        <p class="tags__item">text</p>
-        <p class="tags__item">text</p>
-        <p class="tags__item">text</p>
-        <p class="tags__item">text</p>
-        <p class="tags__item">text</p>
+      <div className="tags">
+        <p className="tags__item">text</p>
+        <p className="tags__item">text</p>
+        <p className="tags__item">text</p>
+        <p className="tags__item">text</p>
+        <p className="tags__item">text</p>
       </div>
     </header>
   );

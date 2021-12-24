@@ -4,39 +4,40 @@ import './Searchbar.scss';
 
 const Searchbar = props => {
     return (
-        <form class="searchbar">
-            <div class="searchbar__searchfield-wrapper">
+        <form className="searchbar">
+            <div className="searchbar__searchfield-wrapper">
                 <input
-                    class="searchbar__searchfield"
+                    className="searchbar__searchfield"
                     value=""
-                    autocomplete="off"
+                    autoComplete="off"
                     placeholder="Nach Rezepten oder Zutaten suchen"
                     type="text"
+                    onChange={(e) => { console.log(e.target.value) }}
                 />
-                <div class="searchbar__icon-wrapper">
+                <div className="searchbar__icon-wrapper">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 17.596 17.596"
-                        class="searchbar__icon"
+                        className="searchbar__icon"
                     >
-                        <g class="search-icon" transform="translate(1 1)">
+                        <g className="search-icon" transform="translate(1 1)">
                             <path
                                 d="M17.995,11.247A6.747,6.747,0,1,1,11.247,4.5a6.747,6.747,0,0,1,6.747,6.747Z"
                                 transform="translate(-4.5 -4.5)"
                                 fill="none"
                                 stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                             />
                             <path
                                 d="M28.644,28.644l-3.669-3.669"
                                 transform="translate(-13.462 -13.462)"
                                 fill="none"
                                 stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                             />
                         </g>
                     </svg>

@@ -1,3 +1,5 @@
+@import './../../styles/index.scss';
+
 .footer {
   @include flexbox(row, wrap, space-between, flex-start);
   width: 100%;
@@ -31,12 +33,14 @@
 }
 
 .footer-nav__link {
-  @include hoverani($color-turkies);
   z-index: 1;
   color: $color-white;
+  text-decoration: none;
 
   &:hover,
-  &:focus {
+  &:focus,
+  &.active {
     color: $color-white;
+    text-decoration: underline;
   }
 }

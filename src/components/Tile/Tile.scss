@@ -1,3 +1,5 @@
+@import './../../styles/index.scss';
+
 .tiles {
   @include content-width(true);
   @include ld-margin-bottom(2.5 * $gap-const);

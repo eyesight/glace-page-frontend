@@ -1,46 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Header.scss';
+import Logo from '../Logo/Logo';
+import Burger from '../Burger/Burger';
 
 const Header = props => {
     return (
-        <header class="header">
-            <div class="header__inner">
-                <div class="header__item header__left">
-                    <div class="logo">
-                        <a class="logo__link" href="/">
-                            Glace
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20.505 39.301">
-                                <g
-                                    id="noun_Ice_Cream_2413934"
-                                    data-name="noun_Ice Cream_2413934"
-                                    transform="translate(-26 -38.008)">
-                                    <g
-                                        id="Gruppe_268"
-                                        data-name="Gruppe 268"
-                                        transform="translate(26 38.008)">
-                                        <path
-                                            id="Pfad_100"
-                                            data-name="Pfad 100"
-                                            d="M34.5,956.366a.845.845,0,0,0-.147.027,9.255,9.255,0,0,0-7.035,9.077,7.7,7.7,0,0,0,1.148,3.818,3.058,3.058,0,0,0-2.47,2.99,2.9,2.9,0,0,0,2.35,2.843l6.234,19.515a1.445,1.445,0,0,0,.774.841,2.234,2.234,0,0,0,1.789,0,1.445,1.445,0,0,0,.774-.841l6.234-19.515a2.9,2.9,0,0,0,2.35-2.843,3.058,3.058,0,0,0-2.47-2.99,7.7,7.7,0,0,0,1.148-3.818,9.183,9.183,0,0,0-7.049-9.09.859.859,0,1,0-.347,1.682,7.482,7.482,0,0,1,5.687,7.408,6.935,6.935,0,0,1-1.508,4.071.854.854,0,0,0,.694,1.348h.854a1.617,1.617,0,0,1,1.282,1.388,1.134,1.134,0,0,1-1.148,1.175h-9.1a.854.854,0,0,0-.854.854v3.417a.854.854,0,1,1-1.709,0v-3.417a.854.854,0,0,0-.854-.854h-2.27a1.134,1.134,0,0,1-1.148-1.175,1.617,1.617,0,0,1,1.282-1.388h.854a.854.854,0,0,0,.694-1.348,6.935,6.935,0,0,1-1.509-4.071,7.609,7.609,0,0,1,5.7-7.422.854.854,0,0,0-.227-1.682Zm-.841,3.831a.856.856,0,0,0-.387.12,5.756,5.756,0,0,0-3,5.019.854.854,0,0,0,1.709,0,4.014,4.014,0,0,1,2.122-3.524.854.854,0,0,0-.441-1.615Zm-3.5,14.963h.107v.347Zm7.8,0H39.59l-1.215,2.509-1.081-1.548Zm3.511,0h.868l-1.789,5.62-1.068-1.522Zm-5.22,2.443,1.268,1.815-1.268,2.616-1.268-2.616Zm-4.539,2.416a2.534,2.534,0,0,0,.614.214l-.374.534Zm2.149,1,1.442,2.963-1.4,2.883-1.295-4.044Zm4.766,0,1.268,1.8L38.6,986.867l-1.4-2.9Zm-2.376,4.912,1.6,3.3-1.509,4.712a.335.335,0,0,1-.187,0l-1.508-4.712Z"
-                                            transform="translate(-26 -956.362)"
-                                            fill="currentColor"
-                                        />
-                                    </g>
-                                </g>
-                            </svg>
-                            Siite
-                        </a>
-                    </div>
+        <header className="header">
+            <div className="header__inner">
+                <div className="header__item header__left">
+                    <Logo />
                 </div>
-
-                <div class="header__item header__right">
-                    <button class="burger-menu">
-                        <span class="burger-menu__lines"></span
-                        ><span class="burger-menu__text">Die Karte</span>
-                    </button>
+                <div className="header__item header__right">
+                    <Burger />
                 </div>
             </div>
         </header>

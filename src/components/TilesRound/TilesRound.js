@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './TilesRound.scss';
+import TilesRoundItem from './TilesRoundItem';
 
-const TilesRound = props => {
+const TilesRound = () => {
     return (
-        <ul class="tiles-round"></ul>
+        <ul className="tiles-round">
+            <TilesRoundItem />
+        </ul>
 
     );
-};
-
-TilesRound.propTypes = {
-
 };
 
 export default TilesRound;

@@ -1,0 +1,148 @@
+@import './../styles/index.scss';
+
+html {
+  font-size: 62.5%;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  @include font($type-face, $font-weight-regular);
+  @include fluid-font-size();
+  line-height: $line-height-body;
+  color: $color-main-text;
+  height: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1 {
+  @include font($type-face-serif, $font-weight-regular);
+}
+
+h2,
+h3,
+h4 {
+  @include font($type-face, $font-weight-bold);
+}
+
+h1 {
+  @include fluid-font-size($font-size-h1-s, $font-size-h1-m);
+  line-height: $line-height-h1;
+}
+
+h2 {
+  @include fluid-font-size($font-size-h2-s, $font-size-h2-m);
+  @include font($type-face-serif, $font-weight-medium);
+  line-height: $line-height-h2;
+}
+
+h3 {
+  @include fluid-font-size($font-size-h3-s, $font-size-h3-m);
+  @include font($type-face-serif, $font-weight-medium);
+  line-height: $line-height-h3;
+}
+
+h4 {
+  @include font-size($font-settings-h4);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+
+  &.lazy {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+  }
+
+  &.loaded {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: $color-main-text;
+
+  &:hover,
+  &:focus {
+    color: $color-main-text;
+    text-decoration: none;
+
+    &::after {
+      height: 10px;
+      transition: all 0.2s ease-in;
+    }
+  }
+}
+
+li {
+  list-style: none;
+}
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+.no-focus {
+  *:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  @include font-size($font-settings-body);
+  @include font($type-face, $font-weight-medium);
+}
+
+button:focus {
+  outline: none;
+}
+
+figure {
+  margin: 0;
+}
+
+.mobile-only {
+  display: none;
+  @include sm-max() {
+    display: block;
+  }
+}
+
+.desktop-only {
+  display: block;
+  @include sm-max() {
+    display: none;
+  }
+}
+
+strong {
+  font-weight: $font-weight-bold;
+}
