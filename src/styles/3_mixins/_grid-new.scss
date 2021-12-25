@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @mixin col-width(
   $col-count-md,
   $offset-left-md,
@@ -20,38 +22,50 @@
 
   @include md-min {
     @if ($offset-left-md != 0) {
-      padding-left: (100% / $total-cols-in-container-md * $offset-left-md);
+      padding-left: math.div(
+        100%,
+        $total-cols-in-container-md * $offset-left-md
+      );
       $rest: $total-cols-in-container-md - ($col-count-md + $offset-left-md);
-      padding-right: (100% / $total-cols-in-container-md * $rest);
+      padding-right: math.div(100%, $total-cols-in-container-md * $rest);
     } @else {
       padding-left: 2rem;
       padding-right: 2rem;
     }
 
-    width: (100% / $total-cols-in-container-md * $col-count-md);
+    width: math.div(100%, $total-cols-in-container-md * $col-count-md);
   }
 
   @include xl-min {
     box-sizing: content-box;
     @if ($offset-left-xl != 0) {
-      padding-left: (100% / $total-cols-in-container-xl * $offset-left-xl);
+      padding-left: math.div(
+        100%,
+        $total-cols-in-container-xl * $offset-left-xl
+      );
       $rest: $total-cols-in-container-xl - ($col-count-xl + $offset-left-xl);
-      padding-right: (100% / $total-cols-in-container-xl * $rest);
+      padding-right: math.div(100%, $total-cols-in-container-xl * $rest);
     }
 
-    width: (100% / $total-cols-in-container-xl * $col-count-xl);
+    width: math.div(100%, $total-cols-in-container-xl * $col-count-xl);
   }
 
   @media (min-width: $max-width) {
     box-sizing: content-box;
-    max-width: $max-width/100 *
-      (100 / $total-cols-in-container-xl * $col-count-xl);
+    max-width: math.div(
+      $max-width,
+      100 * math.div(100, $total-cols-in-container-xl * $col-count-xl)
+    );
     @if ($offset-left-xl != 0) {
-      padding-left: $max-width/100 *
-        (100 / $total-cols-in-container-xl * $offset-left-xl);
+      padding-left: math.div(
+        $max-width,
+        100 * math.div(100, $total-cols-in-container-xl * $offset-left-xl)
+      );
       $rest: $total-cols-in-container-xl - ($col-count-xl + $offset-left-xl);
-      padding-right: $max-width/100 *
-        (100 / $total-cols-in-container-xl * $rest);
+      padding-right: math.div(
+        $max-width,
+        100 * math.div(100, $total-cols-in-container-xl * $rest)
+      );
     }
   }
 

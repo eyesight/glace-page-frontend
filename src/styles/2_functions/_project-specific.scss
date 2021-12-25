@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @function gridItemSizeInProcent(
   $col-nr,
   $col-nr-of-container: $col-count,
@@ -8,13 +10,13 @@
   $design-width: strip-unit($design-width-px);
   $col-width-design: strip-unit($width-of-col-design-px);
   $gap-width-design: strip-unit($gap-of-col-design-px);
-  $the-width: ($design-width / $col-count) * $col-nr-of-container;
+  $the-width: math.div($design-width, $col-count) * $col-nr-of-container;
   $col-nr: $col-nr;
   @if ($col-nr > 1) {
     $col-nr: $col-nr - 1;
   }
 
-  $result: ((100 / $the-width) * $col-width-design) * $col-nr * 1%;
+  $result: (math.div(100, $the-width) * $col-width-design) * $col-nr * 1%;
   @return $result;
 }
 
@@ -26,12 +28,12 @@
 ) {
   $design-width: strip-unit($design-width-px);
   $gap-width-design: strip-unit($gap-of-col-design-px);
-  $the-width: ($design-width / $col-count) * $col-nr-of-container;
+  $the-width: math.div($design-width, $col-count) * $col-nr-of-container;
   $col-nr: $col-nr;
   @if ($col-nr > 1) {
     $col-nr: $col-nr - 1;
   }
 
-  $result: ((100 / $the-width) * $gap-width-design) * $col-nr * 1%;
+  $result: (math.div(100, $the-width) * $gap-width-design) * $col-nr * 1%;
   @return $result;
 }

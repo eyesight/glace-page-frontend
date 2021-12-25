@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 //Adds font-size in rem & px
 //Value passed should be the expected px size
 //Default value 12 - can be customized to fit project
@@ -24,13 +26,13 @@
 
 @function line-height($typesize, $lineheight) {
   @if type-of($typesize) == 'number' and not unitless($typesize) {
-    @return $typesize / ($typesize * 0 + 1);
+    @return math.div($typesize, ($typesize * 0 + 1));
   }
 
   @if type-of($lineheight) == 'number' and not unitless($lineheight) {
-    @return $lineheight / ($lineheight * 0 + 1);
+    @return math.div($lineheight, ($lineheight * 0 + 1));
   }
-  $result: (100 / $typesize * $lineheight);
+  $result: math.div(100, $typesize * $lineheight);
 
   @return $result;
 }

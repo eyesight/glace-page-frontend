@@ -1,4 +1,4 @@
-@import './../../styles/index.scss';
+@import './../../styles/import-all.scss';
 
 .paragraph {
   @include content-width();

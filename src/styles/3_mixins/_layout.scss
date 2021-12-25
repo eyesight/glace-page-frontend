@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 $container-with-design: 774px; //container-with in design to calculate the width
 $width-of-design: 1024px; //width of design to calc
 $width-of-col-design: 68px; //width of one column in design
@@ -24,17 +26,20 @@ $width-of-col-design: 68px; //width of one column in design
 
   $final-width: calc(100% - #{$gutter * 2});
   $final-width-sm: calc(100% - #{$gutter * 6});
-  $final-width-md: 100 / $screen-with-design-no-unit * $container-width-no-unit *
-    1%;
+  $final-width-md: math.div(100, $screen-with-design-no-unit) *
+    $container-width-no-unit * 1%;
 
   $final-max-width: $max-width-content;
-  $gap-in-px: $max-width-content / 100 * $gap-no-unit;
+  $gap-in-px: math.div($max-width-content, 100) * $gap-no-unit;
 
   @if $isGridContainer {
     $final-width: calc((100% - #{$gutter * 2}) + #{$gap-constant});
     $final-width-sm: calc((100% - #{$gutter * 6}) + #{$gap-constant});
     $final-width-md: (
-        ((100 / $screen-with-design-no-unit) * $container-width-no-unit) +
+        (
+            math.div(100, $screen-with-design-no-unit) *
+              $container-width-no-unit
+          ) +
           $gap-no-unit
       ) *
       1%;

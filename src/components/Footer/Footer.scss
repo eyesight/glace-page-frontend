@@ -1,4 +1,4 @@
-@import './../../styles/index.scss';
+@import './../../styles/import-all.scss';
 
 .footer {
   @include flexbox(row, wrap, space-between, flex-start);

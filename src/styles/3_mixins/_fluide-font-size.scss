@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // fluid typography
 @mixin fluid-font-size(
   $minFontSize: $font-size-body-s,
@@ -5,7 +7,10 @@
   $minViewport: $font-breakpoints-m,
   $maxViewport: $font-breakpoints-l
 ) {
-  $slope: ($minFontSize - $maxFontSize) / ($minViewport - $maxViewport);
+  $slope: math.div(
+    ($minFontSize - $maxFontSize),
+    ($minViewport - $maxViewport)
+  );
   $base: $maxFontSize - $slope * $maxViewport;
 
   font-size: $minFontSize;

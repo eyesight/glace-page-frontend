@@ -1,5 +1,6 @@
-// https://github.com/trufa/example-css-grid/blob/master/grid.scss
+@use 'sass:math';
 
+// https://github.com/trufa/example-css-grid/blob/master/grid.scss
 $grid__bp-sm: 576;
 $grid__bp-md: 768;
 $grid__bp-lg: 992;
@@ -18,7 +19,7 @@ $map-grid-props: (
   @if ($breakpoint == 0) {
     @content;
   } @else {
-    @media screen and (#{$min-or-max}-width: $breakpoint *1px) {
+    @media screen and (#{$min-or-max}-width: (#{$breakpoint} * 1px)) {
       @content;
     }
   }
@@ -31,10 +32,10 @@ $map-grid-props: (
     }
     @for $i from 1 through $grid-cols {
       &__col#{$modifier}-#{$i} {
-        flex-basis: (100 / ($grid-cols / $i)) * 1%;
+        flex-basis: math.div(100, math.div($grid-cols, $i)) * 1%;
       }
       &__col#{$modifier}-offset-#{$i} {
-        margin-left: (100 / ($grid-cols / $i)) * 1%;
+        margin-left: math.div(100, math.div($grid-cols, $i)) * 1%;
       }
     }
   }
