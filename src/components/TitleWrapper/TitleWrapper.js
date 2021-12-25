@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './TitleWrapper.scss';
+import Tag from '../Tag/Tag';
 
 //todo: add h1 with props
 const TitleWrapper = props => {
@@ -9,13 +10,7 @@ const TitleWrapper = props => {
       <h1 className="title-h1">
         Pasta mit Fenchel, Erbsen und Zitronen.
       </h1>
-      <div className="tags">
-        <p className="tags__item">text</p>
-        <p className="tags__item">text</p>
-        <p className="tags__item">text</p>
-        <p className="tags__item">text</p>
-        <p className="tags__item">text</p>
-      </div>
+      <Tag />
     </header>
   );
 };

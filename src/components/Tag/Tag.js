@@ -4,7 +4,9 @@ import './Tag.scss';
 
 const Tag = props => {
     return (
-        <div class="tags"></div>
+        <div class="tags">
+            <p class="tags__item">text</p>
+        </div>
     );
 };
 

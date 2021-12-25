@@ -1,6 +1,5 @@
 @use 'sass:math';
 
-// fluid typography
 @mixin fluid-font-size(
   $minFontSize: $font-size-body-s,
   $maxFontSize: $font-size-body-m,

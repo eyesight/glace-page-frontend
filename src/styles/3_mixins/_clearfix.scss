@@ -1,14 +1,10 @@
-/*
-  Usage:
-  @include clearfix();
-*/
 @mixin clearfix {
   *zoom: 1;
 
   &:before,
   &:after {
     display: table;
-    content:'';
+    content: '';
     line-height: 0;
   }
 

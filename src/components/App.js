@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePageContainer from "../containers/HomePageContainer";
 import store from '../store/store';
-import './App.scss';
 import ReceiptPage from './_pages/ReceiptPage';
 import The404Page from './_pages/The404Page';
 

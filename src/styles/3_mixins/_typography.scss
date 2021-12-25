@@ -1,8 +1,7 @@
-/*
-  Usage:
-  @include font-size(font-settings-variable);
-*/
-@mixin font-size($fs-map: $font-settings-body, $fs-breakpoints: $layout-breakpoints) {
+@mixin font-size(
+  $fs-map: $font-settings-body,
+  $fs-breakpoints: $layout-breakpoints
+) {
   @each $fs-breakpoint, $fs-font-size in $fs-map {
     @if $fs-breakpoint == null {
       @include make-font-size($fs-font-size);
@@ -10,10 +9,7 @@
       @media print {
         @include make-font-size($fs-font-size);
       }
-    }
-    @else {
-      // If $fs-font-size is a key that exists in
-      // $fs-breakpoints, use the value
+    } @else {
       @if map-has-key($fs-breakpoints, $fs-breakpoint) {
         $fs-breakpoint: map-get($fs-breakpoints, $fs-breakpoint);
       }
@@ -24,19 +20,13 @@
   }
 }
 
-/*
-  HELPER MIXINS (do not use)
-*/
 @mixin make-font-size($fs-font-size) {
-  // If $fs-font-size is a list, include
-  // both font-size and line-height
-  @if type-of($fs-font-size) == "list" {
+  @if type-of($fs-font-size) == 'list' {
     font-size: nth($fs-font-size, 1);
     @if (length($fs-font-size) > 1) {
       line-height: nth($fs-font-size, 2);
     }
-  }
-  @else {
+  } @else {
     font-size: $fs-font-size;
   }
 }

@@ -1,7 +1,3 @@
-/*
-  Usage:
-  @include vertical-align-middle(position, width);
-*/
 @mixin vertical-align-middle($position: relative, $width: 100%) {
   position: $position;
   top: 50%;
@@ -10,10 +6,6 @@
   width: $width;
 }
 
-/*
-  Usage:
-  @include vertical-align(position);
-*/
 @mixin vertical-align($position: relative) {
   position: $position;
   top: 50%;

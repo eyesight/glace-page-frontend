@@ -1,24 +1,15 @@
 @use 'sass:math';
 
-//Adds font-size in rem & px
-//Value passed should be the expected px size
-//Default value 12 - can be customized to fit project
 @mixin font-size-rythm($sizeValue: 12) {
   font-size: $sizeValue + px; //fallback for old browsers
   font-size: (0.0625 * $sizeValue) + rem;
 }
 
-//Adds line-height in rem & px
-//Value passed should be the expected px size
-//Default value 20 - can be customized to fit project
 @mixin line-height-rythm($heightValue: 20) {
   line-height: $heightValue + px; //fallback for old browsers
   line-height: (0.0625 * $heightValue) + rem;
 }
 
-//Rhythm adds font-size and line-height in rem with a px fallback
-//Value passed should be the expected px size
-//Default values 12, 20 - can be customized to fit project
 @mixin rhythm($sizeValue: 12, $heightValue: 20) {
   @include font-size-rythm($sizeValue);
   @include line-height-rythm($heightValue);

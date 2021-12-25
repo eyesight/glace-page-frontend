@@ -1,8 +1,5 @@
 @use 'sass:math';
-/*
-  Usage:
-  @include responsive-ratio(width%, ratiowidth, ratioheight, 'childelement as string');
-*/
+
 @mixin responsive-ratio($cw: 100%, $rw: 16, $rh: 9, $c: 'iframe') {
   position: relative;
   width: $cw;

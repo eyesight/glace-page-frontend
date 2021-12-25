@@ -1,5 +1,15 @@
+@import './../../styles/import-all.scss';
+
 .tags {
   @include content-width();
   @include flexbox(row, wrap, center, flex-start);
   @include ld-margin-bottom($spacing-l);
+}
+
+.tags__item {
+  margin-right: 1em;
+  &::before {
+    content: '#';
+    color: $color-primary;
+  }
 }

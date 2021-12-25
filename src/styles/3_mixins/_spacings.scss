@@ -1,37 +1,37 @@
-@mixin ld-margin-bottom($margin: $gutter, $selector: '*'){
-  & + #{$selector}{
+@mixin ld-margin-bottom($margin: $gutter, $selector: '*') {
+  & + #{$selector} {
     margin-top: $margin;
   }
 }
 
-@mixin spacing-ld-margin-bottom($spacing-map, $margin: $gutter, $selector: '*') {
-  @if is-map($spacing-map){
+@mixin spacing-ld-margin-bottom(
+  $spacing-map,
+  $margin: $gutter,
+  $selector: '*'
+) {
+  @if is-map($spacing-map) {
     @each $spacing-breakpoint, $spacing in $spacing-map {
       @if $spacing-breakpoint == null {
-        & + #{$selector}{
+        & + #{$selector} {
           margin-top: $margin;
         }
       } @else {
         @include media-breakpoint-up($spacing-breakpoint) {
-          & + #{$selector}{
+          & + #{$selector} {
             margin-top: $margin;
           }
         }
       }
     }
   } @else {
-    & + #{$selector}{
+    & + #{$selector} {
       margin-top: $margin;
     }
   }
 }
 
-/*
-  Usage:
-  @include spacing(type, spacing-variable);
-*/
 @mixin spacing($type, $spacing-map) {
-  @if is-map($spacing-map){
+  @if is-map($spacing-map) {
     @each $spacing-breakpoint, $spacing in $spacing-map {
       @if $spacing-breakpoint == null {
         #{$type}: $spacing;
@@ -46,12 +46,8 @@
   }
 }
 
-/*
-  Usage:
-  @include spacing-top-bottom(type, spacing-variable);
-*/
 @mixin spacing-top-bottom($type, $spacing-map) {
-  @if is-map($spacing-map){
+  @if is-map($spacing-map) {
     @each $spacing-breakpoint, $spacing in $spacing-map {
       @if $spacing-breakpoint == null {
         #{$type}-top: $spacing;
@@ -69,12 +65,8 @@
   }
 }
 
-/*
-  Usage:
-  @include spacing-top(type, spacing-variable);
-*/
 @mixin spacing-top($type, $spacing-map) {
-  @if is-map($spacing-map){
+  @if is-map($spacing-map) {
     @each $spacing-breakpoint, $spacing in $spacing-map {
       @if $spacing-breakpoint == null {
         #{$type}-top: $spacing;
@@ -89,12 +81,8 @@
   }
 }
 
-/*
-  Usage:
-  @include spacing-bottom(type, spacing-variable);
-*/
 @mixin spacing-bottom($type, $spacing-map) {
-  @if is-map($spacing-map){
+  @if is-map($spacing-map) {
     @each $spacing-breakpoint, $spacing in $spacing-map {
       @if $spacing-breakpoint == null {
         #{$type}-bottom: $spacing;
@@ -109,12 +97,8 @@
   }
 }
 
-/*
-  Usage:
-  @include spacing-left-right(type, spacing-variable);
-*/
 @mixin spacing-left-right($type, $spacing-map) {
-  @if is-map($spacing-map){
+  @if is-map($spacing-map) {
     @each $spacing-breakpoint, $spacing in $spacing-map {
       @if $spacing-breakpoint == null {
         #{$type}-left: $spacing;
@@ -132,12 +116,8 @@
   }
 }
 
-/*
-  Usage:
-  @include spacing-left(type, spacing-variable);
-*/
 @mixin spacing-left($type, $spacing-map) {
-  @if is-map($spacing-map){
+  @if is-map($spacing-map) {
     @each $spacing-breakpoint, $spacing in $spacing-map {
       @if $spacing-breakpoint == null {
         #{$type}-left: $spacing;
@@ -152,12 +132,8 @@
   }
 }
 
-/*
-  Usage:
-  @include spacing-right(type, spacing-variable);
-*/
 @mixin spacing-right($type, $spacing-map) {
-  @if is-map($spacing-map){
+  @if is-map($spacing-map) {
     @each $spacing-breakpoint, $spacing in $spacing-map {
       @if $spacing-breakpoint == null {
         #{$type}-right: $spacing;

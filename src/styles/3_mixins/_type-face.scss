@@ -1,8 +1,8 @@
-/*
-  Usage:
-  @include font(typeface, font-weight, font-style);
-*/
-@mixin font($type-face: $type-face-body, $font-weight: $font-weight-regular, $font-style: normal) {
+@mixin font(
+  $type-face: $type-face-body,
+  $font-weight: $font-weight-regular,
+  $font-style: normal
+) {
   font-family: $type-face;
   font-weight: $font-weight;
   font-style: $font-style;
