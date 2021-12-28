@@ -14,7 +14,9 @@ export default class App extends React.Component {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePageContainer />}></Route>
-            <Route path="/receipt" element={<ReceiptPage />}></Route>
+            <Route path="/receipt" element={<ReceiptPage />}>
+              <Route path=":id" element={<ReceiptPage />}></Route>
+            </Route>
             <Route path="*" element={<The404Page />}></Route>
           </Routes>
         </BrowserRouter>

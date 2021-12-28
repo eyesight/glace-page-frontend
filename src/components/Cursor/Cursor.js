@@ -4,13 +4,13 @@ import './Cursor.scss';
 
 const Cursor = props => {
     return (
-        <div class="custom-cursor">
-            <div class="custom-cursor__eye">
+        <div className="custom-cursor">
+            <div className="custom-cursor__eye">
                 <svg
-                    class="custom-cursor__eye-svg"
+                    className="custom-cursor__eye-svg"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 93.453 69.057">
-                    <g class="Icon_feather-eye" transform="translate(0.5 -4)">
+                    <g className="Icon_feather-eye" transform="translate(0.5 -4)">
                         <path
                             d="M1.5,38.528S17.764,6,46.227,6,90.953,38.528,90.953,38.528,74.689,71.057,46.227,71.057,1.5,38.528,1.5,38.528Z"
                             transform="translate(0 0)"

@@ -4,7 +4,7 @@ import './TitleH3.scss';
 
 const TitleH3 = props => {
   return (
-    <h3 class="title-h3">
+    <h3 className="title-h3">
       Mis en place
     </h3>
   );

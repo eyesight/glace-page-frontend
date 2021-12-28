@@ -1,15 +1,21 @@
 import { connect } from 'react-redux';
 
-import { loadReceipts } from './../store/actions/receipt';
+import { fetchReceipts } from './../store/actions/receipt';
 import HomePage from '../components/_pages/HomePage';
 
-function mapStateToProps(theState) {
-    console.log(theState);
+const mapStateToProps = (state) => {
     return {
-        receipt: theState
+        receipts: state.receipt.items,
+        isFetching: state.receipt.isFetching
     };
 }
 
-export default connect(mapStateToProps, {
-    loadReceipts
-})(HomePage); 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getReceipts: () => {
+            dispatch(fetchReceipts())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage); 

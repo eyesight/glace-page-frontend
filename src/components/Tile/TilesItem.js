@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const TilesItem = props => {
+const TilesItem = ({ title, image, id }) => {
     return (
         <div className="tiles__item">
-            <a href="#" className="tiles__anchor">
+            <Link className="tiles__anchor" to={`/receipt/${id}`}>
                 <figure className="tiles__image-wrapper">
-                    <img className="tiles__img" src="http://placekitten.com/200/300" />
+                    <img className="tiles__img" src={image ? image.url : "http://placekitten.com/200/300"} />
                 </figure>
-            </a>
+            </Link>
             <div className="tiles__item-inner">
                 <h3 className="tiles__title">
                     <a href="#" className="tiles__anchor">
-                        Pasta mit Fenchel, Erbsen und Zitronen
+                        {title}
                     </a>
                 </h3>
                 <div className="tiles__button-wrap">
@@ -20,16 +21,14 @@ const TilesItem = props => {
                         <svg
                             className="tiles__icon-smile"
                             xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 28 28"
-                        >
+                            viewBox="0 0 28 28">
                             <g className="Smile" transform="translate(-546.252 -647.893)">
                                 <g
                                     className="Head"
                                     transform="translate(546.252 647.893)"
                                     fill="none"
                                     stroke="currentColor"
-                                    strokeWidth="2"
-                                >
+                                    strokeWidth="2">
                                     <circle cx="14" cy="14" r="14" stroke="none" />
                                     <circle cx="14" cy="14" r="13" fill="none" />
                                 </g>

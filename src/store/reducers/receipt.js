@@ -1,14 +1,28 @@
 import {
-    RECEIPTS_FETCHED
+    RECEIPTS_RECEIVED,
+    RECEIPTS_REQUEST
 } from '../actions/receipt';
 
-export const initialState = null;
+export const initialState = [];
 
-export default function receipt(theState = initialState, action) {
+export const receipt = (state = {
+    isFetching: false,
+    items: initialState
+}, action) => {
     switch (action.type) {
-        case RECEIPTS_FETCHED:
-            return action.payload;
+        case RECEIPTS_REQUEST:
+            return {
+                ...state,
+                isFetching: true,
+                items: initialState
+            }
+        case RECEIPTS_RECEIVED:
+            return {
+                ...state,
+                isFetching: false,
+                items: action.payload,
+            }
         default:
-            return theState;
+            return state;
     }
 }

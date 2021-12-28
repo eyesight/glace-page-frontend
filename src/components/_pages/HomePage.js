@@ -5,19 +5,25 @@ import Content from '../Content/Content';
 import TitleH1 from '../TitleH1/TitleH1';
 import Searchbar from '../Searchbar/Searchbar';
 import Tile from '../Tile/Tile';
-import TilesItem from '../Tile/TilesItem';
 import Footer from '../Footer/Footer';
 
-const HomePage = props => {
-
-    const [allReceipts, setAllReceipts] = useState('');
+const HomePage = ({ getReceipts, receipts, isFetching }) => {
+    const [allReceipts, setAllReceipts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        props.loadReceipts();
-        setAllReceipts(props.receipt);
-        console.log(props);
+        getReceipts();
+        setIsLoading(isFetching);
     }, []);
+
+    useEffect(() => {
+        setAllReceipts(receipts);
+        setIsLoading(isFetching);
+    }, [receipts]);
+
     console.log(allReceipts);
+    console.log(isLoading);
+
     return (
         <>
             <Header />
@@ -27,9 +33,10 @@ const HomePage = props => {
                         text='Guten Morgen. Hier findest du Inspiration für die Küche.'
                     />
                     <Searchbar />
-                    <Tile>
-                        <TilesItem />
-                    </Tile>
+                    <Tile
+                        items={allReceipts}
+                        isLoading={isLoading}
+                    />
                 </>
             </Content>
             <Footer />
