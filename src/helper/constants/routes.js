@@ -1,1 +1,2 @@
-export const routeReceipt = 'http://localhost:1337/rezepts';
+export const Endpoint = 'http://localhost:1337';
+export const RouteReceipt = `${Endpoint}/rezepts`;

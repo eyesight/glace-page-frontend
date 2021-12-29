@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { RouteReceipt } from '../../helper/constants/routes';
 
 /*
  * Action Type Constants
@@ -24,9 +25,9 @@ export const receiveReceipts = (receipts) => ({
  * Thunk Actions
  */
 
-export const fetchReceipts = (receipts) => (dispatch) => {
+export const fetchReceipts = (url, receipts) => (dispatch) => {
     dispatch(requestReceipts(receipts))
-    axios.get(`http://localhost:1337/rezepts`)
+    axios.get(url)
         .then(response => {
             dispatch(receiveReceipts(response.data));
         })

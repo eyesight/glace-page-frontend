@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Endpoint } from '../../helper/constants/routes';
 
 const TilesItem = ({ title, image, id }) => {
     return (
-        <div className="tiles__item">
+        <div role="listitem" className="tiles__item">
             <Link className="tiles__anchor" to={`/receipt/${id}`}>
                 <figure className="tiles__image-wrapper">
-                    <img className="tiles__img" src={image ? image.url : "http://placekitten.com/200/300"} />
+                    <img className="tiles__img" alt="" src={image ? `${Endpoint}${image.url}` : "http://placekitten.com/200/300"} />
                 </figure>
             </Link>
             <div className="tiles__item-inner">
                 <h3 className="tiles__title">
-                    <a href="#" className="tiles__anchor">
+                    <Link className="tiles__anchor" to={`/receipt/${id}`}>
                         {title}
-                    </a>
+                    </Link>
                 </h3>
                 <div className="tiles__button-wrap">
                     <button className="tiles__button">
@@ -82,7 +83,9 @@ const TilesItem = ({ title, image, id }) => {
 };
 
 TilesItem.propTypes = {
-
+    title: PropTypes.string.isRequired,
+    image: PropTypes.object,
+    id: PropTypes.number.isRequired
 };
 
 export default TilesItem;

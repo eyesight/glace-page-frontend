@@ -1,9 +1,10 @@
 import React from "react";
 import { Provider } from 'react-redux';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePageContainer from "../containers/HomePageContainer";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ReceiptsPageContainer from "../containers/ReceiptsPageContainer";
 import store from '../store/store';
-import ReceiptPage from './_pages/ReceiptPage';
+import DefaultPageSkeleton from "./_pages/DefaultPageSkeleton";
+import ReceiptDetailPage from './_pages/ReceiptDetailPage';
 import The404Page from './_pages/The404Page';
 
 export default class App extends React.Component {
@@ -13,11 +14,12 @@ export default class App extends React.Component {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<HomePageContainer />}></Route>
-            <Route path="/receipt" element={<ReceiptPage />}>
-              <Route path=":id" element={<ReceiptPage />}></Route>
+            <Route path="/" element={<DefaultPageSkeleton />}>
+              <Route path="/" element={<ReceiptsPageContainer />}></Route>
+              <Route path="receipt" element={<ReceiptsPageContainer />}></Route>
+              <Route path="receipt/:id" element={<ReceiptDetailPage />}></Route>
+              <Route path="*" element={<The404Page />}></Route>
             </Route>
-            <Route path="*" element={<The404Page />}></Route>
           </Routes>
         </BrowserRouter>
       </Provider>

@@ -146,3 +146,10 @@ figure {
 strong {
   font-weight: $font-weight-bold;
 }
+
+div#root {
+  height: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
