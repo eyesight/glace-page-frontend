@@ -1,22 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './TitleWrapper.scss';
-import Tag from '../Tag/Tag';
 
-//todo: add h1 with props
-const TitleWrapper = props => {
+const TitleWrapper = ({ title, children }) => {
   return (
     <header className="title-wrapper">
       <h1 className="title-h1">
-        Pasta mit Fenchel, Erbsen und Zitronen.
+        {title}
       </h1>
-      <Tag />
+      {children}
     </header>
   );
 };
 
 TitleWrapper.propTypes = {
-
+  title: PropTypes.string,
+  children: PropTypes.element
 };
 
 export default TitleWrapper;

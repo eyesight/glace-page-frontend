@@ -83,7 +83,7 @@ const TilesItem = ({ title, image, id }) => {
 };
 
 TilesItem.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     image: PropTypes.object,
     id: PropTypes.number.isRequired
 };

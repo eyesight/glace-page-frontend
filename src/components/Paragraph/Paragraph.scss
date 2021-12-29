@@ -3,5 +3,5 @@
 .paragraph {
   @include content-width();
   @include ld-margin-bottom(1em);
-  @include ld-margin-bottom($spacing-s, '.info-box');
+  @include ld-margin-bottom($spacing-6, '.info-box');
 }

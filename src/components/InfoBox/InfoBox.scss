@@ -2,8 +2,8 @@
 
 .info-box {
   @include content-width();
-  border: 1px solid $color-primary;
-  padding: $spacing-xxs * 2;
+  border: 2px solid $color-primary;
+  padding: $spacing-35 2 * $spacing-xxs;
 }
 
 .info-box__title {
@@ -13,6 +13,7 @@
   transform: translateY(-50%);
   background-color: $color-white;
   padding: $spacing-xxs * 2;
+  color: $color-primary;
 }
 
 .info-box__list {

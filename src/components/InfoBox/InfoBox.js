@@ -2,50 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './InfoBox.scss';
 
-const InfoBox = props => {
+const InfoBox = ({ title, text }) => {
     return (
         <div className="info-box">
-            <h3 className="title-h3 info-box__title">Mis en place</h3>
-            <ul className="info-box__list">
-                <li className="info-box__list-item">
-                    <p className="info-box__text-bold">1-2 Fenchelknollen</p>
-                    <p className="info-box__text">in dünnen Spalten</p>
-                </li>
-                <li className="info-box__list-item">
-                    <p className="info-box__text-bold">1-2 Fenchelknollen</p>
-                    <p className="info-box__text">in dünnen Spalten</p>
-                </li>
-                <li className="info-box__list-item">
-                    <p className="info-box__text-bold">1-2 Fenchelknollen</p>
-                    <p className="info-box__text">in dünnen Spalten</p>
-                </li>
-                <li className="info-box__list-item">
-                    <p className="info-box__text-bold">1-2 Fenchelknollen</p>
-                    <p className="info-box__text">in dünnen Spalten</p>
-                </li>
-                <li className="info-box__list-item">
-                    <p className="info-box__text-bold">1-2 Fenchelknollen</p>
-                    <p className="info-box__text">in dünnen Spalten</p>
-                </li>
-                <li className="info-box__list-item">
-                    <p className="info-box__text-bold">1-2 Fenchelknollen</p>
-                    <p className="info-box__text">in dünnen Spalten</p>
-                </li>
-                <li className="info-box__list-item">
-                    <p className="info-box__text-bold">1-2 Fenchelknollen</p>
-                    <p className="info-box__text">in dünnen Spalten</p>
-                </li>
-                <li className="info-box__list-item">
-                    <p className="info-box__text-bold">1-2 Fenchelknollen</p>
-                    <p className="info-box__text">in dünnen Spalten</p>
-                </li>
-            </ul>
+            <h3 className="title-h3 info-box__title">{title}</h3>
+            <p className="info-box__text">{text}</p>
         </div>
     );
 };
 
 InfoBox.propTypes = {
-
+    title: PropTypes.string,
+    text: PropTypes.string
 };
 
 export default InfoBox;

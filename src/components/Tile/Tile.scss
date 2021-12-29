@@ -11,7 +11,8 @@
   width: 100%;
 }
 
-.tiles__item {
+.tiles__item,
+.tiles__item.title-h2 {
   @include grid(9);
   margin-bottom: 3.5%;
 

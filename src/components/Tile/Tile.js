@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import './Tile.scss';
 import TilesItem from './TilesItem';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import TitleH3 from '../TitleH3/TitleH3';
-
-const renderTileItems = (items) => {
-    items && items.length > 0 ?
-        items.map((item, index) => (
-            <TilesItem {...item} key={index} />
-        )) : (<div>no item</div>)
-}
+import TitleH2 from '../TitleH2/TitleH2';
 
 const Tile = ({ items, isLoading }) => {
+    if (isLoading) return (<section className="tiles"><LoadingSpinner /></section>);
     return (
-        <section className="tiles" role="list"> {
-            isLoading ? <LoadingSpinner /> :
-                <TitleH3 />}
+        <section className="tiles" role="list">
+            <TitleH2
+                title={`${items ? items.length : 0} Rezepte`}
+                theClass='tiles__item'
+            />
+            {items && items.length > 0 ?
+                items.map((item, index) => (
+                    <TilesItem {...item} key={index} />
+                )) : <p>no content</p>}
         </section>
     )
 };
