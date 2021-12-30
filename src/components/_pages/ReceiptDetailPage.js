@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import TitleWrapper from '../TitleWrapper/TitleWrapper';
 import FullscreenImage from '../FullscreenImage/FullscreenImage';
@@ -12,23 +12,21 @@ import { RouteReceipt, Endpoint } from '../../helper/constants/routes';
 import { useParams } from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Tag from '../Tag/Tag';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchReceipts } from '../../store/actions/receipt';
 
-const ReceiptDetailPage = ({ getReceipts, receipts, isFetching }) => {
+const ReceiptDetailPage = () => {
     const { id } = useParams();
-    const [oneReceipt, setOneReceipt] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const dispatch = useDispatch();
+    const oneReceipt = useSelector(state => state.receipt.items);
+    const isLoading = useSelector(state => state.receipt.isFetching);
 
     useEffect(() => {
-        const fetchData = () => {
-            getReceipts(`${RouteReceipt}/${id}`);
+        const loadDetails = async () => {
+            await dispatch(fetchReceipts(`${RouteReceipt}/${id}`));
         };
-        fetchData();
-    }, [id]);
-
-    useEffect(() => {
-        setOneReceipt(receipts);
-        setIsLoading(isFetching);
-    }, [receipts, isFetching]);
+        loadDetails();
+    }, [dispatch]);
 
     console.log(oneReceipt);
     console.log(isLoading);
@@ -84,12 +82,6 @@ const ReceiptDetailPage = ({ getReceipts, receipts, isFetching }) => {
             {renderSteps}
         </>
     );
-};
-
-ReceiptDetailPage.propTypes = {
-    getReceipts: PropTypes.func,
-    receipts: PropTypes.any,
-    isFetching: PropTypes.bool,
 };
 
 export default ReceiptDetailPage;

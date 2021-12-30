@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import TitleH1 from '../TitleH1/TitleH1';
 import Searchbar from '../Searchbar/Searchbar';
 import Tile from '../Tile/Tile';
 import { RouteReceipt } from '../../helper/constants/routes';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchReceipts } from '../../store/actions/receipt';
 
-const ReceiptsPage = ({ getReceipts, receipts, isFetching }) => {
-    const [allReceipts, setAllReceipts] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    console.log(RouteReceipt);
-
-    useEffect(() => {
-        getReceipts(RouteReceipt);
-        setIsLoading(isFetching);
-    }, []);
+const ReceiptsPage = () => {
+    const dispatch = useDispatch();
+    const receipts = useSelector(state => state.receipt.items);
+    const isLoading = useSelector(state => state.receipt.isFetching);
 
     useEffect(() => {
-        setAllReceipts(receipts);
-        setIsLoading(isFetching);
-    }, [receipts]);
-
-    console.log(allReceipts);
-    console.log(isLoading);
+        const loadDetails = async () => {
+            await dispatch(fetchReceipts(RouteReceipt));
+        };
+        loadDetails();
+    }, [dispatch]);
 
     return (
         <>
@@ -30,17 +25,11 @@ const ReceiptsPage = ({ getReceipts, receipts, isFetching }) => {
             />
             <Searchbar />
             <Tile
-                items={allReceipts}
+                items={receipts}
                 isLoading={isLoading}
             />
         </>
     );
-};
-
-ReceiptsPage.propTypes = {
-    getReceipts: PropTypes.func.isRequired,
-    receipts: PropTypes.array,
-    isFetching: PropTypes.bool
 };
 
 export default ReceiptsPage;

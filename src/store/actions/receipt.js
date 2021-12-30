@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { RouteReceipt } from '../../helper/constants/routes';
 
 /*
  * Action Type Constants
@@ -27,9 +26,16 @@ export const receiveReceipts = (receipts) => ({
 
 export const fetchReceipts = (url, receipts) => (dispatch) => {
     dispatch(requestReceipts(receipts))
-    axios.get(url)
-        .then(response => {
+    const sendGetRequest = async () => {
+        try {
+            const response = await axios.get(url)
             dispatch(receiveReceipts(response.data));
-        })
-        .catch(err => console.log(err));
+
+        } catch (err) {
+            // Handle Error TODO
+            console.error(err);
+        }
+    }
+
+    return sendGetRequest();
 }
