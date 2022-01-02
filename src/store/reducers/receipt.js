@@ -1,5 +1,5 @@
 import { getStorage, changeStorage } from '../../helper/constants/storageFunction';
-import { getURLSearchParam } from '../../helper/constants/urlSearchParamsFunction';
+import { getURLSearchParam, changeURLSearchParam, insertParam } from '../../helper/constants/urlSearchParamsFunction';
 import {
     RECEIPTS_RECEIVED,
     RECEIPTS_REQUEST,
@@ -18,14 +18,14 @@ export const receipt = (state = {
     switch (action.type) {
         case RECEIPTS_PORTION_PLUS:
             let newPlusPortions = ++state.portions;
-            let thePortionPlus = changeStorage('portion', newPlusPortions);
+            let thePortionPlus = Number(changeURLSearchParam('portion', newPlusPortions));
             return {
                 ...state,
                 portions: thePortionPlus,
             }
         case RECEIPTS_PORTION_MINUS:
             let newMinusPortions = (state.portions === 1) ? state.portions : --state.portions;
-            let thePortionMinus = changeStorage('portion', newMinusPortions);
+            let thePortionMinus = Number(changeURLSearchParam('portion', newMinusPortions));
             return {
                 ...state,
                 portions: thePortionMinus,
@@ -38,8 +38,8 @@ export const receipt = (state = {
                 portions: initialStatePortion
             }
         case RECEIPTS_RECEIVED:
-            let thePortion = getStorage('portion', action.payload.portions);
-
+            let thePortion = Number(getURLSearchParam('portion', action.payload.portions));
+            console.log(thePortion);
             return {
                 ...state,
                 isFetching: false,
