@@ -1,5 +1,4 @@
-import { getStorage, changeStorage } from '../../helper/constants/storageFunction';
-import { getURLSearchParam, changeURLSearchParam, insertParam } from '../../helper/constants/urlSearchParamsFunction';
+import { getURLSearchParam, changeURLSearchParam } from '../../helper/constants/urlSearchParamsFunction';
 import {
     RECEIPTS_RECEIVED,
     RECEIPTS_REQUEST,
@@ -38,8 +37,7 @@ export const receipt = (state = {
                 portions: initialStatePortion
             }
         case RECEIPTS_RECEIVED:
-            let thePortion = Number(getURLSearchParam('portion', action.payload.portions));
-            console.log(thePortion);
+            let thePortion = Number(getURLSearchParam('portion', action.payload.portions)) ? Number(getURLSearchParam('portion', action.payload.portions)) : initialStatePortion;
             return {
                 ...state,
                 isFetching: false,

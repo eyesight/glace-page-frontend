@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import TitleWrapper from '../TitleWrapper/TitleWrapper';
 import FullscreenImage from '../FullscreenImage/FullscreenImage';
 import SectionContainer from '../SectionContainer/SectionContainer';

@@ -4,24 +4,16 @@ export const getURLSearchParam = (string, item) => {
         if (params.has(string)) {
             return params.get(string);
         } else {
-            params.set(string, item);
-            params.toString();
-            window.location.search = params;
-            console.log(params);
+            addURLParameter(string, item);
             return item;
         }
     }
 };
 
 export const changeURLSearchParam = (string, item) => {
-    const params = new URLSearchParams(window.location.search);
     if (window.location.href.indexOf('receipt') > -1) {
         try {
-            localStorage.setItem(string, JSON.stringify(item));
-            params.set(string, item);
-            params.toString();
-            console.log(params);
-            window.location.search = params;
+            addURLParameter(string, item);
             return item;
         } catch {
             console.error(`${string} could not be parsed into JSON, while changing it`)
@@ -31,28 +23,16 @@ export const changeURLSearchParam = (string, item) => {
 };
 
 
-const addQueryParam = (key, value) => {
-    const url = new URL(window.location.href);
-    url.searchParams.set(key, value);
-    window.history.pushState({}, '', url.toString());
-};
-
-const getQueryParam = (key, value) => {
-    const url = new URL(window.location.href);
-    return url.searchParams.get(key) || value;
-};
-
 //function to remove query params from a URL
-function removeURLParameter(url, parameter) {
-    //better to use l.search if you have a location/link object
-    var urlparts = url.split('?');
+const removeURLParameter = (url, parameter) => {
+    let urlparts = url.split('?');
     if (urlparts.length >= 2) {
 
-        var prefix = encodeURIComponent(parameter) + '=';
-        var pars = urlparts[1].split(/[&;]/g);
+        let prefix = encodeURIComponent(parameter) + '=';
+        let pars = urlparts[1].split(/[&;]/g);
 
         //reverse iteration as may be destructive
-        for (var i = pars.length; i-- > 0;) {
+        for (let i = pars.length; i-- > 0;) {
             //idiom for string.startsWith
             if (pars[i].lastIndexOf(prefix, 0) !== -1) {
                 pars.splice(i, 1);
@@ -66,24 +46,18 @@ function removeURLParameter(url, parameter) {
     }
 }
 
-//function to add/update query params
-export const insertParam = (key, value) => {
-    if (window.history.pushState) {
-        // var newurl = window.location.protocol + "//" + window.location.host + search.pathname + '?myNewUrlQuery=1';
-        var currentUrlWithOutHash = window.location.origin + window.location.pathname + window.location.search;
-        // var hash = window.location.hash
-        //remove any param for the same key
-        var currentUrlWithOutHash = removeURLParameter(currentUrlWithOutHash, key);
+const addURLParameter = (key, value) => {
+    let currentUrlWithSearchParams = window.location.origin + window.location.pathname + window.location.search;
+    currentUrlWithSearchParams = removeURLParameter(currentUrlWithSearchParams, key);
 
-        //figure out if we need to add the param with a ? or a &
-        var queryStart;
-        if (currentUrlWithOutHash.indexOf('?') !== -1) {
-            queryStart = '&';
-        } else {
-            queryStart = '?';
-        }
-
-        var newurl = currentUrlWithOutHash + queryStart + key + '=' + value
-        window.history.pushState({ path: newurl }, '', newurl);
+    //figure out if we need to add the param with a ? or a &
+    let queryStart;
+    if (currentUrlWithSearchParams.indexOf('?') !== -1) {
+        queryStart = '&';
+    } else {
+        queryStart = '?';
     }
+
+    let newurl = currentUrlWithSearchParams + queryStart + key + '=' + value;
+    window.history.pushState({ path: newurl }, '', newurl);
 }
