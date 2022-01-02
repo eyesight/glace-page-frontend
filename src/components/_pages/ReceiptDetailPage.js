@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import TitleWrapper from '../TitleWrapper/TitleWrapper';
 import FullscreenImage from '../FullscreenImage/FullscreenImage';
@@ -13,23 +13,21 @@ import { useParams } from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Tag from '../Tag/Tag';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReceipts } from '../../store/actions/receipt';
+import { fetchReceipts, receiptMinusPortion, receiptPlusPortion } from '../../store/actions/receipt';
 
 const ReceiptDetailPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const oneReceipt = useSelector(state => state.receipt.items);
     const isLoading = useSelector(state => state.receipt.isFetching);
+    const theportion = useSelector(state => state.receipt.portions);
 
     useEffect(() => {
         const loadDetails = async () => {
             await dispatch(fetchReceipts(`${RouteReceipt}/${id}`));
         };
         loadDetails();
-    }, [dispatch]);
-
-    console.log(oneReceipt);
-    console.log(isLoading);
+    }, [dispatch, id]);
 
     const renderSteps = (oneReceipt && oneReceipt.steps && oneReceipt.steps.length > 0) ?
         oneReceipt.steps.map((item, index) =>
@@ -42,8 +40,9 @@ const ReceiptDetailPage = () => {
                         text={item.text}
                     />
                     {item.infobox && item.infobox.length > 0 ?
-                        item.infobox.map((info) =>
+                        item.infobox.map((info, index) =>
                             <InfoBox
+                                key={index}
                                 title={info.title}
                                 text={info.text}
                             />
@@ -73,9 +72,15 @@ const ReceiptDetailPage = () => {
                     <TitleH2
                         title='Zutaten'
                     />
-                    <PortionCalculation />
+                    <PortionCalculation
+                        number={Number(theportion)}
+                        minuOperation={() => dispatch(receiptMinusPortion(Number(theportion)))}
+                        plusOperation={() => dispatch(receiptPlusPortion(Number(theportion)))}
+                    />
                     <TilesRound
-                        items={oneReceipt.Ingredients}
+                        items={oneReceipt.ingredients}
+                        portion={theportion}
+                        originalPortion={oneReceipt.portions}
                     />
                 </>
             </SectionContainer>

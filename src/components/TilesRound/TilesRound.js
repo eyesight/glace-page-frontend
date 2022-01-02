@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TilesRound.scss';
 
-const TilesRound = ({ items }) => {
+const round = (value, decimalPlaces) => {
+    const multiplier = 10 ** (decimalPlaces || 0);
+    return Math.round(value * multiplier) / multiplier;
+}
+
+const TilesRound = ({ items, portion, originalPortion }) => {
     return (
         <ul className="tiles-round">
             {
@@ -17,7 +22,7 @@ const TilesRound = ({ items }) => {
                                 />
                             </figure>
                             <div className="tiles-round__item-text-wrap">
-                                <p className="tiles-round__item-nr">{`${item.mass} ${item.unit ? item.unit.short : ''}`}</p>
+                                <p className="tiles-round__item-nr">{`${round(((item.mass / originalPortion) * portion), 1)} ${item.unit ? item.unit.short : ''}`}</p>
                                 <p className="tiles-round__item-text">{item.ingredient_item.name}</p>
                             </div>
                         </li>
@@ -30,6 +35,8 @@ const TilesRound = ({ items }) => {
 
 TilesRound.propTypes = {
     items: PropTypes.array,
+    portion: PropTypes.number,
+    originalPortion: PropTypes.number,
 };
 
 export default TilesRound;
