@@ -19,6 +19,8 @@ const PortionCalculation = ({ number, minuOperation, plusOperation }) => {
 
 PortionCalculation.propTypes = {
     number: PropTypes.number,
+    minuOperation: PropTypes.func,
+    plusOperation: PropTypes.func,
 };
 
 export default PortionCalculation;

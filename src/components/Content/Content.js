@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import './Content.scss';
 
-const Content = ({ children }) => {
+const Content = forwardRef(({ children }, ref) => {
     return (
-        <main className="content">
+        <main className="content" ref={ref}>
             {children}
         </main>
     );
-};
+});
 
 Content.propTypes = {
     children: PropTypes.element.isRequired
