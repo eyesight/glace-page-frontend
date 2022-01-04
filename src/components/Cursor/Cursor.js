@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
 import './Cursor.scss';
 import { useSelector } from 'react-redux';
 
