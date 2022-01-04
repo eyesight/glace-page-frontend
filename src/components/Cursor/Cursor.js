@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import './Cursor.scss';
+import { useSelector } from 'react-redux';
 
-const Cursor = props => {
+const Cursor = forwardRef(({ }, ref) => {
+    const isOnElement = useSelector(state => state.cursor.isOnElement);
+    const cursorPosition = useSelector(state => state.cursor.cursorPosition);
+
+    const animationStyle = {
+        transform: `translate3d(${cursorPosition.x}px, ${cursorPosition.y}px, 0px)`
+    };
+
     return (
-        <div className="custom-cursor">
+        <div className={`custom-cursor ${isOnElement ? 'is-visible' : ''}`} ref={ref} style={animationStyle}>
             <div className="custom-cursor__eye">
                 <svg
                     className="custom-cursor__eye-svg"
@@ -17,7 +25,7 @@ const Cursor = props => {
                             fill="none"
                             stroke="currentColor"
                             strokeLinecap="round"
-                            stroke-linejoin="round"
+                            // strokelinejoin="round"
                             strokeWidth="4"
                         />
                         <path
@@ -26,7 +34,7 @@ const Cursor = props => {
                             fill="none"
                             stroke="currentColor"
                             strokeLinecap="round"
-                            stroke-linejoin="round"
+                            // strokelinejoin="round"
                             strokeWidth="4"
                         />
                     </g>
@@ -34,10 +42,6 @@ const Cursor = props => {
             </div>
         </div>
     );
-};
-
-Cursor.propTypes = {
-
-};
+});
 
 export default Cursor;

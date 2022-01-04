@@ -8,6 +8,7 @@ const FullscreenImage = ({ image }) => {
             <img
                 className="fullscreen-image__image"
                 src={image}
+                alt=''
             />
         </figure>
     );

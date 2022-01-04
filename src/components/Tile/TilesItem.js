@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Endpoint } from '../../helper/constants/routes';
+import { useDispatch } from 'react-redux';
+import { enterCursor, leaveCursor, detectCursor } from '../../store/actions/cursor';
 
-const TilesItem = ({ title, image, id }) => {
+const TilesItem = ({ title, image, id, funcEnter, funcLeave }) => {
+    const dispatch = useDispatch();
+
     return (
-        <div role="listitem" className="tiles__item">
+        <div role="listitem" className="tiles__item" onMouseMove={(event) => dispatch(detectCursor(event))} onMouseEnter={() => dispatch(enterCursor())} onMouseLeave={() => dispatch(leaveCursor())}>
             <Link className="tiles__anchor" to={`/receipt/${id}`}>
                 <figure className="tiles__image-wrapper">
                     <img className="tiles__img" alt="" src={image ? `${Endpoint}${image.url}` : "http://placekitten.com/200/300"} />
@@ -85,7 +89,9 @@ const TilesItem = ({ title, image, id }) => {
 TilesItem.propTypes = {
     title: PropTypes.string,
     image: PropTypes.object,
-    id: PropTypes.number.isRequired
+    id: PropTypes.number.isRequired,
+    funcEnter: PropTypes.func,
+    funcLeave: PropTypes.func,
 };
 
 export default TilesItem;
