@@ -2,8 +2,7 @@ import React, { forwardRef } from 'react';
 import './Cursor.scss';
 import { useSelector } from 'react-redux';
 
-const Cursor = forwardRef(({ }, ref) => {
-    const isOnElement = useSelector(state => state.cursor.isOnElement);
+const Cursor = forwardRef(({ aniClass }, ref) => {
     const cursorPosition = useSelector(state => state.cursor.cursorPosition);
 
     const animationStyle = {
@@ -11,7 +10,7 @@ const Cursor = forwardRef(({ }, ref) => {
     };
 
     return (
-        <div className={`custom-cursor ${isOnElement ? 'is-visible' : ''}`} ref={ref} style={animationStyle}>
+        <div className={`custom-cursor ${aniClass}`} ref={ref} style={animationStyle}>
             <div className="custom-cursor__eye">
                 <svg
                     className="custom-cursor__eye-svg"

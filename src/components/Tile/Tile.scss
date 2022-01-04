@@ -3,6 +3,7 @@
 .tiles {
   @include content-width(true);
   @include ld-margin-bottom(2.5 * $gap-const);
+  @include ld-margin-bottom(0, '.custom-cursor');
 }
 
 .tiles__title {
