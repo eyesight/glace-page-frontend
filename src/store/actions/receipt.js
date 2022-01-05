@@ -7,6 +7,7 @@ export const RECEIPTS_RECEIVED = 'RECEIPTS_RECEIVED';
 export const RECEIPTS_REQUEST = 'RECEIPTS_REQUEST';
 export const RECEIPTS_PORTION_PLUS = 'RECEIPTS_PORTION_PLUS';
 export const RECEIPTS_PORTION_MINUS = 'RECEIPTS_PORTION_MINUS';
+export const SEARCH = 'SEARCH';
 
 
 /*
@@ -30,6 +31,11 @@ export const receiptPlusPortion = (receipts) => ({
 export const receiptMinusPortion = (receipts) => ({
     type: RECEIPTS_PORTION_MINUS,
     payload: receipts
+});
+
+export const search = (value) => ({
+    type: SEARCH,
+    payload: value
 });
 
 /*

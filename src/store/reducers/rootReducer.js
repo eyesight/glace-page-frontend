@@ -5,5 +5,5 @@ import { cursor as cursorReducer } from './cursor';
 
 export default combineReducers({
     receipt: receiptReducer,
-    cursor: cursorReducer
+    cursor: cursorReducer,
 });

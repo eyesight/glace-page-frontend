@@ -1,18 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import './Searchbar.scss';
+import { search } from '../../store/actions/receipt';
+import { useDispatch } from 'react-redux';
 
-const Searchbar = props => {
+const Searchbar = () => {
+    const dispatch = useDispatch();
+    const [text, setText] = useState('');
+
     return (
         <form className="searchbar">
             <div className="searchbar__searchfield-wrapper">
                 <input
                     className="searchbar__searchfield"
-                    value=""
                     autoComplete="off"
                     placeholder="Nach Rezepten oder Zutaten suchen"
                     type="text"
-                    onChange={(e) => { console.log(e.target.value) }}
+                    onChange={(e) => {
+                        dispatch(search(e.target.value));
+                        setText(e.target.value)
+                    }}
+                    value={text}
                 />
                 <div className="searchbar__icon-wrapper">
                     <svg

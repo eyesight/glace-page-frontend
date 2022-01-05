@@ -3,16 +3,12 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Outlet } from 'react-router-dom';
 import Content from '../Content/Content';
-import Cursor from '../Cursor/Cursor';
-import { useSelector } from 'react-redux';
 
 const DefaultPageSkeleton = props => {
     const contentRef = useRef(null);
     const headerRef = useRef(null);
-    const cursorRef = useRef(null);
     const [scrollPosition, setScrollPosition] = useState(0);
     const [headerHeight, setHeaderHeight] = useState(0);
-    const cursorIsOnElement = useSelector(state => state.cursor.isOnElement);
 
     useLayoutEffect(() => {
         setHeaderHeight(headerRef.current.offsetHeight)

@@ -3,16 +3,21 @@ import {
     RECEIPTS_RECEIVED,
     RECEIPTS_REQUEST,
     RECEIPTS_PORTION_PLUS,
-    RECEIPTS_PORTION_MINUS
+    RECEIPTS_PORTION_MINUS,
+    SEARCH
 } from '../actions/receipt';
 
 export const initialState = [];
 export const initialStatePortion = 0;
+export const initialContents = [];
+export const initialValue = '';
 
 export const receipt = (state = {
     isFetching: false,
     items: initialState,
-    portions: initialStatePortion
+    portions: initialStatePortion,
+    filteredItems: initialState,
+    value: initialValue,
 }, action) => {
     switch (action.type) {
         case RECEIPTS_PORTION_PLUS:
@@ -42,8 +47,22 @@ export const receipt = (state = {
                 ...state,
                 isFetching: false,
                 items: action.payload,
+                filteredItems: action.payload,
                 portions: thePortion
             }
+        case SEARCH: {
+            const value = action.payload;
+            const allItems = state.items;
+            const filteredReceipts = allItems.filter((val) => {
+                const title = val.title.toLowerCase();
+                return title.includes(value)
+            });
+            return {
+                ...state,
+                value,
+                filteredItems: filteredReceipts
+            };
+        }
         default:
             return state;
     }
