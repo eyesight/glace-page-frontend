@@ -8,6 +8,7 @@ export const RECEIPTS_REQUEST = 'RECEIPTS_REQUEST';
 export const RECEIPTS_PORTION_PLUS = 'RECEIPTS_PORTION_PLUS';
 export const RECEIPTS_PORTION_MINUS = 'RECEIPTS_PORTION_MINUS';
 export const SEARCH = 'SEARCH';
+export const SEARCH_ENTER = 'SEARCH_ENTER';
 
 
 /*
@@ -35,6 +36,11 @@ export const receiptMinusPortion = (receipts) => ({
 
 export const search = (value) => ({
     type: SEARCH,
+    payload: value
+});
+
+export const searchEntered = (value) => ({
+    type: SEARCH_ENTER,
     payload: value
 });
 

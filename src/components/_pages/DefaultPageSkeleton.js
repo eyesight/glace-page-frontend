@@ -11,15 +11,16 @@ const DefaultPageSkeleton = props => {
     const [headerHeight, setHeaderHeight] = useState(0);
 
     useLayoutEffect(() => {
-        setHeaderHeight(headerRef.current.offsetHeight)
+        let theContentRef = headerRef.current;
+        setHeaderHeight(theContentRef.offsetHeight);
+        return () => setHeaderHeight(theContentRef.offsetHeight);
     }, [])
 
     useLayoutEffect(() => {
         const updatePosition = (e) => {
-            let scrollPosition = contentRef.current.getBoundingClientRect().top;
+            let scrollPosition = contentRef && contentRef.current ? contentRef.current.getBoundingClientRect().top : 0;
             setScrollPosition(scrollPosition);
         }
-
         updatePosition();
         document.addEventListener('wheel', updatePosition);
         return () => window.removeEventListener('wheel', updatePosition);

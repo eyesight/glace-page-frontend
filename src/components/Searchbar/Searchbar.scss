@@ -32,7 +32,10 @@ input.searchbar__searchfield {
     transition: all 0.5s ease;
     outline: none;
 
-    &::placeholder,
+    &::placeholder {
+      color: mix($color-primary, $color-white, 25%);
+    }
+
     + .searchbar__icon-wrapper {
       color: $color-white;
     }
@@ -54,4 +57,6 @@ input.searchbar__searchfield {
 
 .searchbar__icon {
   position: absolute;
+  top: 0;
+  right: 0;
 }

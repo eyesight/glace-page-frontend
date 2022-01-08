@@ -17,9 +17,10 @@ import { fetchReceipts, receiptMinusPortion, receiptPlusPortion } from '../../st
 const ReceiptDetailPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const oneReceipt = useSelector(state => state.receipt.items);
-    const isLoading = useSelector(state => state.receipt.isFetching);
-    const theportion = useSelector(state => state.receipt.portions);
+    const all = useSelector(state => state.receipt);
+    const oneReceipt = all.items;
+    const isLoading = all.isFetching;
+    const theportion = all.portions;
 
     useEffect(() => {
         const loadDetails = async () => {

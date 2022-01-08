@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Searchbar.scss';
-import { search } from '../../store/actions/receipt';
+import { search, searchEntered } from '../../store/actions/receipt';
 import { useDispatch } from 'react-redux';
 
 const Searchbar = () => {
@@ -8,9 +8,14 @@ const Searchbar = () => {
     const [text, setText] = useState('');
 
     return (
-        <form className="searchbar">
-            <div className="searchbar__searchfield-wrapper">
+        <form className="searchbar" method='GET' action="" onSubmit={(e) => {
+            e.preventDefault();
+            dispatch(searchEntered(text))
+        }}>
+            <div className="searchbar__searchfield-wrapper" role="search">
+                <label className="searchbar__label sr-hidden" htmlFor="search">Nach Rezepten oder Zutaten suchen</label>
                 <input
+                    id='search'
                     className="searchbar__searchfield"
                     autoComplete="off"
                     placeholder="Nach Rezepten oder Zutaten suchen"
@@ -19,9 +24,10 @@ const Searchbar = () => {
                         dispatch(search(e.target.value));
                         setText(e.target.value)
                     }}
+
                     value={text}
                 />
-                <div className="searchbar__icon-wrapper">
+                <button className="searchbar__icon-wrapper" type="submit">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 17.596 17.596"
@@ -48,14 +54,11 @@ const Searchbar = () => {
                             />
                         </g>
                     </svg>
-                </div>
+                </button>
             </div>
         </form>
     );
 };
 
-Searchbar.propTypes = {
-
-};
-
 export default Searchbar;
+

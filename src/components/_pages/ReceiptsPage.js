@@ -10,8 +10,9 @@ import { useRef } from 'react';
 
 const ReceiptsPage = () => {
     const dispatch = useDispatch();
-    const receipts = useSelector(state => state.receipt.filteredItems);
-    const isLoading = useSelector(state => state.receipt.isFetching);
+    const all = useSelector(state => state.receipt);
+    const receipts = all.filteredItems;
+    const isLoading = all.isFetching;
     const cursorRef = useRef(null);
 
     const cursorIsOnElement = useSelector(state => state.cursor.isOnElement);

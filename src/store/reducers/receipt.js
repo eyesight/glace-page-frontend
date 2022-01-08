@@ -4,13 +4,15 @@ import {
     RECEIPTS_REQUEST,
     RECEIPTS_PORTION_PLUS,
     RECEIPTS_PORTION_MINUS,
-    SEARCH
+    SEARCH,
+    SEARCH_ENTER
 } from '../actions/receipt';
 
 export const initialState = [];
 export const initialStatePortion = 0;
 export const initialContents = [];
 export const initialValue = '';
+export const initialFilter = '';
 
 export const receipt = (state = {
     isFetching: false,
@@ -18,18 +20,19 @@ export const receipt = (state = {
     portions: initialStatePortion,
     filteredItems: initialState,
     value: initialValue,
+    filter: initialFilter
 }, action) => {
     switch (action.type) {
         case RECEIPTS_PORTION_PLUS:
             let newPlusPortions = ++state.portions;
-            let thePortionPlus = Number(changeURLSearchParam('portion', newPlusPortions));
+            let thePortionPlus = Number(changeURLSearchParam('portion', newPlusPortions, 'receipt'));
             return {
                 ...state,
                 portions: thePortionPlus,
             }
         case RECEIPTS_PORTION_MINUS:
             let newMinusPortions = (state.portions === 1) ? state.portions : --state.portions;
-            let thePortionMinus = Number(changeURLSearchParam('portion', newMinusPortions));
+            let thePortionMinus = Number(changeURLSearchParam('portion', newMinusPortions, 'receipt'));
             return {
                 ...state,
                 portions: thePortionMinus,
@@ -39,16 +42,25 @@ export const receipt = (state = {
                 ...state,
                 isFetching: true,
                 items: initialState,
-                portions: initialStatePortion
+                portions: initialStatePortion,
+                filter: initialFilter
             }
         case RECEIPTS_RECEIVED:
-            let thePortion = Number(getURLSearchParam('portion', action.payload.portions)) ? Number(getURLSearchParam('portion', action.payload.portions)) : initialStatePortion;
+            const initialAllItems = action.payload;
+            let thePortion = Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) ? Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) : initialStatePortion;
+            let theReceiptsFilteredBySearchParam = getURLSearchParam('s', state.filter, '') ? getURLSearchParam('s', state.filter, '') : state.filter;
+            //when portion-filter is set; when more than one portion is set in SearchParams, then the Item is not an array; its a single item -> when detail page is loaded
+            const initialFilteredReceipts = !thePortion > 0 ? initialAllItems.filter((val) => {
+                const title = val.title.toLowerCase();
+                return title.includes(theReceiptsFilteredBySearchParam)
+            }) : initialAllItems;
             return {
                 ...state,
                 isFetching: false,
-                items: action.payload,
-                filteredItems: action.payload,
-                portions: thePortion
+                items: initialAllItems,
+                filter: theReceiptsFilteredBySearchParam,
+                filteredItems: initialFilteredReceipts,
+                portions: thePortion,
             }
         case SEARCH: {
             const value = action.payload;
@@ -63,6 +75,16 @@ export const receipt = (state = {
                 filteredItems: filteredReceipts
             };
         }
+
+        case SEARCH_ENTER: {
+            const searchValue = action.payload;
+            changeURLSearchParam('s', searchValue, '');
+            return {
+                ...state,
+                filter: searchValue
+            };
+        }
+
         default:
             return state;
     }
