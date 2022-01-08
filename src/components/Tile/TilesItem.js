@@ -8,8 +8,15 @@ import { enterCursor, leaveCursor, detectCursor } from '../../store/actions/curs
 const TilesItem = ({ title, image, id, funcEnter, funcLeave }) => {
     const dispatch = useDispatch();
 
+    const detectCursorFunc = (e) => {
+        let mousePos = { x: 0, y: 0 }
+        mousePos.x = e.clientX;
+        mousePos.y = e.clientY;
+        dispatch(detectCursor(mousePos));
+    }
+
     return (
-        <div role="listitem" className="tiles__item" onMouseMove={(event) => dispatch(detectCursor(event))} onMouseEnter={() => dispatch(enterCursor())} onMouseLeave={() => dispatch(leaveCursor())}>
+        <div role="listitem" className="tiles__item" onMouseMove={(event) => detectCursorFunc(event)} onMouseEnter={() => dispatch(enterCursor())} onMouseLeave={() => dispatch(leaveCursor())}>
             <Link className="tiles__anchor" to={`/receipt/${id}`}>
                 <figure className="tiles__image-wrapper">
                     <img className="tiles__img" alt="" src={image ? `${Endpoint}${image.url}` : "http://placekitten.com/200/300"} />

@@ -23,12 +23,9 @@ export const cursor = (state = {
                 isOnElement: false,
             }
         case CURSOR_DETECT:
-            let mousePos = { x: 0, y: 0 }
-            mousePos.x = action.payload.clientX;
-            mousePos.y = action.payload.clientY;
             return {
                 ...state,
-                cursorPosition: mousePos
+                cursorPosition: action.payload
             }
         default:
             return state;
