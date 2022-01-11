@@ -4,6 +4,7 @@
   @include content-width();
   border: 2px solid $color-primary;
   padding: $spacing-35 2 * $spacing-xxs;
+  @include ld-margin-bottom($spacing-6);
 }
 
 .info-box__title {

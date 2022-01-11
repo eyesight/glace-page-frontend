@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchReceipts } from '../../store/actions/receipt';
 import Cursor from '../Cursor/Cursor';
 import { useRef } from 'react';
+import Slideshow from '../Slideshow/Slideshow';
 
 const ReceiptsPage = () => {
     const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const ReceiptsPage = () => {
                 items={receipts}
                 isLoading={isLoading}
             />
+            <Slideshow />
             <Cursor
                 aniClass={cursorIsOnElement ? 'is-visible' : ''}
                 ref={cursorRef}
