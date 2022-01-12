@@ -49,6 +49,7 @@
   display: block;
 
   &::after {
+    background-color: rgba(30, 30, 30, 0.2);
     position: absolute;
     top: 50%;
     left: 0;
