@@ -6,7 +6,7 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import TitleH2 from '../TitleH2/TitleH2';
 
 const Tile = ({ items, isLoading }) => {
-    if (isLoading) return (<section className="tiles"><LoadingSpinner /></section>);
+    if (isLoading) return (<section className="section tiles section--loading-spinner"><LoadingSpinner /></section>);
     return (
         <section className="tiles" role="list">
             <TitleH2

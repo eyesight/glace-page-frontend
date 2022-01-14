@@ -7,6 +7,7 @@ export const RECEIPTS_RECEIVED = 'RECEIPTS_RECEIVED';
 export const RECEIPTS_REQUEST = 'RECEIPTS_REQUEST';
 export const RECEIPTS_PORTION_PLUS = 'RECEIPTS_PORTION_PLUS';
 export const RECEIPTS_PORTION_MINUS = 'RECEIPTS_PORTION_MINUS';
+export const RECEIPT_RANDOM = 'RECEIPT_RANDOM';
 export const SEARCH = 'SEARCH';
 export const SEARCH_ENTER = 'SEARCH_ENTER';
 
@@ -34,6 +35,11 @@ export const receiptMinusPortion = (receipts) => ({
     payload: receipts
 });
 
+export const receiptRandom = (receipts) => ({
+    type: RECEIPT_RANDOM,
+    payload: receipts
+});
+
 export const search = (value) => ({
     type: SEARCH,
     payload: value
@@ -54,6 +60,7 @@ export const fetchReceipts = (url, receipts) => (dispatch) => {
         try {
             const response = await axios.get(url)
             dispatch(receiveReceipts(response.data));
+            dispatch(receiptRandom(response.data));
 
         } catch (err) {
             // Handle Error TODO

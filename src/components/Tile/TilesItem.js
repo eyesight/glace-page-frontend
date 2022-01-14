@@ -5,7 +5,7 @@ import { Endpoint } from '../../helper/constants/routes';
 import { useDispatch } from 'react-redux';
 import { enterCursor, leaveCursor, detectCursor } from '../../store/actions/cursor';
 
-const TilesItem = ({ title, image, id, funcEnter, funcLeave }) => {
+const TilesItem = ({ title, image, id }) => {
     const dispatch = useDispatch();
 
     const detectCursorFunc = (e) => {
@@ -97,8 +97,6 @@ TilesItem.propTypes = {
     title: PropTypes.string,
     image: PropTypes.object,
     id: PropTypes.number.isRequired,
-    funcEnter: PropTypes.func,
-    funcLeave: PropTypes.func,
 };
 
 export default TilesItem;

@@ -13,6 +13,7 @@ const ReceiptsPage = () => {
     const dispatch = useDispatch();
     const all = useSelector(state => state.receipt);
     const receipts = all.filteredItems;
+    const randomitems = all.randomItems;
     const isLoading = all.isFetching;
     const cursorRef = useRef(null);
 
@@ -35,7 +36,10 @@ const ReceiptsPage = () => {
                 items={receipts}
                 isLoading={isLoading}
             />
-            <Slideshow />
+            <Slideshow
+                items={randomitems}
+                isLoading={isLoading}
+            />
             <Cursor
                 aniClass={cursorIsOnElement ? 'is-visible' : ''}
                 ref={cursorRef}

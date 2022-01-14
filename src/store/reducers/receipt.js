@@ -1,9 +1,11 @@
+import { getRandomElements } from '../../helper/constants/getRandomElements';
 import { getURLSearchParam, changeURLSearchParam } from '../../helper/constants/urlSearchParamsFunction';
 import {
     RECEIPTS_RECEIVED,
     RECEIPTS_REQUEST,
     RECEIPTS_PORTION_PLUS,
     RECEIPTS_PORTION_MINUS,
+    RECEIPT_RANDOM,
     SEARCH,
     SEARCH_ENTER
 } from '../actions/receipt';
@@ -13,6 +15,7 @@ export const initialStatePortion = 0;
 export const initialContents = [];
 export const initialValue = '';
 export const initialFilter = '';
+export const initialRandom = [];
 
 export const receipt = (state = {
     isFetching: false,
@@ -20,7 +23,8 @@ export const receipt = (state = {
     portions: initialStatePortion,
     filteredItems: initialState,
     value: initialValue,
-    filter: initialFilter
+    filter: initialFilter,
+    randomItems: initialRandom
 }, action) => {
     switch (action.type) {
         case RECEIPTS_PORTION_PLUS:
@@ -61,6 +65,12 @@ export const receipt = (state = {
                 filter: theReceiptsFilteredBySearchParam,
                 filteredItems: initialFilteredReceipts,
                 portions: thePortion,
+            }
+        case RECEIPT_RANDOM:
+            const allItemsRandomized = getRandomElements(action.payload, 10);
+            return {
+                ...state,
+                randomItems: allItemsRandomized
             }
         case SEARCH: {
             const value = action.payload;
