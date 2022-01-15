@@ -35,11 +35,6 @@ export const receiptMinusPortion = (receipts) => ({
     payload: receipts
 });
 
-export const receiptRandom = (receipts) => ({
-    type: RECEIPT_RANDOM,
-    payload: receipts
-});
-
 export const search = (value) => ({
     type: SEARCH,
     payload: value
@@ -58,13 +53,13 @@ export const fetchReceipts = (url, receipts) => (dispatch) => {
     dispatch(requestReceipts(receipts))
     const sendGetRequest = async () => {
         try {
-            const response = await axios.get(url)
+            const response = await axios.get(url);
             dispatch(receiveReceipts(response.data));
-            dispatch(receiptRandom(response.data));
-
         } catch (err) {
             // Handle Error TODO
             console.error(err);
+        } finally {
+            console.log('finally');
         }
     }
 

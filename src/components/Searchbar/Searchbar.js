@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Searchbar.scss';
 import { search, searchEntered } from '../../store/actions/receipt';
 import { useDispatch } from 'react-redux';
 
-const Searchbar = () => {
+const Searchbar = ({ searchValue }) => {
     const dispatch = useDispatch();
     const [text, setText] = useState('');
+    let searchText = searchValue ? searchValue : '';
+
+    console.log(searchText)
 
     return (
         <form className="searchbar" method='GET' action="" onSubmit={(e) => {

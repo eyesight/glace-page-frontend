@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect } from 'react';
+import React, { useRef, useState, useLayoutEffect, useEffect } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Outlet } from 'react-router-dom';
@@ -10,15 +10,19 @@ const DefaultPageSkeleton = props => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [headerHeight, setHeaderHeight] = useState(0);
 
+    useEffect(() => {
+        window.history.scrollRestoration = 'auto'
+    }, []);
+
     useLayoutEffect(() => {
         let theContentRef = headerRef.current;
         setHeaderHeight(theContentRef.offsetHeight);
         return () => setHeaderHeight(theContentRef.offsetHeight);
-    }, [])
+    }, []);
 
     useLayoutEffect(() => {
         const updatePosition = (e) => {
-            let scrollPosition = contentRef && contentRef.current ? contentRef.current.getBoundingClientRect().top : 0;
+            let scrollPosition = contentRef?.current ? contentRef.current.getBoundingClientRect().top : 0;
             setScrollPosition(scrollPosition);
         }
         updatePosition();
@@ -28,7 +32,6 @@ const DefaultPageSkeleton = props => {
 
     let positionTop = scrollPosition > 0 ? scrollPosition - headerHeight : -headerHeight;
     let isAnimated = (scrollPosition > 0);
-
     return (
         <>
             <Header

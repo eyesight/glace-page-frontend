@@ -36,3 +36,8 @@ img.swiper__image {
   top: 50%;
   transform: translateY(-50%);
 }
+
+.swiper-slide-next,
+.swiper-slide-prev {
+  z-index: 5 !important;
+}

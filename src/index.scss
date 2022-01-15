@@ -12,7 +12,7 @@ body {
   line-height: $line-height-body;
   color: $color-main-text;
   height: 100%;
-  overflow-x: hidden;
+  //overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -149,7 +149,7 @@ strong {
 
 div#root {
   height: 100%;
-  overflow-x: hidden;
+  //overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }

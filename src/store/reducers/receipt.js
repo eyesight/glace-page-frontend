@@ -34,6 +34,7 @@ export const receipt = (state = {
                 ...state,
                 portions: thePortionPlus,
             }
+
         case RECEIPTS_PORTION_MINUS:
             let newMinusPortions = (state.portions === 1) ? state.portions : --state.portions;
             let thePortionMinus = Number(changeURLSearchParam('portion', newMinusPortions, 'receipt'));
@@ -41,16 +42,18 @@ export const receipt = (state = {
                 ...state,
                 portions: thePortionMinus,
             }
+
         case RECEIPTS_REQUEST:
             return {
                 ...state,
                 isFetching: true,
-                items: initialState,
                 portions: initialStatePortion,
-                filter: initialFilter
+                filter: initialFilter,
+                items: initialState
             }
+
         case RECEIPTS_RECEIVED:
-            const initialAllItems = action.payload;
+            let initialAllItems = action.payload;
             let thePortion = Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) ? Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) : initialStatePortion;
             let theReceiptsFilteredBySearchParam = getURLSearchParam('s', state.filter, '') ? getURLSearchParam('s', state.filter, '') : state.filter;
             //when portion-filter is set; when more than one portion is set in SearchParams, then the Item is not an array; its a single item -> when detail page is loaded
@@ -58,20 +61,19 @@ export const receipt = (state = {
                 const title = val.title.toLowerCase();
                 return title.includes(theReceiptsFilteredBySearchParam)
             }) : initialAllItems;
+            const allItem = initialAllItems.length > 0 ? initialAllItems.map((item) => item) : initialAllItems;
+            const allItemsRandomized = initialAllItems.length > 0 ? getRandomElements(initialAllItems, 10) : initialRandom;
+
             return {
                 ...state,
                 isFetching: false,
-                items: initialAllItems,
                 filter: theReceiptsFilteredBySearchParam,
                 filteredItems: initialFilteredReceipts,
                 portions: thePortion,
+                randomItems: allItemsRandomized,
+                items: allItem
             }
-        case RECEIPT_RANDOM:
-            const allItemsRandomized = getRandomElements(action.payload, 10);
-            return {
-                ...state,
-                randomItems: allItemsRandomized
-            }
+
         case SEARCH: {
             const value = action.payload;
             const allItems = state.items;

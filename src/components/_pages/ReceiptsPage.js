@@ -31,7 +31,9 @@ const ReceiptsPage = () => {
             <TitleH1
                 text='Guten Morgen. Hier findest du Inspiration für die Küche.'
             />
-            <Searchbar />
+            <Searchbar
+                searchValue={all.filter}
+            />
             <Tile
                 items={receipts}
                 isLoading={isLoading}
