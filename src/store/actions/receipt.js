@@ -35,6 +35,11 @@ export const receiptMinusPortion = (receipts) => ({
     payload: receipts
 });
 
+export const receiptRandomized = (receipts) => ({
+    type: RECEIPT_RANDOM,
+    payload: receipts
+});
+
 export const search = (value) => ({
     type: SEARCH,
     payload: value

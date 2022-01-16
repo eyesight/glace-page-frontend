@@ -4,7 +4,7 @@ import Searchbar from '../Searchbar/Searchbar';
 import Tile from '../Tile/Tile';
 import { RouteReceipt } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReceipts } from '../../store/actions/receipt';
+import { fetchReceipts, receiptRandomized } from '../../store/actions/receipt';
 import Cursor from '../Cursor/Cursor';
 import { useRef } from 'react';
 import Slideshow from '../Slideshow/Slideshow';
@@ -42,6 +42,7 @@ const ReceiptsPage = () => {
             <Slideshow
                 items={randomitems}
                 isLoading={isLoading}
+                onClickFunc={() => dispatch(receiptRandomized())}
             />
             <Cursor
                 aniClass={cursorIsOnElement ? 'is-visible' : ''}

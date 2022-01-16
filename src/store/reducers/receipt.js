@@ -53,17 +53,15 @@ export const receipt = (state = {
             }
 
         case RECEIPTS_RECEIVED:
-            let initialAllItems = action.payload;
+            let getAllItems = [...action.payload];
             let thePortion = Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) ? Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) : initialStatePortion;
             let theReceiptsFilteredBySearchParam = getURLSearchParam('s', state.filterText, '') ? getURLSearchParam('s', state.filterText, '') : state.filterText;
             //when portion-filter is set; when more than one portion is set in SearchParams, then the Item is not an array; its a single item -> when detail page is loaded
-            const initialFilteredReceipts = !thePortion > 0 ? initialAllItems.filter((val) => {
+            const initialFilteredReceipts = !thePortion > 0 ? getAllItems.filter((val) => {
                 const title = val.title.toLowerCase();
                 return title.includes(theReceiptsFilteredBySearchParam)
-            }) : initialAllItems;
-            const allItem = initialAllItems.length > 0 ? initialAllItems.map((item) => item) : initialAllItems;
-            const allItemsRandomized = initialAllItems.length > 0 ? getRandomElements(initialAllItems, 10) : initialRandom;
-
+            }) : getAllItems;
+            const allItemsRandomized = getAllItems.length > 0 ? getRandomElements(getAllItems, 10) : initialRandom;
             return {
                 ...state,
                 isFetching: false,
@@ -71,7 +69,16 @@ export const receipt = (state = {
                 filteredItems: initialFilteredReceipts,
                 portions: thePortion,
                 randomItems: allItemsRandomized,
-                items: allItem
+                items: getAllItems
+            }
+
+        case RECEIPT_RANDOM:
+            let allItemsNormal = [...state.items];
+            const allItemsRandomizedAgain = allItemsNormal.length > 0 ? getRandomElements(allItemsNormal, 10) : allItemsNormal;
+
+            return {
+                ...state,
+                randomItems: allItemsRandomizedAgain,
             }
 
         case SEARCH: {
