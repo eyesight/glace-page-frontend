@@ -4,7 +4,10 @@ export const getURLSearchParam = (string, item, page) => {
         if (params.has(string)) {
             return params.get(string);
         } else {
-            addURLParameter(string, item);
+            //change searchparam only when item not empty
+            if (item) {
+                addURLParameter(string, item);
+            }
             return item;
         }
     }

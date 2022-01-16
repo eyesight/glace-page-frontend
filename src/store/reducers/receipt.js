@@ -81,6 +81,7 @@ export const receipt = (state = {
                 const title = val.title.toLowerCase();
                 return title.includes(value)
             });
+            changeURLSearchParam('s', value, '');
             return {
                 ...state,
                 value,
