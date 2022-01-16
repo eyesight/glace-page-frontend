@@ -16,12 +16,31 @@ import { Link } from 'react-router-dom';
 import Tag from '../Tag/Tag';
 import PropTypes from 'prop-types';
 import BtnRandom from '../Buttons/BtnRandom';
+import { useDispatch } from 'react-redux';
+import { detectCursor, leaveCursor, enterCursor } from '../../store/actions/cursor';
 
 // install Swiper modules
 SwiperCore.use([EffectCoverflow, A11y]);
 
 
 const Slideshow = ({ items, isLoading, onClickFunc }) => {
+    const dispatch = useDispatch();
+
+    const detectCursorFunc = (e) => {
+        let mousePos = { x: 0, y: 0 }
+        mousePos.x = e.clientX;
+        mousePos.y = e.clientY;
+        mousePos.className = 'slider';
+        dispatch(detectCursor(mousePos));
+    }
+
+    const detectCursorFuncEye = (e) => {
+        let mousePos = { x: 0, y: 0 }
+        mousePos.x = e.clientX;
+        mousePos.y = e.clientY;
+        mousePos.className = 'eye';
+        dispatch(detectCursor(mousePos));
+    }
 
     if (isLoading && !items) return (<section className='section section--swiper section--loading-spinner'><LoadingSpinner /></section>)
 
@@ -53,11 +72,11 @@ const Slideshow = ({ items, isLoading, onClickFunc }) => {
                         {items.map((el, index) => (
                             <SwiperSlide key={index + 'slide'} className='swiper-slide'>
                                 {<div className="swiper__slide">
-                                    <figure className='swiper__image-wrapper'>
+                                    <figure className='swiper__image-wrapper' onMouseMove={(event) => detectCursorFunc(event)} onMouseEnter={() => dispatch(enterCursor())} onMouseLeave={() => dispatch(leaveCursor())}>
                                         <img alt={el.image ? el.image.alternativeText : ""} className='swiper__image' src={el.image ? `${Endpoint}${el.image.url}` : "http://placekitten.com/200/300"} />
                                     </figure>
                                     <div className='swiper__content'>
-                                        <h2 className='title-h1 swiper__title'>
+                                        <h2 className='title-h1 swiper__title' onMouseMove={(event) => detectCursorFuncEye(event)} onMouseEnter={() => dispatch(enterCursor())} onMouseLeave={() => dispatch(leaveCursor())}>
                                             <Link to={`/receipt/${el.id}`} className='swiper__anchor'>
                                                 {el.title}
                                             </Link>

@@ -12,6 +12,7 @@ const TilesItem = ({ title, image, id }) => {
         let mousePos = { x: 0, y: 0 }
         mousePos.x = e.clientX;
         mousePos.y = e.clientY;
+        mousePos.className = 'eye';
         dispatch(detectCursor(mousePos));
     }
 

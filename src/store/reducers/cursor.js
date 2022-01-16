@@ -6,10 +6,11 @@ import {
 
 export const initialState = false;
 export const initialStatePos = 0;
+export const initialElement = '';
 
 export const cursor = (state = {
     isOnElement: initialState,
-    cursorPosition: initialStatePos
+    cursorPosition: initialStatePos,
 }, action) => {
     switch (action.type) {
         case CURSOR_ENTER:
@@ -25,7 +26,7 @@ export const cursor = (state = {
         case CURSOR_DETECT:
             return {
                 ...state,
-                cursorPosition: action.payload
+                cursorPosition: action.payload,
             }
         default:
             return state;

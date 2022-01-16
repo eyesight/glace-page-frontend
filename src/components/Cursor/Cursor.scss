@@ -16,7 +16,9 @@
   }
 }
 
-.custom-cursor__eye {
+.custom-cursor__eye,
+.custom-cursor__slider {
+  position: absolute;
   opacity: 0;
   transform: scale(0.5, 0.5);
   transition: all 0.15s ease-in;
@@ -26,9 +28,20 @@
   @include flexbox(row, wrap, center, center);
 
   .is-visible & {
-    opacity: 1;
     transform: scale(1, 1);
     transition: all 0.5s ease-out;
+  }
+}
+
+.custom-cursor__eye {
+  .is-visible.eye & {
+    opacity: 1;
+  }
+}
+
+.custom-cursor__slider {
+  .is-visible.slider & {
+    opacity: 1;
   }
 }
 
