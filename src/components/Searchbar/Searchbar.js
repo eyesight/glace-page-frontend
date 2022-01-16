@@ -8,7 +8,10 @@ const Searchbar = ({ searchValue }) => {
     const [text, setText] = useState('');
     let searchText = searchValue ? searchValue : '';
 
-    console.log(searchText)
+    useEffect(() => {
+        setText(searchText);
+    }, [searchText]);
+
 
     return (
         <form className="searchbar" method='GET' action="" onSubmit={(e) => {

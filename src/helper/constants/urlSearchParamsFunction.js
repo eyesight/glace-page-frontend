@@ -17,7 +17,7 @@ export const changeURLSearchParam = (string, item, page) => {
             return item;
         } catch {
             console.error(`${string} could not be parsed into JSON, while changing it`)
-            return item
+            return item;
         }
     }
 };

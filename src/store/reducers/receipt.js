@@ -23,7 +23,7 @@ export const receipt = (state = {
     portions: initialStatePortion,
     filteredItems: initialState,
     value: initialValue,
-    filter: initialFilter,
+    filterText: initialFilter,
     randomItems: initialRandom
 }, action) => {
     switch (action.type) {
@@ -48,14 +48,14 @@ export const receipt = (state = {
                 ...state,
                 isFetching: true,
                 portions: initialStatePortion,
-                filter: initialFilter,
+                filterText: initialFilter,
                 items: initialState
             }
 
         case RECEIPTS_RECEIVED:
             let initialAllItems = action.payload;
             let thePortion = Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) ? Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) : initialStatePortion;
-            let theReceiptsFilteredBySearchParam = getURLSearchParam('s', state.filter, '') ? getURLSearchParam('s', state.filter, '') : state.filter;
+            let theReceiptsFilteredBySearchParam = getURLSearchParam('s', state.filterText, '') ? getURLSearchParam('s', state.filterText, '') : state.filterText;
             //when portion-filter is set; when more than one portion is set in SearchParams, then the Item is not an array; its a single item -> when detail page is loaded
             const initialFilteredReceipts = !thePortion > 0 ? initialAllItems.filter((val) => {
                 const title = val.title.toLowerCase();
@@ -67,7 +67,7 @@ export const receipt = (state = {
             return {
                 ...state,
                 isFetching: false,
-                filter: theReceiptsFilteredBySearchParam,
+                filterText: theReceiptsFilteredBySearchParam,
                 filteredItems: initialFilteredReceipts,
                 portions: thePortion,
                 randomItems: allItemsRandomized,
@@ -93,7 +93,7 @@ export const receipt = (state = {
             changeURLSearchParam('s', searchValue, '');
             return {
                 ...state,
-                filter: searchValue
+                filterText: searchValue
             };
         }
 

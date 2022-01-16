@@ -16,6 +16,7 @@ const ReceiptsPage = () => {
     const randomitems = all.randomItems;
     const isLoading = all.isFetching;
     const cursorRef = useRef(null);
+    const filterTxt = all.filterText;
 
     const cursorIsOnElement = useSelector(state => state.cursor.isOnElement);
 
@@ -32,7 +33,7 @@ const ReceiptsPage = () => {
                 text='Guten Morgen. Hier findest du Inspiration für die Küche.'
             />
             <Searchbar
-                searchValue={all.filter}
+                searchValue={filterTxt}
             />
             <Tile
                 items={receipts}
