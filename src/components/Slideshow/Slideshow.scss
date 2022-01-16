@@ -15,10 +15,6 @@
 
 .swiper__slide {
   @include content-width(false);
-
-  @include md-min() {
-    width: 100%;
-  }
 }
 
 .swiper__title {
