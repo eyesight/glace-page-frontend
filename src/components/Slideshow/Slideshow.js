@@ -1,6 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 import SwiperCore, {
+    A11y,
     EffectCoverflow
 } from 'swiper';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -14,15 +15,13 @@ import './Slideshow.scss';
 import { Link } from 'react-router-dom';
 import Tag from '../Tag/Tag';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { receiptRandomized } from '../../store/actions/receipt';
+import BtnRandom from '../Buttons/BtnRandom';
 
 // install Swiper modules
-SwiperCore.use([EffectCoverflow]);
+SwiperCore.use([EffectCoverflow, A11y]);
 
 
 const Slideshow = ({ items, isLoading, onClickFunc }) => {
-    const dispatch = useDispatch();
 
     if (isLoading && !items) return (<section className='section section--swiper section--loading-spinner'><LoadingSpinner /></section>)
 
@@ -30,7 +29,10 @@ const Slideshow = ({ items, isLoading, onClickFunc }) => {
         <section className='section section--swiper'>
             {items?.length > 0 ? (
                 <>
-                    <button onClick={onClickFunc} className='btn btn--reload'>reload</button>
+                    <BtnRandom
+                        text='Zufallsrezepte'
+                        onClickFunc={onClickFunc}
+                    />
                     <Swiper
                         init={false}
                         loop={true}
@@ -46,6 +48,7 @@ const Slideshow = ({ items, isLoading, onClickFunc }) => {
                             'slideShadows': false,
                         }}
                         slideToClickedSlide={true}
+                        a11y={true}
                         className="swiper__container">
                         {items.map((el, index) => (
                             <SwiperSlide key={index + 'slide'} className='swiper-slide'>

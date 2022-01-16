@@ -60,6 +60,7 @@ export const fetchReceipts = (url, receipts) => (dispatch) => {
         try {
             const response = await axios.get(url);
             dispatch(receiveReceipts(response.data));
+            dispatch(receiptRandomized(response.data));
         } catch (err) {
             // Handle Error TODO
             console.error(err);

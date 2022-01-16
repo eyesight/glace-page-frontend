@@ -1,0 +1,36 @@
+@import './../../styles/import-all.scss';
+
+.btn-random {
+  cursor: pointer;
+  @include font($type-face-serif, $font-weight-regular);
+  @include fluid-font-size(
+    $font-size-button-random-s,
+    $font-size-button-random-m
+  );
+  @include ld-margin-bottom($spacing-s);
+  line-height: $line-height-button-random;
+
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
+
+  &:focus {
+    border: 1px dotted rgba($color-primary, 0.5);
+  }
+}
+
+.btn-random__icon {
+  color: $color-primary;
+  width: em(30px, 25);
+  margin-left: 10px;
+  margin-bottom: -3px;
+  transform: rotate(0deg);
+  transition: all 0.25s ease;
+
+  button:hover &,
+  button:focus & {
+    transform: rotate(-360deg);
+    transition: all 0.25s ease;
+  }
+}

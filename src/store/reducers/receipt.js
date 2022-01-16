@@ -53,7 +53,9 @@ export const receipt = (state = {
             }
 
         case RECEIPTS_RECEIVED:
-            let getAllItems = [...action.payload];
+            let getAllItems = action.payload;
+            console.log(getAllItems.length);
+
             let thePortion = Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) ? Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) : initialStatePortion;
             let theReceiptsFilteredBySearchParam = getURLSearchParam('s', state.filterText, '') ? getURLSearchParam('s', state.filterText, '') : state.filterText;
             //when portion-filter is set; when more than one portion is set in SearchParams, then the Item is not an array; its a single item -> when detail page is loaded
@@ -61,19 +63,17 @@ export const receipt = (state = {
                 const title = val.title.toLowerCase();
                 return title.includes(theReceiptsFilteredBySearchParam)
             }) : getAllItems;
-            const allItemsRandomized = getAllItems.length > 0 ? getRandomElements(getAllItems, 10) : initialRandom;
             return {
                 ...state,
                 isFetching: false,
                 filterText: theReceiptsFilteredBySearchParam,
                 filteredItems: initialFilteredReceipts,
                 portions: thePortion,
-                randomItems: allItemsRandomized,
                 items: getAllItems
             }
 
         case RECEIPT_RANDOM:
-            let allItemsNormal = [...state.items];
+            let allItemsNormal = state.items;
             const allItemsRandomizedAgain = allItemsNormal.length > 0 ? getRandomElements(allItemsNormal, 10) : allItemsNormal;
 
             return {

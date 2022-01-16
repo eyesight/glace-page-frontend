@@ -23,6 +23,10 @@ body {
   box-sizing: border-box;
 }
 
+:focus {
+  outline: 2px dotted $color-primary !important;
+}
+
 h1 {
   @include font($type-face-serif, $font-weight-regular);
 }
