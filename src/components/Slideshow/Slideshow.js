@@ -57,12 +57,14 @@ const Slideshow = ({ items, isLoading, onClickFunc }) => {
                                         <img alt={el.image ? el.image.alternativeText : ""} className='swiper__image' src={el.image ? `${Endpoint}${el.image.url}` : "http://placekitten.com/200/300"} />
                                     </figure>
                                     <div className='swiper__content'>
-                                        <Link to={`/receipt/${el.id}`} className='swiper__anchor'>
-                                            <h2 className='title-h1 swiper__title'>{el.title}</h2>
-                                            <Tag
-                                                tagItems={el.categories}
-                                            />
-                                        </Link>
+                                        <h2 className='title-h1 swiper__title'>
+                                            <Link to={`/receipt/${el.id}`} className='swiper__anchor'>
+                                                {el.title}
+                                            </Link>
+                                        </h2>
+                                        <Tag
+                                            tagItems={el.categories}
+                                        />
                                     </div>
                                 </div>}
                             </SwiperSlide>))}

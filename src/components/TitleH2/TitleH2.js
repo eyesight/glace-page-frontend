@@ -15,8 +15,4 @@ TitleH2.propTypes = {
   theClass: PropTypes.string
 };
 
-TitleH2.defaultProps = {
-  theClass: ''
-}
-
 export default TitleH2;

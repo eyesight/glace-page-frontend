@@ -17,7 +17,7 @@ const TilesItem = ({ title, image, id }) => {
 
     return (
         <div role="listitem" className="tiles__item" onMouseMove={(event) => detectCursorFunc(event)} onMouseEnter={() => dispatch(enterCursor())} onMouseLeave={() => dispatch(leaveCursor())}>
-            <Link className="tiles__anchor" to={`/receipt/${id}`}>
+            <Link className="tiles__anchor" to={`/receipt/${id}`} tabIndex={-1}>
                 <figure className="tiles__image-wrapper">
                     <img className="tiles__img" alt="" src={image ? `${Endpoint}${image.url}` : "http://placekitten.com/200/300"} />
                 </figure>

@@ -41,3 +41,12 @@ img.swiper__image {
 .swiper-slide-prev {
   z-index: 5 !important;
 }
+
+.swiper__anchor {
+  display: inline-block;
+
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
+}
