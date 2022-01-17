@@ -6,16 +6,16 @@
   z-index: 100;
   background-color: $color-white;
   position: fixed;
-
-  &.header--animates {
-    transform: translateY(0) !important;
-    transition: all 0.5s ease 0.15s;
-  }
 }
 
 .header__inner {
   @include flexbox(row, wrap, space-between, center);
   @include full-width();
+
+  .header--animates & {
+    transform: translateY(0) !important;
+    transition: all 0.5s ease 0.15s;
+  }
 }
 
 .header__right {

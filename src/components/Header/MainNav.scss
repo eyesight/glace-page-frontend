@@ -1,0 +1,39 @@
+@import './../../styles/import-all.scss';
+
+.main-nav {
+  background-color: $color-white;
+  @include full-width();
+}
+
+.main-nav__inner {
+  padding: 35px 50px 80px;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.main-nav__list-container {
+  @include flexbox();
+}
+
+.main-nav__subtitle {
+  @include fluid-font-size($font-size-h3-s, $font-size-h3-m);
+  @include font($type-face, $font-weight-regular);
+  margin-bottom: em(25px, 20);
+  line-height: $line-height-h3;
+}
+
+.main-nav__list-item {
+  margin-right: 1em;
+  &::before {
+    content: '#';
+    margin-right: 5px;
+    color: $color-primary;
+  }
+}
+
+.main-nav__list-link {
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
+}
