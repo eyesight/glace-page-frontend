@@ -23,7 +23,9 @@
 }
 
 .main-nav__list-item {
-  margin-right: 1em;
+  margin-right: em(20px, 18);
+  margin-bottom: em(10px, 18);
+  @include fluid-font-size($font-size-info-s, $font-size-info-m);
   &::before {
     content: '#';
     margin-right: 5px;
@@ -36,4 +38,9 @@
   &:focus {
     color: $color-primary;
   }
+}
+
+.main-nav__column {
+  flex: 0 1 25%;
+  margin-bottom: em(35px, 20);
 }

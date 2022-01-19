@@ -37,3 +37,7 @@
 .info-box__text-bold {
   font-weight: $font-weight-bold;
 }
+
+.info-box__text {
+  @include fluid-font-size($font-size-info-s, $font-size-info-m);
+}

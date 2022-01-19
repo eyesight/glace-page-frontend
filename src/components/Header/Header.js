@@ -48,6 +48,28 @@ const Header = forwardRef(({ aniClass, styleTranslate }, ref) => {
                                 </li>
                             </ul>
                         </li>
+                        <li className='main-nav__column'>
+                            <h3 className='main-nav__subtitle'>sdfsdf</h3>
+                            <ul className='main-nav__list'>
+                                <li className='main-nav__list-item'>
+                                    <a href="#" className='main-nav__list-link'>asdfsdf</a>
+                                </li>
+                                <li className='main-nav__list-item'>
+                                    <a href="#" className='main-nav__list-link'>asdfsdf</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className='main-nav__column'>
+                            <h3 className='main-nav__subtitle'>sdfsdf</h3>
+                            <ul className='main-nav__list'>
+                                <li className='main-nav__list-item'>
+                                    <a href="#" className='main-nav__list-link'>asdfsdf</a>
+                                </li>
+                                <li className='main-nav__list-item'>
+                                    <a href="#" className='main-nav__list-link'>asdfsdf</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </nav>

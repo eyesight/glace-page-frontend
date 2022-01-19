@@ -8,6 +8,7 @@
   @include grid(9);
   @include flexbox(row, wrap, flex-start, center);
   @include ld-margin-bottom($spacing-xs);
+  @include fluid-font-size($font-size-info-s, $font-size-info-m);
 
   @include md-min {
     @include grid(4.5);

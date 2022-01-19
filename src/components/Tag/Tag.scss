@@ -8,8 +8,11 @@
 
 .tags__item {
   margin-right: 1em;
+  @include fluid-font-size($font-size-info-s, $font-size-info-m);
+
   &::before {
     content: '#';
+    margin-right: 0.5rem;
     color: $color-primary;
   }
 }
