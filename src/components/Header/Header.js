@@ -4,11 +4,24 @@ import './MainNav.scss';
 import Logo from '../Logo/Logo';
 import Burger from '../Burger/Burger';
 import { PropTypes } from 'prop-types';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { Link } from 'react-router-dom';
 
-const Header = forwardRef(({ aniClass, styleTranslate }, ref) => {
+const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading }, ref) => {
     const animationStyle = {
         transform: `translateY(${styleTranslate}px)`
     };
+
+    const renderCategories = (items) =>
+        items.map((item) => {
+            return (
+                <li key={`nav-cat-${item.id}`} className='main-nav__list-item'>
+                    <Link to={`/categories/${item.id}`} className='main-nav__list-link'>{item.name}</Link>
+                </li>
+            )
+        });
+
+    if (isLoading) return (<LoadingSpinner />);
 
     return (
         <header className={`header ${aniClass}`}>
@@ -23,7 +36,17 @@ const Header = forwardRef(({ aniClass, styleTranslate }, ref) => {
             <nav className='header__nav main-nav'>
                 <div className='main-nav__inner'>
                     <ul className='main-nav__list-container'>
-                        <li className='main-nav__column'>
+                        {
+                            categories && categories.map((category) =>
+                                <li key={`cat-group-${category.id}`} className='main-nav__column'>
+                                    <h3 className='main-nav__subtitle'>{category.title}</h3>
+                                    <ul className='main-nav__list'>
+                                        {renderCategories(category.categories)}
+                                    </ul>
+                                </li>
+                            )
+                        }
+                        {/* <li className='main-nav__column'>
                             <h3 className='main-nav__subtitle'>sdfsdf</h3>
                             <ul className='main-nav__list'>
                                 <li className='main-nav__list-item'>
@@ -69,7 +92,7 @@ const Header = forwardRef(({ aniClass, styleTranslate }, ref) => {
                                     <a href="#" className='main-nav__list-link'>asdfsdf</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </nav>

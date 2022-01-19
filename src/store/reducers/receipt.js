@@ -54,7 +54,6 @@ export const receipt = (state = {
 
         case RECEIPTS_RECEIVED:
             let getAllItems = action.payload;
-            console.log(getAllItems.length);
 
             let thePortion = Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) ? Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) : initialStatePortion;
             let theReceiptsFilteredBySearchParam = getURLSearchParam('s', state.filterText, '') ? getURLSearchParam('s', state.filterText, '') : state.filterText;

@@ -29,7 +29,7 @@ const ReceiptDetailPage = () => {
         loadDetails();
     }, [dispatch, id]);
 
-    const renderSteps = (oneReceipt && oneReceipt.steps && oneReceipt.steps.length > 0) ?
+    const renderSteps = (oneReceipt?.steps?.length > 0) ?
         oneReceipt.steps.map((item, index) =>
             <SectionContainer key={index}>
                 <>

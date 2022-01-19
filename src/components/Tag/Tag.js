@@ -6,10 +6,10 @@ const Tag = ({ tagItems }) => {
     return (
         <ul className="tags">
             {
-                tagItems && tagItems.length > 0 ?
-                    tagItems.map((item, index) => (
-                        <li key={index} className="tags__item">{item.name}</li>
-                    )) : null
+                tagItems && tagItems.map((item, index) =>
+                (
+                    <li key={index} className="tags__item">{item.name}</li>
+                ))
             }
         </ul>
     );

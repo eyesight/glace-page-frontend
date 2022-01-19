@@ -29,7 +29,6 @@ const TilesRound = ({ items, portion, originalPortion }) => {
                     )) : null
             }
         </ul>
-
     );
 };
 
