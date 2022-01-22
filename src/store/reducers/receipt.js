@@ -54,18 +54,27 @@ export const receipt = (state = {
 
         case RECEIPTS_RECEIVED:
             let getAllItems = action.payload;
-
             let thePortion = Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) ? Number(getURLSearchParam('portion', action.payload.portions, 'receipt')) : initialStatePortion;
-            let theReceiptsFilteredBySearchParam = getURLSearchParam('s', state.filterText, '') ? getURLSearchParam('s', state.filterText, '') : state.filterText;
+            let theReceiptsFilteredBySearchParamSearch = getURLSearchParam('s', state.filterText, '') ? getURLSearchParam('s', state.filterText, '') : state.filterText;
+            let theReceiptsFilteredBySearchParamFilter = getURLSearchParam('filter', state.filterText, '') ? getURLSearchParam('filter', state.filterText, '') : '';
+
             //when portion-filter is set; when more than one portion is set in SearchParams, then the Item is not an array; its a single item -> when detail page is loaded
-            const initialFilteredReceipts = !thePortion > 0 ? getAllItems.filter((val) => {
-                const title = val.title.toLowerCase();
-                return title.includes(theReceiptsFilteredBySearchParam)
+            const initialFilteredReceiptsCat = !thePortion > 0 && theReceiptsFilteredBySearchParamFilter !== '' ? getAllItems.filter((allReceipts) => {
+                const element = allReceipts?.categories?.filter((item) => {
+                    return item?.id === parseInt(theReceiptsFilteredBySearchParamFilter)
+                });
+                return (element.length > 0) ?? allReceipts;
             }) : getAllItems;
+
+            const initialFilteredReceipts = !thePortion > 0 ? initialFilteredReceiptsCat.filter((val) => {
+                const title = val.title.toLowerCase();
+                return title.includes(theReceiptsFilteredBySearchParamSearch)
+            }) : initialFilteredReceiptsCat;
+
             return {
                 ...state,
                 isFetching: false,
-                filterText: theReceiptsFilteredBySearchParam,
+                filterText: theReceiptsFilteredBySearchParamSearch,
                 filteredItems: initialFilteredReceipts,
                 portions: thePortion,
                 items: getAllItems
@@ -108,3 +117,10 @@ export const receipt = (state = {
             return state;
     }
 }
+
+
+ // const filteredElements = all?.items?.filter((allReceipts) => {
+    //     let element = allReceipts?.categories?.filter(item => item?.id === catID);
+    //     return (element.length > 0) ?? allReceipts;
+    // });
+    // console.log(filteredElements);

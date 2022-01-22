@@ -1,3 +1,4 @@
+import { changeURLSearchParam } from '../../helper/constants/urlSearchParamsFunction';
 import {
     CATEGORIES_RECEIVED,
     CATEGORIES_REQUEST,
@@ -30,6 +31,7 @@ export const categories = (state = {
             }
 
         case CATEGORY_SELECT:
+            changeURLSearchParam('filter', action.payload, '');
             return {
                 ...state,
                 selectedItem: action.payload
