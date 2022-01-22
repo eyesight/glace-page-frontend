@@ -1,13 +1,13 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import './Header.scss';
 import './MainNav.scss';
 import Logo from '../Logo/Logo';
 import Burger from '../Burger/Burger';
 import { PropTypes } from 'prop-types';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import { Link } from 'react-router-dom';
 
-const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading }, ref) => {
+const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading, onClick }, ref) => {
+
     const animationStyle = {
         transform: `translateY(${styleTranslate}px)`
     };
@@ -16,7 +16,7 @@ const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading }, 
         items.map((item) => {
             return (
                 <li key={`nav-cat-${item.id}`} className='main-nav__list-item'>
-                    <Link to={`/categories/${item.id}`} className='main-nav__list-link'>{item.name}</Link>
+                    <button onClick={onClick} className='main-nav__list-link' data-category={item.id}>{item.name}</button>
                 </li>
             )
         });

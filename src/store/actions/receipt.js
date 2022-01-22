@@ -54,13 +54,30 @@ export const searchEntered = (value) => ({
  * Thunk Actions
  */
 
-export const fetchReceipts = (url, receipts) => (dispatch) => {
+export const fetchRandomReceipts = (url, receipts) => (dispatch) => {
     dispatch(requestReceipts(receipts))
     const sendGetRequest = async () => {
         try {
             const response = await axios.get(url);
             dispatch(receiveReceipts(response.data));
             dispatch(receiptRandomized(response.data));
+        } catch (err) {
+            // Handle Error TODO
+            console.error(err);
+        } finally {
+            console.log('finally');
+        }
+    }
+
+    return sendGetRequest();
+}
+
+export const fetchReceipts = (url, receipts) => (dispatch) => {
+    dispatch(requestReceipts(receipts))
+    const sendGetRequest = async () => {
+        try {
+            const response = await axios.get(url);
+            dispatch(receiveReceipts(response.data));
         } catch (err) {
             // Handle Error TODO
             console.error(err);

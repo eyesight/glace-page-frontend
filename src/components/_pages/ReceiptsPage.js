@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import TitleH1 from '../TitleH1/TitleH1';
 import Searchbar from '../Searchbar/Searchbar';
 import Tile from '../Tile/Tile';
-import { RouteReceipt } from '../../helper/constants/routes';
+import { RouteReceipt, RouteReceiptAll } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReceipts, receiptRandomized } from '../../store/actions/receipt';
+import { fetchReceipts, receiptRandomized, fetchRandomReceipts } from '../../store/actions/receipt';
 import Cursor from '../Cursor/Cursor';
 import { useRef } from 'react';
 import Slideshow from '../Slideshow/Slideshow';
@@ -22,6 +22,7 @@ const ReceiptsPage = () => {
 
     useEffect(() => {
         const loadDetails = async () => {
+            await dispatch(fetchRandomReceipts(RouteReceiptAll));
             await dispatch(fetchReceipts(RouteReceipt));
         };
         loadDetails();

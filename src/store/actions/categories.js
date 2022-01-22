@@ -1,10 +1,13 @@
 import axios from 'axios';
+import { QueryCategory } from '../../helper/constants/routes';
+import { fetchReceipts } from './receipt';
 
 /*
  * Action Type Constants
  */
 export const CATEGORIES_RECEIVED = 'CATEGORIES_RECEIVED';
 export const CATEGORIES_REQUEST = 'CATEGORIES_REQUEST';
+export const CATEGORY_SELECT = 'CATEGORY_SELECT';
 
 
 /*
@@ -20,6 +23,10 @@ export const receiveCategories = (categories) => ({
     payload: categories
 });
 
+export const selectCategories = (category) => ({
+    type: CATEGORY_SELECT,
+    payload: category
+});
 
 /*
  * Thunk Actions
@@ -38,6 +45,11 @@ export const fetchCategories = (url, categories) => (dispatch) => {
             console.log('finally');
         }
     }
-
     return sendGetRequest();
+}
+
+export const setCategoryAsFilter = (categorySelected, url) => (dispatch) => {
+    const item = dispatch(selectCategories(categorySelected))?.payload;
+    const query = `?${QueryCategory}[0]=${item}`;
+    dispatch(fetchReceipts(url + query));
 }

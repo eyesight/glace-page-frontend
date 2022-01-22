@@ -3,9 +3,9 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Outlet } from 'react-router-dom';
 import Content from '../Content/Content';
-import { RouteCategories } from '../../helper/constants/routes';
+import { RouteCategories, RouteReceipt } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories } from '../../store/actions/categories';
+import { fetchCategories, setCategoryAsFilter } from '../../store/actions/categories';
 
 const DefaultPageSkeleton = props => {
     const contentRef = useRef(null);
@@ -46,6 +46,12 @@ const DefaultPageSkeleton = props => {
 
     let positionTop = scrollPosition > 0 ? scrollPosition - headerHeight : -headerHeight;
     let isAnimated = (scrollPosition > 0);
+
+    const clickNav = (e) => {
+        const selectedItem = e.target.dataset.category;
+        dispatch(setCategoryAsFilter(selectedItem, RouteReceipt));
+    }
+
     return (
         <>
             <Header
@@ -54,6 +60,7 @@ const DefaultPageSkeleton = props => {
                 ref={headerRef}
                 categories={categories}
                 isLoading={isLoading}
+                onClick={(e) => { clickNav(e) }}
             />
             <Content
                 ref={contentRef}
