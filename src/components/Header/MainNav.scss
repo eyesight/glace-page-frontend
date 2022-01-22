@@ -37,7 +37,8 @@
   font-weight: $font-weight-regular;
   cursor: pointer;
   &:hover,
-  &:focus {
+  &:focus,
+  .main-nav__list-item.active & {
     color: $color-primary;
   }
 }

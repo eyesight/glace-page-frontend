@@ -12,6 +12,7 @@ const DefaultPageSkeleton = props => {
     const headerRef = useRef(null);
     const [scrollPosition, setScrollPosition] = useState(0);
     const [headerHeight, setHeaderHeight] = useState(0);
+    const [selectedNavItem, setselectedNavItem] = useState(0);
     const dispatch = useDispatch();
     const all = useSelector(state => state.categories);
     const categories = all.items;
@@ -49,6 +50,7 @@ const DefaultPageSkeleton = props => {
 
     const clickNav = (e) => {
         const selectedItem = e.target.dataset.category;
+        setselectedNavItem(selectedItem);
         dispatch(setCategoryAsFilter(selectedItem, RouteReceipt));
     }
 
@@ -61,6 +63,7 @@ const DefaultPageSkeleton = props => {
                 categories={categories}
                 isLoading={isLoading}
                 onClick={(e) => { clickNav(e) }}
+                selectedElement={selectedNavItem}
             />
             <Content
                 ref={contentRef}

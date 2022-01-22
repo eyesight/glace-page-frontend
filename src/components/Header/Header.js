@@ -6,7 +6,7 @@ import Burger from '../Burger/Burger';
 import { PropTypes } from 'prop-types';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
-const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading, onClick }, ref) => {
+const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading, onClick, selectedElement }, ref) => {
 
     const animationStyle = {
         transform: `translateY(${styleTranslate}px)`
@@ -15,9 +15,9 @@ const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading, on
     const renderCategories = (items) =>
         items.map((item) => {
             return (
-                <li key={`nav-cat-${item.id}`} className='main-nav__list-item'>
+                <li key={`nav-cat-${item.id}`} className={`main-nav__list-item ${item.id === parseInt(selectedElement) ? 'active' : ''}`} >
                     <button onClick={onClick} className='main-nav__list-link' data-category={item.id}>{item.name}</button>
-                </li>
+                </li >
             )
         });
 
