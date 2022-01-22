@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from 'react';
+import React, { forwardRef, useState } from 'react';
 import './Header.scss';
 import './MainNav.scss';
 import Logo from '../Logo/Logo';
@@ -8,9 +8,16 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading, onClick, selectedElement }, ref) => {
 
+    const [isOpen, setIsOpen] = useState(false);
+
     const animationStyle = {
         transform: `translateY(${styleTranslate}px)`
     };
+
+    const openNav = (e) => {
+        setIsOpen(!isOpen);
+        console.log(e);
+    }
 
     const renderCategories = (items) =>
         items.map((item) => {
@@ -24,20 +31,23 @@ const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading, on
     if (isLoading) return (<LoadingSpinner />);
 
     return (
-        <header className={`header ${aniClass}`}>
+        <header className={`header ${aniClass} ${isOpen ? 'header--open' : ''}`}>
             <div className={`header__inner ${aniClass}`} ref={ref} style={animationStyle}>
                 <div className="header__item header__left">
                     <Logo />
                 </div>
                 <div className="header__item header__right">
-                    <Burger />
+                    <Burger
+                        clickFunc={(e) => openNav(e)}
+                        isOpen={isOpen}
+                    />
                 </div>
             </div>
             <nav className='header__nav main-nav'>
                 <div className='main-nav__inner'>
                     <ul className='main-nav__list-container'>
                         {
-                            categories && categories.map((category) =>
+                            categories?.map((category) =>
                                 <li key={`cat-group-${category.id}`} className='main-nav__column'>
                                     <h3 className='main-nav__subtitle'>{category.title}</h3>
                                     <ul className='main-nav__list'>
@@ -55,7 +65,11 @@ const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading, on
 
 Header.propTypes = {
     aniClass: PropTypes.string,
-    styleTranslate: PropTypes.number
+    styleTranslate: PropTypes.number,
+    categories: PropTypes.array,
+    isLoading: PropTypes.bool,
+    onClick: PropTypes.func,
+    selectedElement: PropTypes.number || PropTypes.string,
 };
 
 export default Header;

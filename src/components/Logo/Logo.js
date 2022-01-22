@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './Logo.scss';
 
-const Logo = props => {
+const Logo = () => {
     return (
         <div className="logo">
             <a className="logo__link" href="/">
@@ -32,10 +31,6 @@ const Logo = props => {
             </a>
         </div>
     );
-};
-
-Logo.propTypes = {
-
 };
 
 export default Logo;

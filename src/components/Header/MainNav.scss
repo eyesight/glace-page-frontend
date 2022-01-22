@@ -3,12 +3,28 @@
 .main-nav {
   background-color: $color-white;
   @include full-width();
+  transform: translateY(-30rem);
+  max-height: 0;
+  transition: all 0.25s ease-in-out;
+  z-index: 10;
+
+  .header--open & {
+    max-height: 100vh;
+    transform: translateY(0);
+    transition: all 0.25s ease-in-out;
+  }
 }
 
 .main-nav__inner {
   padding: 35px 50px 80px;
   overflow-y: auto;
-  max-height: 90vh;
+  max-height: 0;
+  transition: all 0.25s ease-in-out;
+
+  .header--open & {
+    max-height: 90vh;
+    transition: all 0.25s ease-in-out;
+  }
 }
 
 .main-nav__list-container {

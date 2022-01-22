@@ -8,42 +8,59 @@
 }
 
 .burger-menu__lines {
+  position: relative;
+}
+
+.burger-menu__line {
   width: 20px;
   height: 2px;
   background-color: $color-black;
-  position: relative;
+  position: absolute;
   top: 4px;
+  right: 0;
   margin-right: 5px;
-  transition: width 0.25s ease;
+  transform: rotate(0deg);
+  transition: transform 0.25s ease;
 
-  &::after,
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 10px;
-    height: 2px;
-    top: 6px;
-    background-color: $color-black;
-    right: 0;
-    transition: width 0.25s ease;
+  .burger-menu.burger-menu--open & {
+    transform: rotate(45deg);
+    top: 10px;
+    width: 2rem;
+    transition: transform 0.25s ease;
   }
 
-  &::before {
-    top: 12px;
+  &.burger-menu__line-1 {
+    .burger-menu--open & {
+      transform: rotate(-45deg);
+      width: 2rem;
+      top: 10px;
+      transition: all 0.25s ease;
+    }
+  }
+
+  &.burger-menu__line-2 {
+    opacity: 1;
+    top: 18px;
     width: 15px;
+    transform: rotate(0deg);
+    transition: opacity 0.1s ease 0.05s;
+
+    .burger-menu.burger-menu--open & {
+      opacity: 0;
+      transform: rotate(90deg);
+      width: 2rem;
+      top: 0;
+    }
+  }
+
+  &.burger-menu__line-3 {
+    width: 10px;
+    top: 11px;
   }
 }
 
-.burger-menu:hover .burger-menu__lines::after,
-.burger-menu:hover .burger-menu__lines::before,
-.burger-menu:hover .burger-menu__lines,
-.burger-menu:focus .burger-menu__lines::after,
-.burger-menu:focus .burger-menu__lines::before,
-.burger-menu:focus .burger-menu__lines,
-.burger-menu:focus-visible .burger-menu__lines::after,
-.burger-menu:focus-visible .burger-menu__lines::before,
-.burger-menu:focus-visible .burger-menu__lines {
+.burger-menu:hover .burger-menu__line,
+.burger-menu:focus .burger-menu__line,
+.burger-menu:focus-visible .burger-menu__line {
   width: 2rem;
-  transition: width 0.25s ease;
 }
