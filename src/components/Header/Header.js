@@ -6,18 +6,11 @@ import Burger from '../Burger/Burger';
 import { PropTypes } from 'prop-types';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
-const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading, onClick, selectedElement }, ref) => {
-
-    const [isOpen, setIsOpen] = useState(false);
+const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading, onClick, selectedElement, burgerClick, isNavOpen }, ref) => {
 
     const animationStyle = {
         transform: `translateY(${styleTranslate}px)`
     };
-
-    const openNav = (e) => {
-        setIsOpen(!isOpen);
-        console.log(e);
-    }
 
     const renderCategories = (items) =>
         items.map((item) => {
@@ -31,16 +24,18 @@ const Header = forwardRef(({ aniClass, styleTranslate, categories, isLoading, on
     if (isLoading) return (<LoadingSpinner />);
 
     return (
-        <header className={`header ${aniClass} ${isOpen ? 'header--open' : ''}`}>
-            <div className={`header__inner ${aniClass}`} ref={ref} style={animationStyle}>
-                <div className="header__item header__left">
-                    <Logo />
-                </div>
-                <div className="header__item header__right">
-                    <Burger
-                        clickFunc={(e) => openNav(e)}
-                        isOpen={isOpen}
-                    />
+        <header className={`header ${aniClass} ${isNavOpen ? 'header--open' : ''}`}>
+            <div className={`header__wrapper`} ref={ref} style={animationStyle}>
+                <div className={`header__inner`}>
+                    <div className="header__item header__left">
+                        <Logo />
+                    </div>
+                    <div className="header__item header__right">
+                        <Burger
+                            clickFunc={burgerClick}
+                            isOpen={isNavOpen}
+                        />
+                    </div>
                 </div>
             </div>
             <nav className='header__nav main-nav'>
@@ -69,7 +64,6 @@ Header.propTypes = {
     categories: PropTypes.array,
     isLoading: PropTypes.bool,
     onClick: PropTypes.func,
-    selectedElement: PropTypes.number || PropTypes.string,
 };
 
 export default Header;

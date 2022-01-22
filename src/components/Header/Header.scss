@@ -4,19 +4,22 @@
   width: 100%;
   flex-shrink: 0;
   z-index: 100;
-  background-color: $color-white;
   position: fixed;
+}
+
+.header__wrapper {
+  width: 100%;
+  background-color: $color-white;
+  z-index: 100;
+  .header--animates & {
+    transform: translateY(0) !important;
+    transition: all 0.5s ease 0.15s;
+  }
 }
 
 .header__inner {
   @include flexbox(row, wrap, space-between, center);
   @include full-width();
-  z-index: 100;
-
-  .header--animates & {
-    transform: translateY(0) !important;
-    transition: all 0.5s ease 0.15s;
-  }
 }
 
 .header__right {

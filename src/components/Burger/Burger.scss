@@ -43,19 +43,23 @@
     top: 18px;
     width: 15px;
     transform: rotate(0deg);
-    transition: opacity 0.1s ease 0.05s;
+    transition: all 0.1s ease 0.05s;
 
     .burger-menu.burger-menu--open & {
-      opacity: 0;
-      transform: rotate(90deg);
+      transform: rotate(45deg);
       width: 2rem;
-      top: 0;
+      top: 10px;
     }
   }
 
   &.burger-menu__line-3 {
     width: 10px;
     top: 11px;
+    transition: opacity 0.1s ease 0.05s;
+
+    .burger-menu.burger-menu--open & {
+      opacity: 0;
+    }
   }
 }
 

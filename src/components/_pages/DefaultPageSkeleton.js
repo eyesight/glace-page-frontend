@@ -13,6 +13,8 @@ const DefaultPageSkeleton = props => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [headerHeight, setHeaderHeight] = useState(0);
     const [selectedNavItem, setselectedNavItem] = useState(0);
+    const [isNavOpen, setIsNavOpen] = useState(false);
+
     const dispatch = useDispatch();
     const all = useSelector(state => state.categories);
     const categories = all.items;
@@ -31,13 +33,14 @@ const DefaultPageSkeleton = props => {
 
     useLayoutEffect(() => {
         let theContentRef = headerRef.current;
+        setScrollPosition(theContentRef.offsetHeight);
         setHeaderHeight(theContentRef.offsetHeight);
         return () => setHeaderHeight(theContentRef.offsetHeight);
     }, []);
 
     useLayoutEffect(() => {
         const updatePosition = (e) => {
-            let scrollPosition = contentRef?.current ? contentRef.current.getBoundingClientRect().top : 0;
+            let scrollPosition = contentRef?.current.getBoundingClientRect().top < headerHeight ? contentRef?.current.getBoundingClientRect().top : 0;
             setScrollPosition(scrollPosition);
         }
         updatePosition();
@@ -51,6 +54,7 @@ const DefaultPageSkeleton = props => {
     const clickNav = (e) => {
         const selectedItem = e.target.dataset.category;
         setselectedNavItem(selectedItem);
+        setIsNavOpen(!isNavOpen)
         dispatch(setCategoryAsFilter(selectedItem, RouteReceipt));
     }
 
@@ -64,6 +68,8 @@ const DefaultPageSkeleton = props => {
                 isLoading={isLoading}
                 onClick={(e) => { clickNav(e) }}
                 selectedElement={selectedNavItem}
+                isNavOpen={isNavOpen}
+                burgerClick={() => { setIsNavOpen(!isNavOpen) }}
             />
             <Content
                 ref={contentRef}
