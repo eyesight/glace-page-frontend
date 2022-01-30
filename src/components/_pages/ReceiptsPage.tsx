@@ -24,8 +24,24 @@ const ReceiptsPage = () => {
 
     useEffect(() => {
         const loadDetails = async () => {
-            await dispatch(fetchRandomReceipts(RouteReceiptAll, []));
-            await dispatch(fetchReceipts(RouteReceipt, []));
+            await dispatch(fetchRandomReceipts(RouteReceiptAll, {
+                isFetching: false,
+                items: [],
+                portions: 0,
+                filteredItems: [],
+                value: '',
+                filterText: '',
+                randomItems: []
+            }));
+            await dispatch(fetchReceipts(RouteReceipt, {
+                isFetching: false,
+                items: [],
+                portions: 0,
+                filteredItems: [],
+                value: '',
+                filterText: '',
+                randomItems: []
+            }));
         };
         loadDetails();
     }, [dispatch]);
@@ -45,7 +61,15 @@ const ReceiptsPage = () => {
             <Slideshow
                 items={randomitems}
                 isLoading={isLoading}
-                onClickFunc={() => dispatch(receiptRandomized([]))}
+                onClickFunc={() => dispatch(receiptRandomized({
+                    isFetching: false,
+                    items: [],
+                    portions: 0,
+                    filteredItems: [],
+                    value: '',
+                    filterText: '',
+                    randomItems: []
+                }))}
             />
             <Cursor
                 aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''}

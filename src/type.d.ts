@@ -50,7 +50,7 @@ type CursorState = {
 
 type ReceiptAction = {
     type: string
-    payload: IReceipt[]
+    payload: IReceipt
   }
 
 type CategoryAction = {
@@ -64,7 +64,6 @@ type CursorAction = {
 }
 
 type DispatchType = (args: ReceiptAction | CategoryAction | CursorAction) => ReceiptAction | CategoryAction | CursorAction
-type DispatchTypeCategory = (args: CategoryAction) => CategoryAction
 
 type RezeptType = {
     id:	string

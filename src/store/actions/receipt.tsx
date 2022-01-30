@@ -15,12 +15,12 @@ export const SEARCH_ENTER = 'SEARCH_ENTER';
 /*
  * Action Creators
  */
-export const requestReceipts = (receipts: IReceipt[]) => ({
+export const requestReceipts = (receipts: IReceipt) => ({
     type: RECEIPTS_REQUEST,
     payload: receipts
 });
 
-export const receiveReceipts = (receipts: IReceipt[]) => ({
+export const receiveReceipts = (receipts: IReceipt) => ({
     type: RECEIPTS_RECEIVED,
     payload: receipts
 });
@@ -35,7 +35,7 @@ export const receiptMinusPortion = (receipts: IReceipt) => ({
     payload: receipts
 });
 
-export const receiptRandomized = (receipts: IReceipt[]) => ({
+export const receiptRandomized = (receipts: IReceipt) => ({
     type: RECEIPT_RANDOM,
     payload: receipts
 });
@@ -54,7 +54,7 @@ export const searchEntered = (value: string) => ({
  * Thunk Actions
  */
 
-export const fetchRandomReceipts = (url: string, receipts: IReceipt[]) => (dispatch: DispatchType) => {
+export const fetchRandomReceipts = (url: string, receipts: IReceipt) => (dispatch: DispatchType) => {
     dispatch(requestReceipts(receipts))
     const sendGetRequest = async () => {
         try {
@@ -72,7 +72,7 @@ export const fetchRandomReceipts = (url: string, receipts: IReceipt[]) => (dispa
     return sendGetRequest();
 }
 
-export const fetchReceipts = (url: string, receipts: IReceipt[]) => (dispatch: DispatchType) => {
+export const fetchReceipts = (url: string, receipts: IReceipt) => (dispatch: DispatchType) => {
     console.log(receipts);
     dispatch(requestReceipts(receipts))
     const sendGetRequest = async () => {

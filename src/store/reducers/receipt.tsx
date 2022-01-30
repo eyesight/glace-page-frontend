@@ -70,7 +70,6 @@ export const receipt = (state: IReceipt = initialState, action: ReceiptAction) =
             return {
                 ...state,
                 isFetching: false,
-                filterText: getAllItems,
                 filteredItems: getAllItems,
                 portions: thePortion,
                 items: getAllItems
@@ -86,10 +85,8 @@ export const receipt = (state: IReceipt = initialState, action: ReceiptAction) =
             }
 
         case SEARCH: {
-            const value = action.payload?.length > 0 ? '' : '';
-            console.log(value);
+            const value = (typeof action.payload === 'string') ? action.payload : '';
             const allItems = state.items;
-            console.log(allItems);
             const filteredReceipts = allItems.filter((val) => {
                 const title = val.title.toLowerCase();
                 return title.includes(value)
