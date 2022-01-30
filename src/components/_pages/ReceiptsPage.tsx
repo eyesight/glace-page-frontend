@@ -10,7 +10,6 @@ import Cursor from '../Cursor/Cursor';
 import { useRef } from 'react';
 import Slideshow from '../Slideshow/Slideshow';
 import { Dispatch } from 'redux';
-import { ReceiptModel } from '../../helper/models';
 
 const ReceiptsPage = () => {
     const dispatch: Dispatch<any> = useDispatch();

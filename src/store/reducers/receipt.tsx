@@ -1,6 +1,5 @@
 import { getRandomElements } from '../../helper/constants/getRandomElements';
 import { getURLSearchParam, changeURLSearchParam } from '../../helper/constants/urlSearchParamsFunction';
-import { ReceiptModel } from '../../helper/models';
 import {
     RECEIPTS_RECEIVED,
     RECEIPTS_ONE_RECEIVED,
@@ -78,7 +77,7 @@ export const receipt = (state: IReceipt = initialState, action: ReceiptAction) =
 
         case RECEIPTS_ONE_RECEIVED:
             let oneItem = action.payload;
-            let thePortion = Number(getURLSearchParam('portion', state.portions, 'receipt')) ? Number(getURLSearchParam('portion', state.portions, 'receipt')) : initialState.portions;
+            let thePortion = Number(getURLSearchParam('portion', state.portions, 'receipt')) ? Number(getURLSearchParam('portion', state.portions, 'receipt')) : oneItem.portions;
 
             return {
                 ...state,

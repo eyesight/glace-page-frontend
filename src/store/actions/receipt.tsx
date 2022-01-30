@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { ReceiptModel } from '../../helper/models';
 
 /*
  * Action Type Constants
