@@ -1,7 +1,9 @@
 import { getRandomElements } from '../../helper/constants/getRandomElements';
 import { getURLSearchParam, changeURLSearchParam } from '../../helper/constants/urlSearchParamsFunction';
+import { ReceiptModel } from '../../helper/models';
 import {
     RECEIPTS_RECEIVED,
+    RECEIPTS_ONE_RECEIVED,
     RECEIPTS_REQUEST,
     RECEIPTS_PORTION_PLUS,
     RECEIPTS_PORTION_MINUS,
@@ -13,6 +15,7 @@ import {
 export const initialState: IReceipt = {
     isFetching: false,
     items: [],
+    oneItem: {} as RezeptType,
     portions: 0,
     filteredItems: [],
     value: '',
@@ -49,7 +52,6 @@ export const receipt = (state: IReceipt = initialState, action: ReceiptAction) =
 
         case RECEIPTS_RECEIVED:
             let getAllItems = action.payload;
-            let thePortion = Number(getURLSearchParam('portion', state.portions, 'receipt')) ? Number(getURLSearchParam('portion', state.portions, 'receipt')) : initialState.portions;
             let theReceiptsFilteredBySearchParamSearch = getURLSearchParam('s', state.filterText, '') ? getURLSearchParam('s', state.filterText, '') : state.filterText;
             let theReceiptsFilteredBySearchParamFilter = getURLSearchParam('filter', state.filterText, '') ? getURLSearchParam('filter', state.filterText, '') : '';
 
@@ -71,8 +73,18 @@ export const receipt = (state: IReceipt = initialState, action: ReceiptAction) =
                 ...state,
                 isFetching: false,
                 filteredItems: getAllItems,
-                portions: thePortion,
                 items: getAllItems
+            }
+
+        case RECEIPTS_ONE_RECEIVED:
+            let oneItem = action.payload;
+            let thePortion = Number(getURLSearchParam('portion', state.portions, 'receipt')) ? Number(getURLSearchParam('portion', state.portions, 'receipt')) : initialState.portions;
+
+            return {
+                ...state,
+                isFetching: false,
+                portions: thePortion,
+                oneItem: oneItem
             }
 
         case RECEIPT_RANDOM:

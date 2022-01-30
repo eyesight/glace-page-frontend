@@ -12,19 +12,20 @@ import { useParams } from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Tag from '../Tag/Tag';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReceipts, receiptMinusPortion, receiptPlusPortion } from '../../store/actions/receipt';
+import { fetchOneReceipts, receiptMinusPortion, receiptPlusPortion } from '../../store/actions/receipt';
 
 const ReceiptDetailPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const all = useSelector(state => state.receipt);
-    const oneReceipt = all.items;
+    const all: IReceipt = useSelector((state: ReceiptState) => state.receipt);
+
+    const oneReceipt = all.oneItem;
     const isLoading = all.isFetching;
     const theportion = all.portions;
 
     useEffect(() => {
         const loadDetails = async () => {
-            await dispatch(fetchReceipts(`${RouteReceipt}/${id}`));
+            dispatch(fetchOneReceipts(`${RouteReceipt}/${id}`));
         };
         loadDetails();
     }, [dispatch, id]);
@@ -35,6 +36,7 @@ const ReceiptDetailPage = () => {
                 <>
                     <TitleH2
                         title={item.titleOfStep}
+                        theClass={''}
                     />
                     <Paragraph
                         text={item.text}
@@ -72,11 +74,12 @@ const ReceiptDetailPage = () => {
                 <>
                     <TitleH2
                         title='Zutaten'
+                        theClass=''
                     />
                     <PortionCalculation
-                        number={Number(theportion)}
-                        minuOperation={() => dispatch(receiptMinusPortion(Number(theportion)))}
-                        plusOperation={() => dispatch(receiptPlusPortion(Number(theportion)))}
+                        number={theportion}
+                        minuOperation={() => dispatch(receiptMinusPortion(theportion))}
+                        plusOperation={() => dispatch(receiptPlusPortion(theportion))}
                     />
                     <TilesRound
                         items={oneReceipt.ingredients}

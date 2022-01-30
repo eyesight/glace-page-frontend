@@ -17,11 +17,12 @@
 
 interface IReceipt {
     isFetching: boolean,
-    items: RezeptType[],
+    items: RezeptType[], 
+    oneItem: RezeptType,
     portions: number,
     filteredItems: RezeptType[],
     value: string,
-    filterText: string,
+    filterText: string, 
     randomItems:  RezeptType[]
   }
 
@@ -111,23 +112,23 @@ type RezeptType = {
         id: string
         mass: number
         ingredient_item: {
-        id: string
-        name: string
-        unit: string
-        names: string
-        published_at: string
-        created_by: string
-        updated_by: string
+            id: string
+            name: string
+            unit: string
+            names: string
+            published_at: string
+            created_by: string
+            updated_by: string
         }
         unit: {
-        id: string
-        long: string
-        short: string
-        ingredients: [string]
-        nameId: string
-        published_at: string
-        created_by: string
-        updated_by: string
+            id: string
+            long: string
+            short: string
+            ingredients: [string]
+            nameId: string
+            published_at: string
+            created_by: string
+            updated_by: string
         }
     }]
     portions: number
@@ -135,23 +136,23 @@ type RezeptType = {
         id: string
         mass: number
         ingredient_item: {
-        id: string
-        name: string
-        unit: string
-        names: string
-        published_at: string
-        created_by:string
-        updated_by: string
+            id: string
+            name: string
+            unit: string
+            names: string
+            published_at: string
+            created_by:string
+            updated_by: string
         }
         unit: {
-        id: string
-        long: string
-        short: string
-        ingredients: [string]
-        nameId: string
-        published_at: string
-        created_by: string
-        updated_by: string
+            id: string
+            long: string
+            short: string
+            ingredients: [string]
+            nameId: string
+            published_at: string
+            created_by: string
+            updated_by: string
         }
     }]
     published_at: string

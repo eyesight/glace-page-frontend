@@ -10,6 +10,7 @@ import Cursor from '../Cursor/Cursor';
 import { useRef } from 'react';
 import Slideshow from '../Slideshow/Slideshow';
 import { Dispatch } from 'redux';
+import { ReceiptModel } from '../../helper/models';
 
 const ReceiptsPage = () => {
     const dispatch: Dispatch<any> = useDispatch();
@@ -24,24 +25,8 @@ const ReceiptsPage = () => {
 
     useEffect(() => {
         const loadDetails = async () => {
-            await dispatch(fetchRandomReceipts(RouteReceiptAll, {
-                isFetching: false,
-                items: [],
-                portions: 0,
-                filteredItems: [],
-                value: '',
-                filterText: '',
-                randomItems: []
-            }));
-            await dispatch(fetchReceipts(RouteReceipt, {
-                isFetching: false,
-                items: [],
-                portions: 0,
-                filteredItems: [],
-                value: '',
-                filterText: '',
-                randomItems: []
-            }));
+            await dispatch(fetchRandomReceipts(RouteReceiptAll));
+            await dispatch(fetchReceipts(RouteReceipt));
         };
         loadDetails();
     }, [dispatch]);
@@ -61,15 +46,7 @@ const ReceiptsPage = () => {
             <Slideshow
                 items={randomitems}
                 isLoading={isLoading}
-                onClickFunc={() => dispatch(receiptRandomized({
-                    isFetching: false,
-                    items: [],
-                    portions: 0,
-                    filteredItems: [],
-                    value: '',
-                    filterText: '',
-                    randomItems: []
-                }))}
+                onClickFunc={() => dispatch(receiptRandomized(RouteReceiptAll))}
             />
             <Cursor
                 aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''}

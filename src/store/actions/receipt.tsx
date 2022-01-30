@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { ReceiptModel } from '../../helper/models';
 
 /*
  * Action Type Constants
  */
 export const RECEIPTS_RECEIVED = 'RECEIPTS_RECEIVED';
+export const RECEIPTS_ONE_RECEIVED = 'RECEIPTS_ONE_RECEIVED';
 export const RECEIPTS_REQUEST = 'RECEIPTS_REQUEST';
 export const RECEIPTS_PORTION_PLUS = 'RECEIPTS_PORTION_PLUS';
 export const RECEIPTS_PORTION_MINUS = 'RECEIPTS_PORTION_MINUS';
@@ -15,7 +17,7 @@ export const SEARCH_ENTER = 'SEARCH_ENTER';
 /*
  * Action Creators
  */
-export const requestReceipts = (receipts: IReceipt) => ({
+export const requestReceipts = (receipts: IReceipt | any) => ({
     type: RECEIPTS_REQUEST,
     payload: receipts
 });
@@ -25,17 +27,22 @@ export const receiveReceipts = (receipts: IReceipt) => ({
     payload: receipts
 });
 
-export const receiptPlusPortion = (receipts: IReceipt) => ({
+export const receiveOneReceipts = (receipt: IReceipt) => ({
+    type: RECEIPTS_ONE_RECEIVED,
+    payload: receipt
+});
+
+export const receiptPlusPortion = (portion: number) => ({
     type: RECEIPTS_PORTION_PLUS,
-    payload: receipts
+    payload: portion
 });
 
-export const receiptMinusPortion = (receipts: IReceipt) => ({
+export const receiptMinusPortion = (portion: number) => ({
     type: RECEIPTS_PORTION_MINUS,
-    payload: receipts
+    payload: portion
 });
 
-export const receiptRandomized = (receipts: IReceipt) => ({
+export const receiptRandomized = (receipts: IReceipt | any) => ({
     type: RECEIPT_RANDOM,
     payload: receipts
 });
@@ -54,7 +61,7 @@ export const searchEntered = (value: string) => ({
  * Thunk Actions
  */
 
-export const fetchRandomReceipts = (url: string, receipts: IReceipt) => (dispatch: DispatchType) => {
+export const fetchRandomReceipts = (url: string, receipts = {}) => (dispatch: DispatchType) => {
     dispatch(requestReceipts(receipts))
     const sendGetRequest = async () => {
         try {
@@ -72,14 +79,31 @@ export const fetchRandomReceipts = (url: string, receipts: IReceipt) => (dispatc
     return sendGetRequest();
 }
 
-export const fetchReceipts = (url: string, receipts: IReceipt) => (dispatch: DispatchType) => {
-    console.log(receipts);
+export const fetchReceipts = (url: string, receipts = {}) => (dispatch: DispatchType) => {
     dispatch(requestReceipts(receipts))
     const sendGetRequest = async () => {
         try {
             const response = await axios.get(url);
-            console.log(response.data);
+            console.log(response.data.length);
             dispatch(receiveReceipts(response.data));
+        } catch (err) {
+            // Handle Error TODO
+            console.error(err);
+        } finally {
+            console.log('finally');
+        }
+    }
+
+    return sendGetRequest();
+}
+
+export const fetchOneReceipts = (url: string, receipt = {}) => (dispatch: DispatchType) => {
+    dispatch(requestReceipts(receipt))
+    const sendGetRequest = async () => {
+        try {
+            const response = await axios.get(url);
+            console.log(response.data.length);
+            dispatch(receiveOneReceipts(response.data));
         } catch (err) {
             // Handle Error TODO
             console.error(err);
