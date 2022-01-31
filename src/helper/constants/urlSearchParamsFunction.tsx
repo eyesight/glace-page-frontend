@@ -1,4 +1,4 @@
-export const getURLSearchParam = (string, item, page) => {
+export const getURLSearchParam = (string: string, item: string, page: string) => {
     const params = new URLSearchParams(window.location.search);
     if (window.location.href.indexOf(page) > -1) {
         if (params.has(string)) {
@@ -13,7 +13,7 @@ export const getURLSearchParam = (string, item, page) => {
     }
 };
 
-export const changeURLSearchParam = (string, item, page) => {
+export const changeURLSearchParam = (string: string, item: string, page: string) => {
     if (window.location.href.indexOf(page) > -1) {
         try {
             addURLParameter(string, item);
@@ -26,7 +26,7 @@ export const changeURLSearchParam = (string, item, page) => {
 };
 
 //function to remove query params from a URL
-const removeURLParameter = (url, parameter) => {
+const removeURLParameter = (url: string, parameter: string) => {
     let urlparts = url.split('?');
     if (urlparts.length >= 2) {
 
@@ -48,7 +48,7 @@ const removeURLParameter = (url, parameter) => {
     }
 }
 
-const addURLParameter = (key, value) => {
+const addURLParameter = (key: string, value: string) => {
     let currentUrlWithSearchParams = window.location.origin + window.location.pathname + window.location.search;
     currentUrlWithSearchParams = removeURLParameter(currentUrlWithSearchParams, key);
 

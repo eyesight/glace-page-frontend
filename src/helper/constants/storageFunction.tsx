@@ -1,10 +1,11 @@
-export const getStorage = (string, item) => {
+export const getStorage = (string: string, item: string) => {
     try {
-        if (!localStorage.getItem(string)) {
+        let itemOfstorage = localStorage.getItem(string);
+        if (!itemOfstorage) {
             localStorage.setItem(string, JSON.stringify(item));
             return item;
         }
-        return JSON.parse(localStorage.getItem(string));
+        return JSON.parse(itemOfstorage);
     } catch {
         console.log('else');
         console.error(`${string} could not be parsed into JSON`)
@@ -12,7 +13,7 @@ export const getStorage = (string, item) => {
     }
 };
 
-export const changeStorage = (string, item) => {
+export const changeStorage = (string: string, item: string) => {
     try {
         localStorage.setItem(string, JSON.stringify(item));
         return item;

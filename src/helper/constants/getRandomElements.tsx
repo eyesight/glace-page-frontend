@@ -1,4 +1,4 @@
-export const getRandomElements = (sourceArray, neededElements) => {
+export const getRandomElements = (sourceArray: RezeptType[], neededElements: number) => {
     const arrayCopy = [...sourceArray];
     const arrayLength = arrayCopy ? arrayCopy.length : 0;
     const size = arrayLength < neededElements ? arrayLength : neededElements;

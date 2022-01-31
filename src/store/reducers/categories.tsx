@@ -30,7 +30,8 @@ export const categories = (state: ICategories = initialState, action: CategoryAc
             }
 
         case CATEGORY_SELECT:
-            changeURLSearchParam('filter', action.payload, '');
+            let catItemString = action.payload.toString();
+            changeURLSearchParam('filter', catItemString, '');
             return {
                 ...state,
                 selectedItem: action.payload
