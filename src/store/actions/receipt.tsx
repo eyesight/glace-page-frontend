@@ -11,6 +11,7 @@ export const RECEIPTS_PORTION_MINUS = 'RECEIPTS_PORTION_MINUS';
 export const RECEIPT_RANDOM = 'RECEIPT_RANDOM';
 export const SEARCH = 'SEARCH';
 export const SEARCH_ENTER = 'SEARCH_ENTER';
+export const SEARCH_RESET = 'SEARCH_RESET';
 
 
 /*
@@ -53,6 +54,11 @@ export const search = (value: string) => ({
 
 export const searchEntered = (value: string) => ({
     type: SEARCH_ENTER,
+    payload: value
+});
+
+export const resetEntered = (value: string) => ({
+    type: SEARCH_RESET,
     payload: value
 });
 

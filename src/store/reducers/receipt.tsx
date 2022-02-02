@@ -8,7 +8,8 @@ import {
     RECEIPTS_PORTION_MINUS,
     RECEIPT_RANDOM,
     SEARCH,
-    SEARCH_ENTER
+    SEARCH_ENTER,
+    SEARCH_RESET
 } from '../actions/receipt';
 
 export const initialState: IReceipt = {
@@ -119,6 +120,15 @@ export const receipt = (state: IReceipt = initialState, action: ReceiptAction) =
             return {
                 ...state,
                 filterText: searchValue
+            };
+        }
+
+        case SEARCH_RESET: {
+            const searchValueReset = (typeof action.payload === 'string') ? action.payload : '';
+            changeURLSearchParam('s', searchValueReset, '');
+            return {
+                ...state,
+                filterText: searchValueReset
             };
         }
 

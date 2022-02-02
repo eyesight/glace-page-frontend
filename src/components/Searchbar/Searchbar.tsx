@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Searchbar.scss';
-import { search, searchEntered } from '../../store/actions/receipt';
+import { search, searchEntered, resetEntered } from '../../store/actions/receipt';
 import { useDispatch } from 'react-redux';
 
 type Props = {
@@ -37,6 +37,16 @@ const Searchbar = ({ searchValue }: Props) => {
 
                     value={text}
                 />
+                <button className="searchbar__icon-wrapper" type="reset" onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(resetEntered(''));
+                    setText('');
+                }}>
+                    <div className="searchbar__icon close">
+                        <span className="close__line"></span>
+                        <span className="close__line"></span>
+                    </div>
+                </button>
                 <button className="searchbar__icon-wrapper" type="submit">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
