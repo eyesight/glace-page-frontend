@@ -33,7 +33,8 @@ input.searchbar__searchfield {
     outline: none;
 
     &::placeholder {
-      color: mix($color-primary, $color-white, 25%);
+      --color-a: 0.75;
+      color: $color-primary;
     }
 
     + .searchbar__icon-wrapper {

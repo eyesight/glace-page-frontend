@@ -7,5 +7,5 @@ $color-light-grey: #fafafa !default;
 
 $color-main-text: $color-black !default;
 $color-negative-text: $color-white !default;
-$color-primary: $color-turkies !default;
+$color-primary: var(--color, $color-turkies) !default;
 $color-highlight: $color-turkies !default;

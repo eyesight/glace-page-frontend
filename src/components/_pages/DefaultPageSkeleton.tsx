@@ -15,6 +15,7 @@ const DefaultPageSkeleton = () => {
     const [headerHeight, setHeaderHeight] = useState(0);
     const [selectedNavItem, setselectedNavItem] = useState(0);
     const [isNavOpen, setIsNavOpen] = useState(false);
+    const [test, setTest] = useState(0);
 
     const dispatch: Dispatch<any> = useDispatch();
     const all: ICategories = useSelector((state: CategoryState) => state.categories);
@@ -49,10 +50,15 @@ const DefaultPageSkeleton = () => {
     }, []);
 
     useLayoutEffect(() => {
+        let rootElement = document.querySelector(':root');
         const updatePosition = () => {
             if(contentRef && contentRef.current){
                 let scrollPosition = contentRef?.current.getBoundingClientRect().top < headerHeight ? contentRef?.current.getBoundingClientRect().top : 0;
+                let docHeight = contentRef?.current.getBoundingClientRect().height;
+                let docTop = contentRef?.current.getBoundingClientRect().top;
+                let percentage = 100 / docHeight * (docTop * -1);
                 setScrollPosition(scrollPosition);
+                setColor(rootElement, percentage);
             }
         }
         updatePosition();
@@ -72,6 +78,13 @@ const DefaultPageSkeleton = () => {
         }
     }
 
+    const setColor = (rootEl: any, color: number) => {
+        let colMin = 167;
+        let colMax = 222;
+        let range = colMax - colMin
+        let colorFinal = (range / 100 * color) + colMin;
+        rootEl.style.setProperty('--color-h', colorFinal.toString());
+    }
     return (
         <>
             <Header

@@ -1,3 +1,7 @@
 :root {
-  --test: 17px, 28px, 20px, 30px, 700px, 1200px;
+  --color-h: 167;
+  --color-l: 60%;
+  --color-a: 1;
+  --color: hsla(var(--color-h, 167), 72%, var(--color-l, 60%), 1);
+  --color2: hsla(222, 72%, 60%, 1);
 }

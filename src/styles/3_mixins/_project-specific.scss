@@ -1,4 +1,4 @@
-@mixin hoverani($color: $color-turkies) {
+@mixin hoverani($color: $color-primary) {
   &::after {
     content: '';
     position: absolute;
