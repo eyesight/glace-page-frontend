@@ -54,7 +54,6 @@ export const receipt = (state: IReceipt = initialState, action: ReceiptAction) =
 
         case RECEIPTS_RECEIVED:
             let getAllItems = action.payload;
-            console.log(getAllItems); 
             // let theReceiptsFilteredBySearchParamSearch = getURLSearchParam('s', state.filterText, '') ? getURLSearchParam('s', state.filterText, '') : state.filterText;
             // let theReceiptsFilteredBySearchParamFilter = getURLSearchParam('filter', state.filterText, '') ? getURLSearchParam('filter', state.filterText, '') : '';
 

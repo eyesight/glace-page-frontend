@@ -29,7 +29,14 @@ interface IReceipt {
 interface ICategories {
     isFetching: boolean,
     items: CategoryGroupType[],
-    selectedItem: string
+    selectedItem: string,
+    selectedCategory: CategoryType
+}
+
+
+interface ICollections {
+    item: CollectionType,
+    isFetching: boolean
 }
 
 interface ICursor {
@@ -43,6 +50,10 @@ type ReceiptState = {
 
 type CategoryState = {
     categories: ICategories
+}
+
+type CollectionState = {
+    collections: ICollections
 }
 
 type CursorState = {
@@ -64,7 +75,12 @@ type CursorAction = {
     payload: ICursor
 }
 
-type DispatchType = (args: ReceiptAction | CategoryAction | CursorAction) => ReceiptAction | CategoryAction | CursorAction
+type CollectionAction = {
+    type: string,
+    payload: ICollections
+}
+
+type DispatchType = (args: ReceiptAction | CategoryAction | CursorAction | CollectionAction) => ReceiptAction | CategoryAction | CursorAction | CollectionAction
 
 type RezeptType = {
     id:	string
@@ -155,12 +171,24 @@ type RezeptType = {
             updated_by: string
         }
     }]
+    collections: [{
+        id: string
+        name: string
+        password: string
+        receipts: [string]
+        admin_users: [string]
+        published_at: string
+        created_by: string
+        updated_by: string
+    }]
     published_at: string
+    isVisible: boolean
 }
 
 type CategoryType = {
     id: string
     name: string
+    adjektiv: string
     receipts: RezeptType[]
     category_classes: [{
         id: string
@@ -184,4 +212,13 @@ type CursorType = {
     x: number
     y: number
     className: string
+}
+
+type CollectionType = {
+    id:	string,
+    name: string,
+    password: string,
+    receipts: RezeptType[],
+    admin_users: [],
+    published_at: string
 }

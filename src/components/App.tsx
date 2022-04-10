@@ -6,6 +6,7 @@ import DefaultPageSkeleton from "./_pages/DefaultPageSkeleton";
 import The404Page from './_pages/The404Page';
 import ReceiptsPage from './_pages/ReceiptsPage';
 import ReceiptDetailPage from './_pages/ReceiptDetailPage';
+import CollectionsPage from "./_pages/CollectionsPage";
 
 export default class App extends React.Component {
 
@@ -18,6 +19,7 @@ export default class App extends React.Component {
               <Route path="/" element={<ReceiptsPage />}></Route>
               <Route path="receipt" element={<ReceiptsPage />}></Route>
               <Route path="receipt/:id" element={<ReceiptDetailPage />}></Route>
+              <Route path="collection/:id" element={<CollectionsPage />}></Route>
               <Route path="*" element={<The404Page />}></Route>
             </Route>
           </Routes>

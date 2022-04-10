@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import TitleWrapper from '../TitleWrapper/TitleWrapper';
 import FullscreenImage from '../FullscreenImage/FullscreenImage';
 import SectionContainer from '../SectionContainer/SectionContainer';

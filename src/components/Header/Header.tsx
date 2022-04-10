@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.scss';
 import './MainNav.scss';
 import Logo from '../Logo/Logo';
@@ -11,7 +12,7 @@ type Props = {
     styleTranslate: number | string,
     categories: CategoryGroupType[],
     isLoading: boolean,
-    onClick: React.MouseEventHandler<HTMLButtonElement>,
+    onClick: React.MouseEventHandler<HTMLAnchorElement>,
     selectedElement: number,
     burgerClick: React.MouseEventHandler<HTMLButtonElement>,
     isNavOpen: boolean
@@ -32,7 +33,7 @@ const Header = forwardRef<HTMLDivElement, Props>(({ aniClass, styleTranslate, ca
         items.map((item: SubCat) => {
             return (
                 <li key={`nav-cat-${item.id}`} className={`main-nav__list-item ${item.id === selectedElement ? 'active' : ''}`} >
-                    <button onClick={onClick} className='main-nav__list-link' data-category={item.id}>{item.name}</button>
+                    <Link data-category={item.id} onClick={onClick} to={`/category/${item.id}`} key={`nav-cat-${item.id}`} className='main-nav__list-link'>{item.name}</Link>
                 </li >
             )
         });

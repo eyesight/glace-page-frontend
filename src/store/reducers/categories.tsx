@@ -1,14 +1,15 @@
-import { changeURLSearchParam } from '../../helper/constants/urlSearchParamsFunction';
 import {
     CATEGORIES_RECEIVED,
     CATEGORIES_REQUEST,
-    CATEGORY_SELECT
+    CATEGORY_SELECT,
+    CATEGORIES_RECEIVED_ONE
 } from '../actions/categories';
 
 export const initialState: ICategories = {
     isFetching: false,
     items: [],
-    selectedItem: ''
+    selectedItem: '',
+    selectedCategory: {} as CategoryType,
 };
 
 export const categories = (state: ICategories = initialState, action: CategoryAction) => {
@@ -29,12 +30,16 @@ export const categories = (state: ICategories = initialState, action: CategoryAc
                 items: getAllItems
             }
 
-        case CATEGORY_SELECT:
-            let catItemString = action.payload.toString();
-            changeURLSearchParam('filter', catItemString, '');
+        case CATEGORIES_RECEIVED_ONE:
             return {
                 ...state,
-                selectedItem: action.payload
+                selectedCategory: action.payload,
+            }
+
+        case CATEGORY_SELECT:
+            return {
+                ...state,
+                selectedItem: action.payload,
             }
 
         default:

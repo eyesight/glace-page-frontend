@@ -2,25 +2,26 @@ import { useRef, useState, useLayoutEffect, useEffect } from 'react';
 import { Dispatch } from "redux"
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import Content from '../Content/Content';
-import { RouteCategories, RouteReceipt } from '../../helper/constants/routes';
+import { RouteCategories, RouteCategoriesAll } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories, setCategoryAsFilter } from '../../store/actions/categories';
+import { fetchCategories, selectCategories, fetchOneCategory } from '../../store/actions/categories';
 
 const DefaultPageSkeleton = () => {
+    const { id } = useParams();
     const contentRef = useRef<HTMLDivElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const [scrollPosition, setScrollPosition] = useState(0);
     const [headerHeight, setHeaderHeight] = useState(0);
     const [selectedNavItem, setselectedNavItem] = useState(0);
     const [isNavOpen, setIsNavOpen] = useState(false);
-    const [test, setTest] = useState(0);
 
     const dispatch: Dispatch<any> = useDispatch();
     const all: ICategories = useSelector((state: CategoryState) => state.categories);
     const categories = all.items;
     const isLoading = all.isFetching;
+    let catId = id;
 
     useEffect(() => {
         window.history.scrollRestoration = 'auto'
@@ -28,14 +29,21 @@ const DefaultPageSkeleton = () => {
 
     useEffect(() => {
         const loadDetails: () => Promise<void> = async () => {
-            await dispatch(fetchCategories(RouteCategories, {
+           await dispatch(fetchCategories(RouteCategories, {
                 isFetching: false,
                 items: [],
-                selectedItem: ''
+                selectedItem: '',
+                selectedCategory: {} as CategoryType
             }));
+            if (catId) {
+                await dispatch(selectCategories(catId));
+                await dispatch(fetchOneCategory(`${RouteCategoriesAll}/${catId}`, {} as CategoryType ))
+                setselectedNavItem(Number(catId));
+            };
+            
         };
         loadDetails();
-    }, [dispatch]);
+    }, [dispatch, catId]);
 
     useLayoutEffect(() => {
         if(headerRef && headerRef.current){
@@ -69,15 +77,15 @@ const DefaultPageSkeleton = () => {
     let positionTop = scrollPosition > 0 ? scrollPosition - headerHeight : -headerHeight;
     let isAnimated = (scrollPosition > 0);
 
-    const clickNav = (e: React.SyntheticEvent<HTMLButtonElement>) => {
+    const clickNav = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
         const selectedItem = e.currentTarget.dataset.category;
         if(selectedItem){
             setselectedNavItem(Number(selectedItem));
             setIsNavOpen(!isNavOpen)
-            dispatch(setCategoryAsFilter(Number(selectedItem), RouteReceipt));
+            dispatch(selectCategories(selectedItem));
         }
     }
-
+    //TODO: check to not have ani!
     const setColor = (rootEl: any, color: number) => {
         let colMin = 167;
         let colMax = 222;
@@ -85,6 +93,7 @@ const DefaultPageSkeleton = () => {
         let colorFinal = (range / 100 * color) + colMin;
         rootEl.style.setProperty('--color-h', colorFinal.toString());
     }
+
     return (
         <>
             <Header

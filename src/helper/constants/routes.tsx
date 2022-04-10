@@ -3,6 +3,9 @@ export const Endpoint = 'http://localhost:1337';
 export const RouteReceipt = `${Endpoint}/rezepts`;
 export const RouteCategories = `${Endpoint}/category-groups`;
 export const RouteReceiptAll = `${Endpoint}/rezepts`;
+export const RouteCategoriesAll = `${Endpoint}/categories`;
+export const RouteCategory = `${Endpoint}/category`;
+export const RouteCollection = `${Endpoint}/collections`;
 
 // export const RouteReceipt = `http://localhost:1337/rezepts?[categories.id][0]=2&&[categories.id][1]=17`;
 // export const RouteReceipt = `http://localhost:1337/rezepts?[categories.id][0]=3`;

@@ -48,7 +48,7 @@ const Slideshow = ({ items, isLoading, onClickFunc }: Props) => {
     }
 
     if (isLoading && !items) return (<section className='section section--swiper section--loading-spinner'><LoadingSpinner /></section>)
-
+    console.log(items);
     return (
         <section className='section section--swiper'>
             {items?.length > 0 ? (

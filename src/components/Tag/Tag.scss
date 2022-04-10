@@ -16,3 +16,10 @@
     color: $color-primary;
   }
 }
+
+.tags__link {
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
+}

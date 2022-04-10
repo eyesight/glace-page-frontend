@@ -5,20 +5,22 @@ import TitleH2 from '../TitleH2/TitleH2';
 
 type Props = {
     items: RezeptType[],
-    isLoading: boolean
+    isLoading: boolean,
+    title: string,
+    isVisible: boolean
 }
 
-const Tile = ({ items, isLoading }: Props) => {
+const Tile = ({ items, isLoading, title, isVisible = false }: Props) => {
     if (isLoading) return (<section className="section tiles section--loading-spinner"><LoadingSpinner /></section>);
     return (
         <section className="tiles" role="list">
             <TitleH2
-                title={`${items ? items.length : 0} Rezepte`}
+                title={title}
                 theClass='tiles__item'
             />
             {items?.length > 0 ?
                 items.map((item) => (
-                    <TilesItem {...item} key={item.id} />
+                    <TilesItem {...item} key={item.id} isVisible={isVisible} />
                 )) : <p>no content</p>}
         </section>
     )
