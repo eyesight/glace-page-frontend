@@ -1,6 +1,7 @@
 import {
     COLLECTION_RECEIVED,
     COLLECTION_REQUEST,
+    COLLECTION_ADD_LIKE
 } from '../actions/collection';
 
 export const initialState: ICollections = {
@@ -25,6 +26,9 @@ export const collections = (state: ICollections = initialState, action: Collecti
                 isFetching: false,
                 item: getTheItem
             }
+
+        case COLLECTION_ADD_LIKE:
+            return action.payload
 
         default:
             return state;

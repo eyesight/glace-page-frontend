@@ -2,13 +2,14 @@
 import { useEffect } from 'react';
 import TitleH1 from '../TitleH1/TitleH1';
 import Tile from '../Tile/Tile';
-import { RouteCollection } from '../../helper/constants/routes';
+import { RouteCollection, RouteLikes } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCollections } from '../../store/actions/collection';
+import { fetchCollections, addLike } from '../../store/actions/collection';
 import Cursor from '../Cursor/Cursor';
 import { useRef } from 'react';
 import { Dispatch } from 'redux';
 import { useParams } from 'react-router-dom';
+import { getDiffieHellman } from 'crypto';
 
 const CollectionsPage = () => {
     const { id } = useParams();
@@ -19,11 +20,8 @@ const CollectionsPage = () => {
     const cursorRef = useRef(null);
     const cursorIsOnElement: ICursor = useSelector((state: CursorState) => state.cursor);
     let receipts = all?.item?.receipts;
-    let pw = all?.item?.password;
-    let title = "Titel";
-    let tiletitle = `Hallo velo`;
-
-    console.log(pw);
+    let title = all?.item?.Title;
+    let tiletitle = all?.item?.description;
 
     useEffect(() => {
         const loadDetails = async () => {
@@ -31,6 +29,13 @@ const CollectionsPage = () => {
         };
         loadDetails();
     }, [dispatch, id]); 
+
+    function doLike (event: React.MouseEvent<HTMLInputElement>){
+        let button = event.target as HTMLTextAreaElement;
+        const buttonId = button.getAttribute('data-itemid')
+        let obj = receipts.find(o => o.id.toString() === buttonId);
+        dispatch(addLike(RouteLikes, all, obj));
+    }
 
     return (
         <>  
@@ -41,7 +46,8 @@ const CollectionsPage = () => {
                 items={receipts}
                 isLoading={isLoading}
                 title = {tiletitle} 
-                isVisible = {true}
+                isVisible = {true} 
+                likeFunction = {(event: React.MouseEvent<HTMLInputElement>)=>doLike(event)}
             />
             <Cursor
                 aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''}

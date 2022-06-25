@@ -46,13 +46,14 @@ const DefaultPageSkeleton = () => {
     }, [dispatch, catId]);
 
     useLayoutEffect(() => {
-        if(headerRef && headerRef.current){
-            setScrollPosition(headerRef.current?.offsetHeight);
-            setHeaderHeight(headerRef.current?.offsetHeight);
+        let currentEl = headerRef.current;
+        if(headerRef && currentEl){
+            setScrollPosition(currentEl?.offsetHeight);
+            setHeaderHeight(currentEl?.offsetHeight);
         }
         return () => {
-            if(headerRef && headerRef.current){
-                setHeaderHeight(headerRef.current?.offsetHeight)
+            if(headerRef && currentEl){
+                setHeaderHeight(currentEl?.offsetHeight)
             }
         };
     }, []);

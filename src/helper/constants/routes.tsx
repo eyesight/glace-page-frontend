@@ -6,6 +6,7 @@ export const RouteReceiptAll = `${Endpoint}/rezepts`;
 export const RouteCategoriesAll = `${Endpoint}/categories`;
 export const RouteCategory = `${Endpoint}/category`;
 export const RouteCollection = `${Endpoint}/collections`;
+export const RouteLikes = `${Endpoint}/likes`;
 
 // export const RouteReceipt = `http://localhost:1337/rezepts?[categories.id][0]=2&&[categories.id][1]=17`;
 // export const RouteReceipt = `http://localhost:1337/rezepts?[categories.id][0]=3`;

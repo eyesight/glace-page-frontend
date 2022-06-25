@@ -44,6 +44,11 @@ interface ICursor {
     cursorPosition: CursorType
 }
 
+interface ILike {
+    collection: string,
+    receipt: string
+}
+
 type ReceiptState = {
     receipt: IReceipt
 }
@@ -183,6 +188,8 @@ type RezeptType = {
     }]
     published_at: string
     isVisible: boolean
+    likeFunction: any,
+    nr: number
 }
 
 type CategoryType = {
@@ -220,5 +227,7 @@ type CollectionType = {
     password: string,
     receipts: RezeptType[],
     admin_users: [],
-    published_at: string
+    published_at: string,
+    Title: string,
+    description: string
 }

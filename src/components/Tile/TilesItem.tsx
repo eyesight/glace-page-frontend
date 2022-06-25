@@ -3,7 +3,7 @@ import { Endpoint } from '../../helper/constants/routes';
 import { useDispatch } from 'react-redux';
 import { enterCursor, leaveCursor, detectCursor } from '../../store/actions/cursor';
 
-const TilesItem = ({ title, image, id, isVisible = false }: RezeptType) => {
+const TilesItem = ({ title, image, id, isVisible = false, likeFunction=null, nr }: RezeptType) => {
     const dispatch = useDispatch();
 
     const detectCursorFunc = (e: React.MouseEvent<HTMLElement>) => {
@@ -29,7 +29,7 @@ const TilesItem = ({ title, image, id, isVisible = false }: RezeptType) => {
                 </h3>
                 {isVisible ? 
                     <div className="tiles__button-wrap">
-                        <button className="tiles__button" type="button">
+                        <button className="tiles__button" type="button" onClick={likeFunction} data-itemid={id} data-itemnr={nr}>
                             <svg
                                 className="tiles__icon-smile"
                                 xmlns="http://www.w3.org/2000/svg"
