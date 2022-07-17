@@ -4,24 +4,30 @@ import TitleH1 from '../TitleH1/TitleH1';
 import Tile from '../Tile/Tile';
 import { RouteCollection, RouteLikes } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCollections, addLike } from '../../store/actions/collection';
+import { fetchCollections } from '../../store/actions/collection';
 import Cursor from '../Cursor/Cursor';
 import { useRef } from 'react';
 import { Dispatch } from 'redux';
 import { useParams } from 'react-router-dom';
-import { getDiffieHellman } from 'crypto';
+import { fetchLikes } from '../../store/actions/likes';
 
 const CollectionsPage = () => {
     const { id } = useParams();
 
     const dispatch: Dispatch<any> = useDispatch();
     const all: ICollections = useSelector((state: CollectionState) => state.collections);
+    let allLikes: ILike = useSelector((state: LikeState) => state.likes);
+    const theRoute = `${RouteLikes}?[collections.id][0]=${id}`
     const isLoading = all.isFetching;
     const cursorRef = useRef(null);
     const cursorIsOnElement: ICursor = useSelector((state: CursorState) => state.cursor);
     let receipts = all?.item?.receipts;
     let title = all?.item?.Title;
     let tiletitle = all?.item?.description;
+    // let allLikes = all?.item?.likes;
+    // console.log(allLikes?.item.length);
+    // console.log(allLikes?.item);
+    // console.log(all);
 
     useEffect(() => {
         const loadDetails = async () => {
@@ -30,12 +36,12 @@ const CollectionsPage = () => {
         loadDetails();
     }, [dispatch, id]); 
 
-    function doLike (event: React.MouseEvent<HTMLInputElement>){
-        let button = event.target as HTMLTextAreaElement;
-        const buttonId = button.getAttribute('data-itemid')
-        let obj = receipts.find(o => o.id.toString() === buttonId);
-        dispatch(addLike(RouteLikes, all, obj));
-    }
+    useEffect(() => {
+        const loadLikeDetails = async () => {
+            await dispatch(fetchLikes(`${theRoute}`));     
+        };
+        loadLikeDetails();
+    }, [dispatch]); 
 
     return (
         <>  
@@ -47,7 +53,8 @@ const CollectionsPage = () => {
                 isLoading={isLoading}
                 title = {tiletitle} 
                 isVisible = {true} 
-                likeFunction = {(event: React.MouseEvent<HTMLInputElement>)=>doLike(event)}
+                likes = {allLikes?.item}
+                collection = {all?.item}
             />
             <Cursor
                 aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''}

@@ -50,7 +50,6 @@ const ReceiptsPage = () => {
                 isLoading={isLoading}
                 title = {tiletitle} 
                 isVisible = {false}
-                likeFunction = {null}
             />
             <Slideshow
                 items={randomitems}

@@ -1,10 +1,28 @@
 import { Link } from 'react-router-dom';
-import { Endpoint } from '../../helper/constants/routes';
-import { useDispatch } from 'react-redux';
+import { Endpoint, RouteLikes } from '../../helper/constants/routes';
+import { useDispatch, useSelector } from 'react-redux';
 import { enterCursor, leaveCursor, detectCursor } from '../../store/actions/cursor';
+import { useEffect, useState } from 'react';
+import { addLike } from '../../store/actions/likes';
+import { fetchLikes } from '../../store/actions/likes';
 
-const TilesItem = ({ title, image, id, isVisible = false, likeFunction=null, nr }: RezeptType) => {
+const TilesItem = ({ title, image, id, isVisible = false, nr, collection, likes }: any) => {
     const dispatch = useDispatch();
+    const [countLikes, setCountLikes] = useState(0);
+    let allLikes: ILike = useSelector((state: LikeState) => state.likes);
+    let allCollections: ICollections = useSelector((state: CollectionState) => state.collections);
+    
+    useEffect(() => {
+        countLike(allLikes?.item, id);
+    }, [likes]); 
+    
+    const receipt = {
+        "id": id,
+    }
+
+    const targetCollection = {
+        "id": collection?.id,
+    }
 
     const detectCursorFunc = (e: React.MouseEvent<HTMLElement>) => {
         let mousePos = { x: 0, y: 0, className: '' }
@@ -13,6 +31,17 @@ const TilesItem = ({ title, image, id, isVisible = false, likeFunction=null, nr 
         mousePos.className = 'eye';
         dispatch(detectCursor(mousePos));
     }
+
+    function countLike(arr: LikeType[], id: string) {
+        if(arr && arr.length > 0) {
+            const result = arr.filter(like => {
+                return like.receiptId === id.toString()
+            });
+            setCountLikes(result.length);
+        }
+    }
+
+    console.log(allCollections);
 
     return (
         <div role="listitem" className="tiles__item" onMouseMove={(event): void  => detectCursorFunc(event)} onMouseEnter={() => dispatch(enterCursor(true))} onMouseLeave={() => dispatch(leaveCursor(true))}>
@@ -29,7 +58,11 @@ const TilesItem = ({ title, image, id, isVisible = false, likeFunction=null, nr 
                 </h3>
                 {isVisible ? 
                     <div className="tiles__button-wrap">
-                        <button className="tiles__button" type="button" onClick={likeFunction} data-itemid={id} data-itemnr={nr}>
+                        <button className="tiles__button" type="button" onClick={()=>{
+                                dispatch(addLike(RouteLikes, targetCollection, receipt));
+                                dispatch(fetchLikes(RouteLikes));
+                                countLike(allLikes?.item, id);
+                            }} data-itemid={id} data-itemnr={nr}>
                             <svg
                                 className="tiles__icon-smile"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +118,7 @@ const TilesItem = ({ title, image, id, isVisible = false, likeFunction=null, nr 
                                     </g>
                                 </g>
                             </svg>
-                            Das nehme ich
+                            Das nehme ich {countLikes}
                         </button>
                     </div> : null}
             </div>

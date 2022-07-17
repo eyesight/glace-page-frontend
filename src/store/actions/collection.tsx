@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { StringLiteralType } from 'typescript';
 
 /*
  * Action Type Constants
@@ -22,16 +21,12 @@ export const receiveCollections = (collections: ICollections) => ({
     payload: collections
 });
 
-export const addedLike = (like: ILike) => ({
-    type: COLLECTION_ADD_LIKE,
-    payload: like
-});
-
 /*
  * Thunk Actions
  */
 
 export const fetchCollections = (url: string, collection = {}) => (dispatch: DispatchType) => {
+    console.log(url);
     dispatch(requestCollections(collection))
     const sendGetRequest = async () => {
         try {
@@ -47,38 +42,3 @@ export const fetchCollections = (url: string, collection = {}) => (dispatch: Dis
 
     return sendGetRequest();
 }
-
-export const addLike = (url: string, likeItem: ICollections, likeReceipt: RezeptType | undefined)  => (dispatch: DispatchType) => {
-    let element = {
-        "collections": [
-            likeItem.item
-        ],
-        "receipts": [
-            likeReceipt
-        ],
-        "liker": {
-                "name": "claudiaT",
-                "email": null
-            }
-      }
-    const sendPostRequest = async () => {
-        try {
-            await axios.post(url, element );
-        } catch (err) {
-            // Handle Error TODO
-            console.error(err);
-        } finally {
-            console.log('finally');
-        }
-    }
-
-    return sendPostRequest();
-}
-
-// const handlePromiseErrorAsNull = async (theRequestPromise) => {
-//     try {
-//         return await theRequestPromise;
-//     } catch (error) {
-//         return null;
-//     }
-// };
