@@ -5,7 +5,8 @@ import axios from 'axios';
  */
 export const COLLECTION_RECEIVED = 'COLLECTION_RECEIVED';
 export const COLLECTION_REQUEST = 'COLLECTION_REQUEST';
-export const COLLECTION_ADD_LIKE = 'COLLECTION_ADD_LIKE';
+export const COLLECTION_UPDATE_INPUT = 'COLLECTION_UPDATE_INPUT';
+export const COLLECTION_CHECK_STORAGE = 'COLLECTION_CHECK_STORAGE';
 
 
 /*
@@ -21,12 +22,20 @@ export const receiveCollections = (collections: ICollections) => ({
     payload: collections
 });
 
+export const updateInputCollections = (input: Inputs) => ({
+    type: COLLECTION_UPDATE_INPUT,
+    payload: input
+});
+
+export const checkInputCollections = () => ({
+    type: COLLECTION_CHECK_STORAGE,
+});
+
 /*
  * Thunk Actions
  */
 
 export const fetchCollections = (url: string, collection = {}) => (dispatch: DispatchType) => {
-    console.log(url);
     dispatch(requestCollections(collection))
     const sendGetRequest = async () => {
         try {
@@ -42,3 +51,5 @@ export const fetchCollections = (url: string, collection = {}) => (dispatch: Dis
 
     return sendGetRequest();
 }
+
+//add function, which first uses

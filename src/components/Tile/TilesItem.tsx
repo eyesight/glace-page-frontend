@@ -41,8 +41,6 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, likes 
         }
     }
 
-    console.log(allCollections);
-
     return (
         <div role="listitem" className="tiles__item" onMouseMove={(event): void  => detectCursorFunc(event)} onMouseEnter={() => dispatch(enterCursor(true))} onMouseLeave={() => dispatch(leaveCursor(true))}>
             <Link className="tiles__anchor" to={`/receipt/${id}`} tabIndex={-1}>

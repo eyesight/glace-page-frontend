@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getStorage } from '../../helper/constants/storageFunction';
 
 /*
  * Action Type Constants
@@ -30,7 +31,6 @@ export const addedLike = (like: ILike) => ({
  */
 
 export const fetchLikes = (url: string, likes = {}) => (dispatch: DispatchType) => {
-    console.log(url);
     dispatch(requestLikes(likes))
     const sendGetRequest = async () => {
         try {
@@ -47,7 +47,7 @@ export const fetchLikes = (url: string, likes = {}) => (dispatch: DispatchType) 
     return sendGetRequest();
 }
 
-export const addLike = (url: string, likeItem: any, likeReceipt: any, likes = {})  => (dispatch: DispatchType) => {
+export const addLike = (url: string, likeItem: any, likeReceipt: any)  => (dispatch: DispatchType) => {
     let element = {
         "collections": [
             likeItem
@@ -57,7 +57,7 @@ export const addLike = (url: string, likeItem: any, likeReceipt: any, likes = {}
         ],
         "receiptId": likeReceipt?.id.toString(),
         "collectionId": likeItem?.id.toString(),
-        "liker": "claudia"
+        "liker": getStorage("user")
       }
 
 

@@ -18,9 +18,15 @@ interface ICategories {
 
 
 interface ICollections {
+    pw?: string,
+    secret?: string,
+    name?: string,
     item: CollectionType,
     isFetching: boolean,
-    id?: string
+    id?: string,
+    isRegistered: boolean,
+    input: String,
+    isAccessed: boolean
 }
 
 interface ICursor {
@@ -31,6 +37,13 @@ interface ICursor {
 interface ILike {
     item: LikeType []
 }
+
+type Inputs = {
+    name: string,
+    pw: string,
+    nameRequired: string,
+    pwRequired: string,
+  };
 
 type ReceiptState = {
     receipt: IReceipt
@@ -228,6 +241,7 @@ type CursorType = {
 }
 
 type CollectionType = {
+    likers?: LikersType[]
     id:	string,
     name: string,
     password: string,
@@ -236,7 +250,9 @@ type CollectionType = {
     published_at: string,
     Title: string,
     description: string,
-    likes: []
+    likes: [],
+    secret: string,
+    isAccessed: boolean
 }
 
 type LikeType = {
@@ -246,6 +262,16 @@ type LikeType = {
     liker: string,
     collectionId: string,
     receiptId: string,
+    published_at: string,
+    created_by: string,
+    updated_by: string
+}
+
+type LikersType = {
+    id: string,
+    collections: [],
+    name: string,
+    email: string,
     published_at: string,
     created_by: string,
     updated_by: string
