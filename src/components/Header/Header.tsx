@@ -8,8 +8,6 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 //TODO: define this the right way! -> declare a interface and check line 37 not t be any
 type Props = {
-	aniClass: string;
-	styleTranslate: number | string;
 	categories: CategoryGroupType[];
 	isLoading: boolean;
 	onClick: React.MouseEventHandler<HTMLAnchorElement>;
@@ -23,10 +21,7 @@ type SubCat = {
 	name: string;
 };
 
-const Header = forwardRef<HTMLDivElement, Props>(({ aniClass, styleTranslate, categories, isLoading, onClick, selectedElement, burgerClick, isNavOpen }, ref) => {
-	const animationStyle = {
-		transform: `translateY(${styleTranslate}px)`,
-	};
+const Header = forwardRef<HTMLDivElement, Props>(({ categories, isLoading, onClick, selectedElement, burgerClick, isNavOpen }, ref) => {
 	//TODO: check to not have ani!
 	const renderCategories = (items: any) =>
 		items.map((item: SubCat) => {
@@ -42,8 +37,8 @@ const Header = forwardRef<HTMLDivElement, Props>(({ aniClass, styleTranslate, ca
 	if (isLoading) return <LoadingSpinner />;
 
 	return (
-		<header className={`header ${aniClass} ${isNavOpen ? 'header--open' : ''}`}>
-			<div className={`header__wrapper`} ref={ref} style={animationStyle}>
+		<header className={`header ${isNavOpen ? 'header--open' : ''}`}>
+			<div className={`header__wrapper`} ref={ref}>
 				<div className={`header__inner`}>
 					<div className='header__item header__left'>
 						<Logo />
