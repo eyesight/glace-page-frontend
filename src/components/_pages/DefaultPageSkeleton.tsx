@@ -6,14 +6,18 @@ import { Outlet, useParams } from 'react-router-dom';
 import Content from '../Content/Content';
 import { RouteCategories, RouteCategoriesAll } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories, selectCategories, fetchOneCategory } from '../../store/actions/categories';
+import {
+	fetchCategories,
+	selectCategories,
+	fetchOneCategory,
+} from '../../store/actions/categories';
 
 const DefaultPageSkeleton = () => {
 	const { id } = useParams();
 	const contentRef = useRef<HTMLDivElement>(null);
 	const headerRef = useRef<HTMLDivElement>(null);
 	const [scrollPosition, setScrollPosition] = useState(0);
-	const [selectedNavItem, setselectedNavItem] = useState(0);
+	const [selectedNavItem, setselectedNavItem] = useState('');
 	const [isNavOpen, setIsNavOpen] = useState(false);
 
 	const dispatch: Dispatch<any> = useDispatch();
@@ -33,13 +37,13 @@ const DefaultPageSkeleton = () => {
 					isFetching: false,
 					items: [],
 					selectedItem: '',
-					selectedCategory: {} as CategoryType,
+					selectedCategory: {} as CategoryType[],
 				})
 			);
 			if (catId) {
 				await dispatch(selectCategories(catId));
-				await dispatch(fetchOneCategory(`${RouteCategoriesAll}/${catId}`, {} as CategoryType));
-				setselectedNavItem(Number(catId));
+				await dispatch(fetchOneCategory(`${RouteCategoriesAll}?name=${catId}`, {} as CategoryType));
+				setselectedNavItem(catId);
 			}
 		};
 		loadDetails();
@@ -64,7 +68,7 @@ const DefaultPageSkeleton = () => {
 	const clickNav = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
 		const selectedItem = e.currentTarget.dataset.category;
 		if (selectedItem) {
-			setselectedNavItem(Number(selectedItem));
+			setselectedNavItem(selectedItem);
 			setIsNavOpen(!isNavOpen);
 			dispatch(selectCategories(selectedItem));
 		}

@@ -25,9 +25,9 @@ const ReceiptsPage = () => {
 	const filterTxt = all.filterText;
 	const cursorIsOnElement: ICursor = useSelector((state: CursorState) => state.cursor);
 	//Parameter to differ if it is a category page or the normal receipt-page
-	let route = id ? `${RouteReceipt}?[categories.id][0]=${id}` : RouteReceipt;
-	let title = id ? `Unsere ${allCategory.selectedCategory?.adjektiv} Rezepte` : 'Guten Morgen. Hier findest du Inspiration für die Küche.';
-	let tiletitle = id ? `Alle Sorten mit #${allCategory.selectedCategory?.name}` : `${receipts ? receipts.length : 0} Rezepte`;
+	let route = id ? `${RouteReceipt}?[categories.name][0]=${id}` : RouteReceipt;
+	let title = id ? `Unsere ${allCategory.selectedCategory[0]?.adjektiv} Rezepte` : 'Guten Morgen. Hier findest du Inspiration für die Küche.';
+	let tiletitle = id ? `Alle Sorten mit #${allCategory.selectedCategory[0]?.name}` : `${receipts ? receipts.length : 0} Rezepte`;
 
 	useEffect(() => {
 		const loadDetails = async () => {

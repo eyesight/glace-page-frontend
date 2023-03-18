@@ -14,6 +14,5 @@ export const RouteLikes = `${Endpoint}/likes`;
 //limit, sort and pagination for strapi here: (default is the limit on 100)
 //https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/sort-pagination.html#sorting
 
-
 //queries
 export const QueryCategory = '[categories.id]';

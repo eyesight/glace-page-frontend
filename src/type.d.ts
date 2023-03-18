@@ -13,7 +13,7 @@ interface ICategories {
     isFetching: boolean,
     items: CategoryGroupType[],
     selectedItem: string,
-    selectedCategory: CategoryType
+    selectedCategory: CategoryType[]
 }
 
 

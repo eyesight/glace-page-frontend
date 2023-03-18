@@ -11,13 +11,13 @@ type Props = {
 	categories: CategoryGroupType[];
 	isLoading: boolean;
 	onClick: React.MouseEventHandler<HTMLAnchorElement>;
-	selectedElement: number;
+	selectedElement: string;
 	burgerClick: React.MouseEventHandler<HTMLButtonElement>;
 	isNavOpen: boolean;
 };
 
 type SubCat = {
-	id: number;
+	id: string;
 	name: string;
 };
 
@@ -26,8 +26,8 @@ const Header = forwardRef<HTMLDivElement, Props>(({ categories, isLoading, onCli
 	const renderCategories = (items: any) =>
 		items.map((item: SubCat) => {
 			return (
-				<li key={`nav-cat-${item.id}`} className={`main-nav__list-item ${item.id === selectedElement ? 'active' : ''}`}>
-					<Link data-category={item.id} onClick={onClick} to={`/category/${item.id}`} key={`nav-cat-${item.id}`} className='main-nav__list-link'>
+				<li key={`nav-cat-${item.id}`} className={`main-nav__list-item ${item.name === selectedElement ? 'active' : ''}`}>
+					<Link data-category={item.name} onClick={onClick} to={`/category/${item.name}`} key={`nav-cat-${item.id}`} className='main-nav__list-link'>
 						{item.name}
 					</Link>
 				</li>
