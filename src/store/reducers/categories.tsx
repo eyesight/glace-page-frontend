@@ -7,9 +7,12 @@ import {
 
 export const initialState: ICategories = {
 	isFetching: false,
+	data: {},
 	items: [],
 	selectedItem: '',
-	selectedCategory: {} as CategoryType[],
+	selectedCategory: {
+		data: {} as CategoryType[]
+	}
 };
 
 export const categories = (state: ICategories = initialState, action: CategoryAction) => {
@@ -18,16 +21,16 @@ export const categories = (state: ICategories = initialState, action: CategoryAc
 			return {
 				...state,
 				isFetching: true,
-				items: initialState.items,
+				items: initialState.data,
 			};
 
 		case CATEGORIES_RECEIVED:
-			let getAllItems = action.payload;
+			let allCategories = action.payload;
 
 			return {
 				...state,
 				isFetching: false,
-				items: getAllItems,
+				items: allCategories.data,
 			};
 
 		case CATEGORIES_RECEIVED_ONE:

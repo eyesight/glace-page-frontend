@@ -2,7 +2,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 import SwiperCore, { A11y, EffectCoverflow } from 'swiper';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import { Endpoint } from '../../helper/constants/routes';
+import { EndpointAssets } from '../../helper/constants/routes';
 
 import 'swiper/swiper.scss'; // core Swiper
 import 'swiper/modules/a11y/a11y.scss';
@@ -84,7 +84,7 @@ const Slideshow = ({ items, isLoading, onClickFunc }: Props) => {
 											onMouseEnter={() => dispatch(enterCursor(true))}
 											onMouseLeave={() => dispatch(leaveCursor(true))}
 										>
-											<img alt={el.image?.alternativeText ?? ''} className='swiper__image' src={el.image ? `${Endpoint}${el.image?.url}` : 'http://placekitten.com/200/300'} />
+											<img alt={el.attributes.image?.alternativeText ?? ''} className='swiper__image' src={el.attributes.image.data ? `${EndpointAssets}${el.attributes.image.data.attributes?.url}` : 'http://placekitten.com/200/300'} />
 										</figure>
 										<div className='swiper__content'>
 											<h2
@@ -94,10 +94,10 @@ const Slideshow = ({ items, isLoading, onClickFunc }: Props) => {
 												onMouseLeave={() => dispatch(leaveCursor(true))}
 											>
 												<Link to={`/receipt/${el.id}`} className='swiper__anchor'>
-													{el.title}
+													{el.attributes.title}
 												</Link>
 											</h2>
-											<Tag tagItems={el.categories} />
+											<Tag tagItems={el.attributes.categories.data} />
 										</div>
 									</div>
 								}

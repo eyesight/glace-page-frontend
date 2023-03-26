@@ -6,22 +6,25 @@ type Props = {
 };
 
 type TagProp = {
-	name: string;
 	id: string;
+	attributes: {
+		name: string;
+	}
 };
 
 const Tag = ({ tagItems }: Props) => {
+
 	return (
 		<ul className='tags'>
 			{tagItems?.map((item, index) => (
 				<li key={index} className='tags__item'>
 					<Link
-						data-category={item.name}
-						to={`/category/${item.name}`}
+						data-category={item.attributes.name}
+						to={`/category/${item.attributes.name}`}
 						key={`nav-cat-${item.id}`}
 						className='tags__link'
 					>
-						{item.name}
+						{item.attributes.name}
 					</Link>
 				</li>
 			))}

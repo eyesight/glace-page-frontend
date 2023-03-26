@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Endpoint, RouteLikes } from '../../helper/constants/routes';
+import { EndpointAssets, RouteLikes } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { enterCursor, leaveCursor, detectCursor } from '../../store/actions/cursor';
 import { useEffect, useState } from 'react';
@@ -50,7 +50,7 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, likes 
 		>
 			<Link className='tiles__anchor' to={`/receipt/${id}`} tabIndex={-1}>
 				<figure className='tiles__image-wrapper'>
-					<img className='tiles__img' alt='' src={image ? `${Endpoint}${image.url}` : 'http://placekitten.com/200/300'} />
+					<img className='tiles__img' alt='' src={image?.data ? `${EndpointAssets}${image.data.attributes.url}` : 'http://placekitten.com/200/300'} />
 				</figure>
 			</Link>
 			<div className='tiles__item-inner'>

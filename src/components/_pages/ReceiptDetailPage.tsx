@@ -7,7 +7,7 @@ import PortionCalculation from '../PortionCalculation/PortionCalculation';
 import TilesRound from '../TilesRound/TilesRound';
 import Paragraph from '../Paragraph/Paragraph';
 import InfoBox from '../InfoBox/InfoBox';
-import { RouteReceipt, Endpoint } from '../../helper/constants/routes';
+import { RouteReceipt, EndpointAssets, PopulatesDetailReceipts } from '../../helper/constants/routes';
 import { useParams } from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Tag from '../Tag/Tag';
@@ -19,13 +19,13 @@ const ReceiptDetailPage = () => {
     const dispatch = useDispatch();
     const all: IReceipt = useSelector((state: ReceiptState) => state.receipt);
 
-    const oneReceipt = all.oneItem;
+    const oneReceipt = all.oneItem.attributes;
     const isLoading = all.isFetching;
     const theportion = all.portions;
 
     useEffect(() => {
         const loadDetails = async () => {
-            dispatch(fetchOneReceipts(`${RouteReceipt}/${id}`));
+            dispatch(fetchOneReceipts(`${RouteReceipt}/${id}${PopulatesDetailReceipts}`));
         };
         loadDetails();
     }, [dispatch, id]);
@@ -60,15 +60,15 @@ const ReceiptDetailPage = () => {
         <>
             <TitleWrapper
                 title={oneReceipt.title}
-                children={
+                children={ oneReceipt.categories.data.length ? 
                     <Tag
-                        tagItems={oneReceipt.categories}
-                    />
+                        tagItems={oneReceipt.categories.data}
+                    /> : null
                 }
             />
             <FullscreenImage
-                image={oneReceipt.image ? `${Endpoint}${oneReceipt.image.url}` : 'http://placekitten.com/2000/1500'}
-                altText={oneReceipt.image ? oneReceipt.image.alternativeText : ''}
+                image={oneReceipt.image.data ? `${EndpointAssets}${oneReceipt.image.data.attributes.url}` : 'http://placekitten.com/2000/1500'}
+                altText={oneReceipt.image.data ? oneReceipt.image.data.attributes.alternativeText : ''}
             />
             <SectionContainer>
                 <>

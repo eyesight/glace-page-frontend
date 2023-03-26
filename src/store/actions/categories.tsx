@@ -41,38 +41,39 @@ export const selectCategories = (category: string) => ({
  * Thunk Actions
  */
 
-export const fetchCategories = (url: string, categories: ICategories) => (dispatch: DispatchType) => {
-	dispatch(requestCategories(categories));
-	const sendGetRequest = async () => {
-		try {
-			const response = await axios.get(url);
-			dispatch(receiveCategories(response.data));
-		} catch (err) {
-			// Handle Error TODO
-			console.error(err);
-		} finally {
-			console.log('finally');
-		}
+export const fetchCategories =
+	(url: string, categories: ICategories) => (dispatch: DispatchType) => {
+		dispatch(requestCategories(categories));
+		const sendGetRequest = async () => {
+			try {
+				const response = await axios.get(url);
+				dispatch(receiveCategories(response.data));
+			} catch (err) {
+				// Handle Error TODO
+				console.error(err);
+			} finally {
+				console.log('finally');
+			}
+		};
+		return sendGetRequest();
 	};
-	return sendGetRequest();
-};
 
-export const fetchOneCategory = (url: string, category: CategoryType) => (dispatch: DispatchType) => {
-	console.log(category);
-	dispatch(requestOneCategory(category));
-	const sendGetRequest = async () => {
-		try {
-			const response = await axios.get(url);
-			dispatch(receiveOneCategory(response.data));
-		} catch (err) {
-			// Handle Error TODO
-			console.error(err);
-		} finally {
-			console.log('finally');
-		}
+export const fetchOneCategory =
+	(url: string, category: CategoryType) => (dispatch: DispatchType) => {
+		dispatch(requestOneCategory(category));
+		const sendGetRequest = async () => {
+			try {
+				const response = await axios.get(url);
+				dispatch(receiveOneCategory(response.data));
+			} catch (err) {
+				// Handle Error TODO
+				console.error(err);
+			} finally {
+				console.log('finally');
+			}
+		};
+		return sendGetRequest();
 	};
-	return sendGetRequest();
-};
 
 // export const setCategoryAsFilter = (categorySelected: string, url: string) => (dispatch: DispatchType) => {
 //     dispatch(selectCategories(categorySelected));
