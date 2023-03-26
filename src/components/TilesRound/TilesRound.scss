@@ -2,12 +2,13 @@
 
 .tiles-round {
   @include content-width(true);
+  @include fake-margin-bottom($spacing-s, '.title-h2');
 }
 
 .tiles-round__item {
   @include grid(9);
   @include flexbox(row, wrap, flex-start, center);
-  @include ld-margin-bottom($spacing-xs);
+  @include fake-margin-bottom($spacing-xs);
   @include fluid-font-size($font-size-info-s, $font-size-info-m);
 
   @include md-min {

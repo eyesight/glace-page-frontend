@@ -3,9 +3,9 @@
 .title-h1 {
   text-align: center;
   @include content-width();
-  @include ld-margin-bottom($spacing-l);
-  @include ld-margin-bottom($spacing-m, '.searchbar');
-  @include ld-margin-bottom($spacing-xs, '.tags');
+  @include fake-margin-bottom($spacing-l);
+  @include fake-margin-bottom($spacing-m, '.searchbar');
+  @include fake-margin-bottom($spacing-xs, '.tags');
 }
 
 .title-h1--highlight {

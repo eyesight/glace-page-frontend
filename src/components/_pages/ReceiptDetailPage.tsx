@@ -30,6 +30,9 @@ const ReceiptDetailPage = () => {
         loadDetails();
     }, [dispatch, id]);
 
+    console.log(`${RouteReceipt}/${id}${PopulatesDetailReceipts}`);
+    console.log(oneReceipt);
+
     const renderSteps = (oneReceipt?.steps?.length > 0) ?
         oneReceipt.steps.map((item, index) =>
             <SectionContainer key={index}>
@@ -86,6 +89,18 @@ const ReceiptDetailPage = () => {
                         portion={theportion}
                         originalPortion={oneReceipt.portions}
                     />
+                    {oneReceipt.optional_Ingredients.length > 0 ?
+                        <>
+                            <TitleH2
+                                title='Optionale Zutaten'
+                                theClass=''
+                            />
+                            <TilesRound
+                                items={oneReceipt.optional_Ingredients}
+                                portion={theportion}
+                                originalPortion={oneReceipt.portions}
+                            />
+                        </> : null}
                 </>
             </SectionContainer>
             {renderSteps}

@@ -183,23 +183,31 @@ type RezeptType = {
 				id: string;
 				mass: number;
 				ingredient_item: {
-					id: string;
-					name: string;
-					unit: string;
-					names: string;
-					published_at: string;
-					created_by: string;
-					updated_by: string;
+					data: {
+						id: string;
+						attributes: {
+							name: string;
+							unit: string;
+							names: string;
+							published_at: string;
+							created_by: string;
+							updated_by: string;
+						}
+					}
 				};
 				unit: {
-					id: string;
-					long: string;
-					short: string;
-					ingredients: [string];
-					nameId: string;
-					published_at: string;
-					created_by: string;
-					updated_by: string;
+					data: {
+						id: string;
+						attributes: {
+							long: string;
+							short: string;
+							ingredients: [string];
+							nameId: string;
+							published_at: string;
+							created_by: string;
+							updated_by: string;
+						}
+					}
 				};
 			}
 		];
