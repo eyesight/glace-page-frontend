@@ -34,7 +34,7 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, likes 
 	const countLike = (arr: LikeType[], id: string) => {
 		if (arr && arr.length > 0) {
 			const result = arr.filter((like) => {
-				return like.receiptId === id.toString();
+				return like.attributes.receiptId === id.toString();
 			});
 			setCountLikes(result.length);
 		}

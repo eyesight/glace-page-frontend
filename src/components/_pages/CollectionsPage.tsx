@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import TitleH1 from '../TitleH1/TitleH1';
 import Tile from '../Tile/Tile';
-import { RouteCollection, RouteLikes } from '../../helper/constants/routes';
+import { FilterCollections, Populates, RouteCollection, RouteLikes } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCollections, updateInputCollections, checkInputCollections } from '../../store/actions/collection';
 import Cursor from '../Cursor/Cursor';
@@ -19,13 +19,13 @@ const CollectionsPage = () => {
 	const dispatch: Dispatch<any> = useDispatch();
 	const all: ICollections = useSelector((state: CollectionState) => state.collections);
 	let allLikes: ILike = useSelector((state: LikeState) => state.likes);
-	const theRoute = `${RouteLikes}?[collections.id][0]=${id}`;
+	const theRoute = `${RouteLikes}${FilterCollections}${id}`;
 	const isLoading = all.isFetching;
 	const cursorRef = useRef(null);
 	const cursorIsOnElement: ICursor = useSelector((state: CursorState) => state.cursor);
-	let receipts = all?.item?.receipts;
-	let title = all?.item?.Title;
-	let tiletitle = all?.item?.description;
+	let receipts = all?.item?.attributes?.receipts;
+	let title = all?.item?.attributes?.Title;
+	let tiletitle = all?.item?.attributes?.description;
 	let isAllowed = all?.isAccessed;
 
 	const {
@@ -39,7 +39,7 @@ const CollectionsPage = () => {
 
 	useEffect(() => {
 		const loadDetails = async () => {
-			await dispatch(fetchCollections(`${RouteCollection}/${id}`));
+			await dispatch(fetchCollections(`${RouteCollection}/${id}${Populates}`));
 			await dispatch(checkInputCollections());
 		};
 		loadDetails();
@@ -59,7 +59,7 @@ const CollectionsPage = () => {
 			{isAllowed ? (
 				<>
 					<TitleH1 text={title} />
-					<Tile items={receipts} isLoading={isLoading} title={tiletitle} isVisible={true} likes={allLikes?.item} collection={all?.item} />
+					<Tile items={receipts} isLoading={isLoading} title={tiletitle} isVisible={true} likes={allLikes?.item} collection={all} />
 					<Cursor aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''} ref={cursorRef} />
 				</>
 			) : (

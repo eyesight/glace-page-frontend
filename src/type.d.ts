@@ -27,6 +27,7 @@ interface ICollections {
 	secret?: string;
 	name?: string;
 	item: CollectionType;
+	data: CollectionType;
 	isFetching: boolean;
 	id?: string;
 	isRegistered: boolean;
@@ -268,38 +269,46 @@ type CursorType = {
 };
 
 type CollectionType = {
-	likers?: LikersType[];
 	id: string;
-	name: string;
-	password: string;
-	receipts: RezeptType[];
-	admin_users: [];
-	published_at: string;
-	Title: string;
-	description: string;
-	likes: [];
-	secret: string;
-	isAccessed: boolean;
+	attributes: {
+		likers?: {
+			data: LikersType[]
+		};
+		name: string;
+		password: string;
+		receipts: RezeptType[];
+		admin_users: [];
+		published_at: string;
+		Title: string;
+		description: string;
+		likes: [];
+		secret: string;
+		isAccessed: boolean;
+	}
 };
 
 type LikeType = {
 	id: string;
-	collections: [];
-	receipts: [];
-	liker: string;
-	collectionId: string;
-	receiptId: string;
-	published_at: string;
-	created_by: string;
-	updated_by: string;
+	attributes: {
+		collections: [];
+		receipts: [];
+		liker: string;
+		collectionId: string;
+		receiptId: string;
+		published_at: string;
+		created_by: string;
+		updated_by: string;
+	}
 };
 
 type LikersType = {
 	id: string;
-	collections: [];
-	name: string;
-	email: string;
-	published_at: string;
-	created_by: string;
-	updated_by: string;
+	attributes: {
+		collections: [];
+		name: string;
+		email: string;
+		published_at: string;
+		created_by: string;
+		updated_by: string;
+	}
 };

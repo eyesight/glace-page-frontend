@@ -9,7 +9,9 @@ type Props = {
     title: string,
     isVisible: boolean,
     likes?: LikeType[],
-    collection?: CollectionType
+    collection?: {
+        data: CollectionType
+    }
 }
 
 const Tile = ({ items, isLoading, title, collection, likes, isVisible = false }: Props) => {
@@ -19,7 +21,7 @@ const Tile = ({ items, isLoading, title, collection, likes, isVisible = false }:
     function countLike(arr: LikeType[] | undefined, id: string) {
         if(arr && arr.length > 0) {
             const result = arr.filter(like => {
-                return like.receiptId === id.toString()
+                return like.attributes.receiptId === id.toString()
             });
 
             return result;
