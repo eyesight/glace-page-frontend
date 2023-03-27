@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { addLike } from '../../store/actions/likes';
 import { fetchLikes } from '../../store/actions/likes';
 
-const TilesItem = ({ title, image, id, isVisible = false, nr, collection, likes }: any) => {
+const TilesItem = ({ title, image, id, isVisible = false, nr, collection }: any) => {
 	const dispatch = useDispatch();
 	const [countLikes, setCountLikes] = useState(0);
 	let allLikes: ILike = useSelector((state: LikeState) => state.likes);
@@ -20,7 +20,7 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, likes 
 	};
 
 	const targetCollection = {
-		id: collection?.id,
+		id: collection?.collectionItem.id,
 	};
 
 	const detectCursorFunc = (e: React.MouseEvent<HTMLElement>) => {

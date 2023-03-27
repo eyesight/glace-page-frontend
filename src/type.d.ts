@@ -26,7 +26,7 @@ interface ICollections {
 	pw?: string;
 	secret?: string;
 	name?: string;
-	item: CollectionType;
+	collectionItem: CollectionType;
 	data: CollectionType;
 	isFetching: boolean;
 	id?: string;
@@ -42,6 +42,7 @@ interface ICursor {
 
 interface ILike {
 	item: LikeType[];
+	data: LikeType[]
 }
 
 type Inputs = {
@@ -276,7 +277,9 @@ type CollectionType = {
 		};
 		name: string;
 		password: string;
-		receipts: RezeptType[];
+		receipts: {
+			data: RezeptType[];
+		};
 		admin_users: [];
 		published_at: string;
 		Title: string;

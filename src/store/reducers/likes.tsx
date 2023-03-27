@@ -6,6 +6,7 @@ import {
 
 export const initialState: ILike = {
     item: {} as LikeType [],
+    data: {} as LikeType [],
 };
 
 export const likes = (state: ILike = initialState, action: LikeAction) => {
@@ -19,13 +20,13 @@ export const likes = (state: ILike = initialState, action: LikeAction) => {
         case LIKE_RECEIVED:
             return {
                 ...state,
-                item: action.payload
+                item: action.payload.data
             }
 
         case ADD_LIKE:
             return {
                 ...state,
-                item: action.payload
+                item: action.payload.data
             }
 
         default:
