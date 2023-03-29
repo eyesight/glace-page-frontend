@@ -1,10 +1,10 @@
-@mixin ld-margin-bottom($margin: $gutter, $selector: '*') {
+@mixin fake-margin-bottom($margin: $gutter, $selector: '*') {
   & + #{$selector} {
     margin-top: $margin;
   }
 }
 
-@mixin spacing-ld-margin-bottom(
+@mixin spacing-fake-margin-bottom(
   $spacing-map,
   $margin: $gutter,
   $selector: '*'

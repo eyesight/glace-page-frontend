@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import TitleH1 from '../TitleH1/TitleH1';
 import Searchbar from '../Searchbar/Searchbar';
 import Tile from '../Tile/Tile';
-import { RouteReceipt, RouteReceiptAll } from '../../helper/constants/routes';
+import { PopulatesDetailReceipts, RouteReceipt, RouteReceiptAll } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReceipts, receiptRandomized, fetchRandomReceipts } from '../../store/actions/receipt';
 import Cursor from '../Cursor/Cursor';
@@ -17,6 +17,7 @@ const ReceiptsPage = () => {
 
 	const dispatch: Dispatch<any> = useDispatch();
 	const all: IReceipt = useSelector((state: ReceiptState) => state.receipt);
+	//TODO: check if the category-object from defaultpageSkeleton can be used here and not another fetch needs to be done for category
 	const allCategory: ICategories = useSelector((state: CategoryState) => state.categories);
 	const receipts = all.filteredItems;
 	const randomitems = all.randomItems;
@@ -25,9 +26,13 @@ const ReceiptsPage = () => {
 	const filterTxt = all.filterText;
 	const cursorIsOnElement: ICursor = useSelector((state: CursorState) => state.cursor);
 	//Parameter to differ if it is a category page or the normal receipt-page
-	let route = id ? `${RouteReceipt}?[categories.name][0]=${id}` : RouteReceipt;
-	let title = id ? `Unsere ${allCategory.selectedCategory[0]?.adjektiv} Rezepte` : 'Guten Morgen. Hier findest du Inspiration für die Küche.';
-	let tiletitle = id ? `Alle Sorten mit #${allCategory.selectedCategory[0]?.name}` : `${receipts ? receipts.length : 0} Rezepte`;
+	let route = id ? `${RouteReceipt}?[categories.name][0]=${id}${PopulatesDetailReceipts}` : RouteReceiptAll;
+	let title = id
+		? `Unsere ${allCategory.selectedCategory.data[0]?.attributes.adjektiv} Rezepte`
+		: 'Guten Morgen. Hier findest du Inspiration für die Küche.';
+	let tiletitle = id
+		? `Alle Sorten mit #${allCategory.selectedCategory.data[0]?.attributes.name}`
+		: `${receipts ? receipts.length : 0} Rezepte`;
 
 	useEffect(() => {
 		const loadDetails = async () => {
@@ -42,7 +47,11 @@ const ReceiptsPage = () => {
 			<TitleH1 text={title} />
 			<Searchbar searchValue={filterTxt} />
 			<Tile items={receipts} isLoading={isLoading} title={tiletitle} isVisible={false} />
-			<Slideshow items={randomitems} isLoading={isLoading} onClickFunc={() => dispatch(receiptRandomized(RouteReceiptAll))} />
+			<Slideshow
+				items={randomitems}
+				isLoading={isLoading}
+				onClickFunc={() => dispatch(receiptRandomized(RouteReceiptAll))}
+			/>
 			<Cursor aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''} ref={cursorRef} />
 		</>
 	);

@@ -2,13 +2,13 @@
 
 .tiles {
   @include content-width(true);
-  @include ld-margin-bottom(2.5 * $gap-const);
-  @include ld-margin-bottom(0, '.custom-cursor');
+  @include fake-margin-bottom(2.5 * $gap-const);
+  @include fake-margin-bottom(0, '.custom-cursor');
 }
 
 .tiles__title {
   @include font($type-face-serif, $font-weight-medium);
-  @include ld-margin-bottom($spacing-xs);
+  @include fake-margin-bottom($spacing-xs);
   width: 100%;
 }
 

@@ -1,4 +1,5 @@
 import './TilesRound.scss';
+import { EndpointAssets } from '../../helper/constants/routes';
 
 type Props = {
     items: Array<ItemPros>,
@@ -8,8 +9,7 @@ type Props = {
 
 type ItemPros = {
     mass: number,
-    unit: {short: string},
-    ingredient_item: {name: string}
+    ingredient_item: IngredientsItemType
 }
 
 const round = (value: number, decimalPlaces: number) => {
@@ -18,6 +18,7 @@ const round = (value: number, decimalPlaces: number) => {
 }
 
 const TilesRound = ({ items, portion, originalPortion }: Props) => {
+    console.log(items);
     return (
         <ul className="tiles-round">
             {
@@ -28,12 +29,12 @@ const TilesRound = ({ items, portion, originalPortion }: Props) => {
                                 <img
                                     alt=""
                                     className="tiles-round__image"
-                                    src="http://placekitten.com/200/150"
+                                    src={item.ingredient_item.data.attributes.image.data ? `${EndpointAssets}${item.ingredient_item.data.attributes.image.data.attributes.url}` : 'http://placekitten.com/200/150'}
                                 />
                             </figure>
                             <div className="tiles-round__item-text-wrap">
-                                <p className="tiles-round__item-nr">{`${round(((item.mass / originalPortion) * portion), 1)} ${item?.unit?.short}`}</p>
-                                <p className="tiles-round__item-text">{item?.ingredient_item?.name}</p>
+                                <p className="tiles-round__item-nr">{`${round(((item.mass / originalPortion) * portion), 1)} ${item?.ingredient_item.data.attributes.unit?.data?.attributes?.short}`}</p>
+                                <p className="tiles-round__item-text">{item?.ingredient_item?.data?.attributes?.name}</p>
                             </div>
                         </li>
                     )) : null

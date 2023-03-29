@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Outlet, useParams } from 'react-router-dom';
 import Content from '../Content/Content';
-import { RouteCategories, RouteCategoriesAll } from '../../helper/constants/routes';
+import { FilterEqual, Populates, RouteCategories, RouteCategoriesAll } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	fetchCategories,
@@ -22,7 +22,7 @@ const DefaultPageSkeleton = () => {
 
 	const dispatch: Dispatch<any> = useDispatch();
 	const all: ICategories = useSelector((state: CategoryState) => state.categories);
-	const categories = all.items;
+	const categories = all?.items;
 	const isLoading = all.isFetching;
 	let catId = id;
 
@@ -35,14 +35,17 @@ const DefaultPageSkeleton = () => {
 			await dispatch(
 				fetchCategories(RouteCategories, {
 					isFetching: false,
+					data: {},
 					items: [],
 					selectedItem: '',
-					selectedCategory: {} as CategoryType[],
+					selectedCategory: {
+						data: {} as CategoryType[]
+					} ,
 				})
 			);
 			if (catId) {
 				await dispatch(selectCategories(catId));
-				await dispatch(fetchOneCategory(`${RouteCategoriesAll}?name=${catId}`, {} as CategoryType));
+				await dispatch(fetchOneCategory(`${RouteCategoriesAll}${FilterEqual}${catId}`, {} as CategoryType));
 				setselectedNavItem(catId);
 			}
 		};

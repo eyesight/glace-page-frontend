@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Endpoint, RouteLikes } from '../../helper/constants/routes';
+import { EndpointAssets, RouteLikes } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { enterCursor, leaveCursor, detectCursor } from '../../store/actions/cursor';
 import { useEffect, useState } from 'react';
 import { addLike } from '../../store/actions/likes';
 import { fetchLikes } from '../../store/actions/likes';
 
-const TilesItem = ({ title, image, id, isVisible = false, nr, collection, likes }: any) => {
+const TilesItem = ({ title, image, id, isVisible = false, nr, collection }: any) => {
 	const dispatch = useDispatch();
 	const [countLikes, setCountLikes] = useState(0);
 	let allLikes: ILike = useSelector((state: LikeState) => state.likes);
@@ -20,7 +20,7 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, likes 
 	};
 
 	const targetCollection = {
-		id: collection?.id,
+		id: collection?.collectionItem.id,
 	};
 
 	const detectCursorFunc = (e: React.MouseEvent<HTMLElement>) => {
@@ -34,7 +34,7 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, likes 
 	const countLike = (arr: LikeType[], id: string) => {
 		if (arr && arr.length > 0) {
 			const result = arr.filter((like) => {
-				return like.receiptId === id.toString();
+				return like.attributes.receiptId === id.toString();
 			});
 			setCountLikes(result.length);
 		}
@@ -50,7 +50,7 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, likes 
 		>
 			<Link className='tiles__anchor' to={`/receipt/${id}`} tabIndex={-1}>
 				<figure className='tiles__image-wrapper'>
-					<img className='tiles__img' alt='' src={image ? `${Endpoint}${image.url}` : 'http://placekitten.com/200/300'} />
+					<img className='tiles__img' alt='' src={image?.data ? `${EndpointAssets}${image.data.attributes.url}` : 'http://placekitten.com/200/300'} />
 				</figure>
 			</Link>
 			<div className='tiles__item-inner'>
