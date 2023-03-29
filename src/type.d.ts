@@ -18,7 +18,7 @@ interface ICategories {
 	items?: CategoryGroupType[];
 	selectedItem: string;
 	selectedCategory: {
-		data: CategoryType[]
+		data: CategoryType[];
 	};
 }
 
@@ -42,7 +42,7 @@ interface ICursor {
 
 interface ILike {
 	item: LikeType[];
-	data: LikeType[]
+	data: LikeType[];
 }
 
 type Inputs = {
@@ -105,33 +105,10 @@ type RezeptType = {
 	id: string;
 	attributes: {
 		title: string;
-		image: {
-			data: {
-				id: string;
-				attributes: {
-					name: string;
-					alternativeText: string;
-					caption: string;
-					width: number;
-					height: number;
-					formats: {};
-					hash: string;
-					ext: string;
-					mime: string;
-					size: number;
-					url: string;
-					previewUrl: string;
-					provider: string;
-					provider_metadata: {};
-					related: string;
-					created_by: string;
-					updated_by: string;
-				}
-			}
-		};
+		image: ImageType;
 		categories: {
 			data: CategoryType[];
-		}
+		};
 		steps: [
 			{
 				id: string;
@@ -150,33 +127,7 @@ type RezeptType = {
 			{
 				id: string;
 				mass: number;
-				ingredient_item: {
-					data: {
-						id: string;
-						attributes: {
-							name: string;
-							unit: string;
-							names: string;
-							published_at: string;
-							created_by: string;
-							updated_by: string;
-						}
-					}
-				};
-				unit: {
-					data:{
-						id: string;
-						attributes: {
-							long: string;
-							short: string;
-							ingredients: [string];
-							nameId: string;
-							published_at: string;
-							created_by: string;
-							updated_by: string;
-						}
-					}
-				};
+				ingredient_item: IngredientsItemType;
 			}
 		];
 		portions: number;
@@ -184,33 +135,7 @@ type RezeptType = {
 			{
 				id: string;
 				mass: number;
-				ingredient_item: {
-					data: {
-						id: string;
-						attributes: {
-							name: string;
-							unit: string;
-							names: string;
-							published_at: string;
-							created_by: string;
-							updated_by: string;
-						}
-					}
-				};
-				unit: {
-					data: {
-						id: string;
-						attributes: {
-							long: string;
-							short: string;
-							ingredients: [string];
-							nameId: string;
-							published_at: string;
-							created_by: string;
-							updated_by: string;
-						}
-					}
-				};
+				ingredient_item: IngredientsItemType;
 			}
 		];
 		collections: [
@@ -234,6 +159,59 @@ type RezeptType = {
 	};
 };
 
+type IngredientsItemType = {
+	data: {
+		id: string;
+		attributes: {
+			name: string;
+			names: string;
+			published_at: string;
+			created_by: string;
+			updated_by: string;
+			unit: {
+				data: {
+					id: string;
+					attributes: {
+						long: string;
+						short: string;
+						ingredients: [string];
+						nameId: string;
+						published_at: string;
+						created_by: string;
+						updated_by: string;
+					};
+				};
+			};
+			image: ImageType;
+		};
+	};
+};
+
+type ImageType = {
+	data: {
+		id: string;
+		attributes: {
+			name: string;
+			alternativeText: string;
+			caption: string;
+			width: number;
+			height: number;
+			formats: {};
+			hash: string;
+			ext: string;
+			mime: string;
+			size: number;
+			url: string;
+			previewUrl: string;
+			provider: string;
+			provider_metadata: {};
+			related: string;
+			created_by: string;
+			updated_by: string;
+		};
+	};
+};
+
 type CategoryType = {
 	id: string;
 	attributes: {
@@ -251,7 +229,7 @@ type CategoryType = {
 			}
 		];
 		published_at: string;
-	}
+	};
 };
 
 type CategoryGroupType = {
@@ -260,7 +238,7 @@ type CategoryGroupType = {
 		title: string;
 		categories: CategoryType[];
 		published_at: string;
-	}
+	};
 };
 
 type CursorType = {
@@ -273,7 +251,7 @@ type CollectionType = {
 	id: string;
 	attributes: {
 		likers?: {
-			data: LikersType[]
+			data: LikersType[];
 		};
 		name: string;
 		password: string;
@@ -287,7 +265,7 @@ type CollectionType = {
 		likes: [];
 		secret: string;
 		isAccessed: boolean;
-	}
+	};
 };
 
 type LikeType = {
@@ -301,7 +279,7 @@ type LikeType = {
 		published_at: string;
 		created_by: string;
 		updated_by: string;
-	}
+	};
 };
 
 type LikersType = {
@@ -313,5 +291,5 @@ type LikersType = {
 		published_at: string;
 		created_by: string;
 		updated_by: string;
-	}
+	};
 };

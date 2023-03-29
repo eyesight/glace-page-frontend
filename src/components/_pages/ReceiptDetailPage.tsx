@@ -30,9 +30,6 @@ const ReceiptDetailPage = () => {
         loadDetails();
     }, [dispatch, id]);
 
-    console.log(`${RouteReceipt}/${id}${PopulatesDetailReceipts}`);
-    console.log(oneReceipt);
-
     const renderSteps = (oneReceipt?.steps?.length > 0) ?
         oneReceipt.steps.map((item, index) =>
             <SectionContainer key={index}>
