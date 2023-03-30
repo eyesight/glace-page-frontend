@@ -1,0 +1,77 @@
+@import './../../styles/import-all.scss';
+
+.login-form {
+  @include content-width(true);
+  @include fake-margin-bottom($spacing-l);
+  @include flexbox(row, wrap, center, flex-start);
+}
+
+.login-form__label-wrapper {
+  @include grid(9);
+
+  @include md-min {
+    @include grid(4.5);
+  }
+}
+
+.login-form__inner-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  @include fake-margin-bottom($spacing-xs);
+}
+
+//Todo: the search-field and this as mixin to have no doublicated fields
+.login-form__input {
+  width: 100%;
+  border-radius: 10rem;
+  padding: 1.5rem 2.5rem;
+  @include fluid-font-size($font-size-info-s, $font-size-info-m);
+  line-height: $line-height-info;
+  border: 2px solid $color-primary;
+  transition: background 0.5s ease;
+
+  &:hover,
+  &:focus-visible,
+  &:focus,
+  &:active {
+    background-color: $color-primary;
+    color: $color-white;
+    transition: all 0.5s ease;
+    outline: none;
+
+    &::placeholder {
+      --color-a: 0.75;
+      color: $color-primary;
+    }
+
+    + .searchbar__icon-wrapper {
+      color: $color-white;
+    }
+  }
+
+  &::placeholder {
+    color: rgba($color-black, 0.5);
+  }
+}
+
+.login-form__btn-wrapper {
+  @include grid(9);
+  @include fake-margin-bottom($spacing-l);
+}
+
+.login-form__error-txt {
+  @include fluid-font-size($font-size-info-s, $font-size-info-m);
+  color: $color-red;
+}
+
+.btn {
+  @include fluid-font-size($font-size-info-s, $font-size-info-m);
+  padding: $spacing-xs 2.5rem;
+  color: $color-white;
+  background-color: $color-primary;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}

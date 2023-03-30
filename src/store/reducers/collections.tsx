@@ -1,4 +1,4 @@
-import { changeStorage, getStorage } from '../../helper/constants/storageFunction';
+import { changeStorage, clearStorageExpirationTime, getStorage } from '../../helper/constants/storageFunction';
 import {
     COLLECTION_RECEIVED,
     COLLECTION_REQUEST,
@@ -38,6 +38,7 @@ export const collections = (state: ICollections = initialState, action: Collecti
             const isName = state.collectionItem.attributes.likers?.data.find((item: LikersType) => item.attributes.name === action.payload?.name);
             if(isPW  && action.payload.name && isName) {
                 changeStorage('user', action.payload.name);
+                clearStorageExpirationTime('user');
             }
 
             return {

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import TitleH1 from '../TitleH1/TitleH1';
 import Tile from '../Tile/Tile';
-import { FilterCollections, Populates, PopulatesCollections, RouteCollection, RouteLikes } from '../../helper/constants/routes';
+import { FilterCollections, PopulatesCollections, RouteCollection, RouteLikes } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCollections, updateInputCollections, checkInputCollections } from '../../store/actions/collection';
 import Cursor from '../Cursor/Cursor';
@@ -12,6 +12,7 @@ import { Dispatch } from 'redux';
 import { useParams } from 'react-router-dom';
 import { fetchLikes } from '../../store/actions/likes';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import './CollectionsPage.scss';
 
 const CollectionsPage = () => {
 	const { id } = useParams();
@@ -53,7 +54,7 @@ const CollectionsPage = () => {
 	}, [dispatch, theRoute]);
 
 	if (isLoading) return <LoadingSpinner />;
-
+	//TODO: export form as component
 	return (
 		<>
 			{isAllowed ? (
@@ -63,19 +64,29 @@ const CollectionsPage = () => {
 					<Cursor aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''} ref={cursorRef} />
 				</>
 			) : (
-				<>
-					<form onSubmit={handleSubmit(onSubmit)}>
-						{/* register your input into the hook by invoking the "register" function */}
-						<input {...register('name', { required: true, maxLength: 20 })} />
-						{/* register your input into the hook by invoking the "register" function */}
-						<input {...register('pw', { required: true, maxLength: 20 })} />
+				<section className='section-container'>
+					<TitleH1 text={'Bitte logge dich hier ein ...'} />
+					<form className='login-form' onSubmit={handleSubmit(onSubmit)}>
+						<div className='login-form__inner-wrapper'>
+							<div className='login-form__label-wrapper'>
+								<label className='login-form__label'> <span className='sr-hidden'>Username</span>
+									<input className='login-form__input' type="text" placeholder="Username" {...register('name', { required: true, maxLength: 20 })} />
+								</label>
+								{errors.name && <span className='login-form__error-txt'>This field is required</span>}
+							</div>
+							<div className='login-form__label-wrapper'>
+								<label className='login-form__label'><span className='sr-hidden'>Passwort</span>
+									<input className='login-form__input' type="password" placeholder="Passwort" {...register('pw', { required: true, maxLength: 20 })} />
+								</label>
+								{errors.pw && <span className='login-form__error-txt'>This field is required</span>}
+							</div>
+						</div>
 
-						{/* errors will return when field validation fails  */}
-						{errors.name && <span>This field is required</span>}
-
-						<input type='submit' />
+						<div className='login-form__btn-wrapper'>
+							<input className='btn' type='submit' />
+						</div>
 					</form>
-				</>
+				</section>
 			)}
 		</>
 	);

@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Outlet, useParams } from 'react-router-dom';
 import Content from '../Content/Content';
-import { FilterEqual, Populates, RouteCategories, RouteCategoriesAll } from '../../helper/constants/routes';
+import { FilterEqual, RouteCategories, RouteCategoriesAll } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	fetchCategories,
