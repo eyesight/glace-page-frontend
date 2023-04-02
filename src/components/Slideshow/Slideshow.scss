@@ -42,6 +42,18 @@ img.swiper__image {
   z-index: 5 !important;
 }
 
+.swiper-slide-next {
+  @include sm-max() {
+    transform: translate3d(0px, 0px, -500px) rotateX(0deg) rotateY(0deg) scale(1) !important;
+  }
+}
+
+.swiper-slide-prev {
+  @include sm-max() {
+    transform: translate3d(0px, 0px, -500px) rotateX(0deg) rotateY(0deg) scale(1) !important;
+  }
+}
+
 .swiper__anchor {
   display: inline-block;
 
