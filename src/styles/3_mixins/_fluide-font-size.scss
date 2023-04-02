@@ -3,7 +3,7 @@
 @mixin fluid-font-size(
   $minFontSize: $font-size-body-s,
   $maxFontSize: $font-size-body-m,
-  $minViewport: $font-breakpoints-m,
+  $minViewport: $font-breakpoints-s,
   $maxViewport: $font-breakpoints-l
 ) {
   $slope: math.div(

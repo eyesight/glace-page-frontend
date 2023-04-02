@@ -16,11 +16,11 @@ $font-size-body-s: 16px;
 $font-size-body-m: 21px;
 $line-height-body: 1.65;
 
-$font-size-h1-s: 61px;
+$font-size-h1-s: 51px;
 $font-size-h1-m: 95px;
 $line-height-h1: 1.13;
 
-$font-size-h2-s: 31px;
+$font-size-h2-s: 21px;
 $font-size-h2-m: 48px;
 $line-height-h2: 1.13;
 
@@ -32,7 +32,7 @@ $font-size-info-s: 14px;
 $font-size-info-m: 19px;
 $line-height-info: 1.2;
 
-$font-size-button-random-s: 22px;
+$font-size-button-random-s: 18px;
 $font-size-button-random-m: 35px;
 $line-height-button-random: 1.12;
 
@@ -80,3 +80,14 @@ $font-settings-small: (
 ) !default;
 
 $font-settings-tiles: $font-settings-h4;
+
+$font-settings-logo: (
+  sm: (
+    1.8rem,
+    2.8rem,
+  ),
+  md: (
+    2.5rem,
+    2.8rem,
+  ),
+) !default;

@@ -2,14 +2,18 @@
 
 .logo {
   text-transform: uppercase;
-  @include font-size($font-settings-h3);
+  @include font-size($font-settings-logo);
   @include font($type-face, $font-weight-medium);
 
   svg {
-    width: 2.05rem;
+    width: 1rem;
     height: auto;
     margin: 0 1rem;
     color: $color-primary;
+
+    @include sm-min {
+      width: 2.05rem;
+    }
   }
 }
 

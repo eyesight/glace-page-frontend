@@ -1,4 +1,6 @@
 //routes
+// export const Endpoint = 'https://glace-page-backend-production.up.railway.app/api';
+// export const EndpointAssets = 'https://glace-page-backend-production.up.railway.app/';
 export const Endpoint = 'http://localhost:1337/api';
 export const EndpointAssets = 'http://localhost:1337';
 export const Populates = '?populate=*';
@@ -9,6 +11,7 @@ export const FilterEqual = '?filters[name][$eq]=';
 export const FilterCollections = '?filters[collections][id][$eq]=';
 
 export const RouteReceipt = `${Endpoint}/receipts`;
+
 export const RouteCategories = `${Endpoint}/category-groups${Populates}`;
 export const RouteReceiptAll = `${Endpoint}/receipts${Populates}`;
 export const RouteCategoriesAll = `${Endpoint}/categories`;
@@ -24,7 +27,7 @@ export const RouteLikes = `${Endpoint}/likes`;
 export const QueryCategory = '[categories.id]';
 
 // route to populate everything
-//http://localhost:1337/api/receipts/1?populate[ingredients][populate]=*&populate[categories][populate]=*&populate[image][populate]=*
+//https://glace-page-backend-production.up.railway.app//api/receipts/1?populate[ingredients][populate]=*&populate[categories][populate]=*&populate[image][populate]=*
 
 // route to filter
-//http://localhost:1337/api/categories?filters[name][$eq]=schokoladig
+//https://glace-page-backend-production.up.railway.app//api/categories?filters[name][$eq]=schokoladig
