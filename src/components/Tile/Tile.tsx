@@ -37,7 +37,7 @@ const Tile = ({ items, isLoading, title, collection, likes, isVisible = false }:
                 theClass='tiles__item'
             />
             {items?.length > 0 ?
-                items.map((item, index) => (    
+                items.map((item, index) => (
                     <TilesItem {...item.attributes} id={item.id} key={item.id} isVisible={isVisible} nr={index} collection={collection} likes={countLike(likes, item.id)} />
                 )) : <p>no content</p>}
         </section>

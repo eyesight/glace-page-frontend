@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { addLike } from '../../store/actions/likes';
 import { fetchLikes } from '../../store/actions/likes';
 
-const TilesItem = ({ title, image, id, isVisible = false, nr, collection }: any) => {
+const TilesItem = ({ title, image, id, isVisible = false, nr, collection, imageUrl }: any) => {
 	const dispatch = useDispatch();
 	const [countLikes, setCountLikes] = useState(0);
 	let allLikes: ILike = useSelector((state: LikeState) => state.likes);
@@ -50,7 +50,7 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection }: any)
 		>
 			<Link className='tiles__anchor' to={`/receipt/${id}`} tabIndex={-1}>
 				<figure className='tiles__image-wrapper'>
-					<img className='tiles__img' alt='' src={image?.data ? `${EndpointAssets}${image.data.attributes.url}` : 'http://placekitten.com/200/300'} />
+					<img className='tiles__img' alt='' src={imageUrl ? imageUrl : (image?.data ? `${EndpointAssets}${image.data.attributes.url}` : 'http://placekitten.com/200/300')} />
 				</figure>
 			</Link>
 			<div className='tiles__item-inner'>

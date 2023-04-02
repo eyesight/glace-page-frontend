@@ -84,7 +84,7 @@ const Slideshow = ({ items, isLoading, onClickFunc }: Props) => {
 											onMouseEnter={() => dispatch(enterCursor(true))}
 											onMouseLeave={() => dispatch(leaveCursor(true))}
 										>
-											<img alt={el.attributes.image?.alternativeText ?? ''} className='swiper__image' src={el.attributes.image.data ? `${EndpointAssets}${el.attributes.image.data.attributes?.url}` : 'http://placekitten.com/200/300'} />
+											<img alt={el.attributes.image?.alternativeText ?? ''} className='swiper__image' src={el.attributes.imageUrl ? el.attributes.imageUrl : (el.attributes.image.data ? `${EndpointAssets}${el.attributes.image.data.attributes?.url}` : 'http://placekitten.com/200/300')} />
 										</figure>
 										<div className='swiper__content'>
 											<h2

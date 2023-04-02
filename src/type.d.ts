@@ -106,6 +106,7 @@ type RezeptType = {
 	attributes: {
 		title: string;
 		image: ImageType;
+		imageUrl: string;
 		categories: {
 			data: CategoryType[];
 		};
@@ -183,6 +184,7 @@ type IngredientsItemType = {
 				};
 			};
 			image: ImageType;
+			imageUrl: string;
 		};
 	};
 };

@@ -67,7 +67,7 @@ const ReceiptDetailPage = () => {
                 }
             />
             <FullscreenImage
-                image={oneReceipt.image.data ? `${EndpointAssets}${oneReceipt.image.data.attributes.url}` : 'http://placekitten.com/2000/1500'}
+                image={oneReceipt.imageUrl ? oneReceipt.imageUrl : (oneReceipt.image.data ? `${EndpointAssets}${oneReceipt.image.data.attributes.url}` : 'http://placekitten.com/2000/1500')}
                 altText={oneReceipt.image.data ? oneReceipt.image.data.attributes.alternativeText : ''}
             />
             <SectionContainer>

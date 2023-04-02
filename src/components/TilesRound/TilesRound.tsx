@@ -18,7 +18,6 @@ const round = (value: number, decimalPlaces: number) => {
 }
 
 const TilesRound = ({ items, portion, originalPortion }: Props) => {
-    console.log(items);
     return (
         <ul className="tiles-round">
             {
@@ -29,7 +28,7 @@ const TilesRound = ({ items, portion, originalPortion }: Props) => {
                                 <img
                                     alt=""
                                     className="tiles-round__image"
-                                    src={item.ingredient_item.data.attributes.image.data ? `${EndpointAssets}${item.ingredient_item.data.attributes.image.data.attributes.url}` : 'http://placekitten.com/200/150'}
+                                    src={item.ingredient_item.data.attributes.imageUrl ? item.ingredient_item.data.attributes.imageUrl : (item.ingredient_item.data.attributes.image.data ? `${EndpointAssets}${item.ingredient_item.data.attributes.image.data.attributes.url}` : 'http://placekitten.com/200/150')}
                                 />
                             </figure>
                             <div className="tiles-round__item-text-wrap">

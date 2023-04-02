@@ -11,6 +11,7 @@ import {
 	selectCategories,
 	fetchOneCategory,
 } from '../../store/actions/categories';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const DefaultPageSkeleton = () => {
 	const { id } = useParams();
@@ -84,6 +85,8 @@ const DefaultPageSkeleton = () => {
 		let colorFinal = (range / 100) * color + colMin;
 		rootEl.style.setProperty('--color-h', colorFinal.toString());
 	};
+
+	if (isLoading) return <LoadingSpinner />;
 
 	return (
 		<>
