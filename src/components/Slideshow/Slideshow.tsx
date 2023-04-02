@@ -78,14 +78,25 @@ const Slideshow = ({ items, isLoading, onClickFunc }: Props) => {
 							<SwiperSlide key={index + 'slide'} className='swiper-slide'>
 								{
 									<div className='swiper__slide'>
-										<figure
-											className='swiper__image-wrapper'
-											onMouseMove={(event) => detectCursorFunc(event)}
-											onMouseEnter={() => dispatch(enterCursor(true))}
-											onMouseLeave={() => dispatch(leaveCursor(true))}
-										>
-											<img alt={el.attributes.image?.alternativeText ?? ''} className='swiper__image' src={el.attributes.imageUrl ? el.attributes.imageUrl : (el.attributes.image.data ? `${EndpointAssets}${el.attributes.image.data.attributes?.url}` : 'http://placekitten.com/200/300')} />
-										</figure>
+											<figure
+												className='swiper__image-wrapper'
+												onMouseMove={(event) => detectCursorFunc(event)}
+												onMouseEnter={() => dispatch(enterCursor(true))}
+												onMouseLeave={() => dispatch(leaveCursor(true))}
+											>
+												<img
+													alt={el.attributes.image?.alternativeText ?? ''}
+													className='swiper__image'
+													src={
+														el.attributes.imageUrl
+															? el.attributes.imageUrl
+															: el.attributes.image.data
+															? `${EndpointAssets}${el.attributes.image.data.attributes?.url}`
+															: 'http://placekitten.com/200/300'
+													}
+												/>
+												<Link to={`/receipt/${el.id}`} className="swiper__image-link"></Link>
+											</figure>
 										<div className='swiper__content'>
 											<h2
 												className='title-h1 swiper__title'
