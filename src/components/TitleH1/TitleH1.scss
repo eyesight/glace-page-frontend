@@ -1,19 +1,21 @@
 @import './../../styles/import-all.scss';
 
 .title-h1 {
-  text-align: center;
-  @include content-width();
-  @include fake-margin-bottom($spacing-l);
-  @include fake-margin-bottom($spacing-m, '.searchbar');
-  @include fake-margin-bottom($spacing-xs, '.tags');
-  hyphens: auto;
-  -moz-hyphens: auto;
+	text-align: center;
+	@include content-width();
+	@include fake-margin-bottom($spacing-l);
+	@include fake-margin-bottom($spacing-m, '.searchbar');
+	@include fake-margin-bottom($spacing-xs, '.tags');
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
 }
 
 .title-h1--highlight {
-  color: $color-primary;
+	color: $color-primary;
 }
 
 .content > .title-h1:first-child {
-  margin-top: $spacing-s;
+	margin-top: $spacing-s;
 }
