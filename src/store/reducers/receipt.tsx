@@ -98,7 +98,7 @@ export const receipt = (state: IReceipt = initialState, action: ReceiptAction) =
 			const allItems = state.items;
 			const filteredReceipts = allItems.filter((val) => {
 				const title = val.attributes.title.toLowerCase();
-				return title.includes(value);
+				return title.includes(value.toLowerCase());
 			});
 			changeURLSearchParam('s', value, '');
 			return {
