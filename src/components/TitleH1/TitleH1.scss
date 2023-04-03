@@ -6,6 +6,8 @@
   @include fake-margin-bottom($spacing-l);
   @include fake-margin-bottom($spacing-m, '.searchbar');
   @include fake-margin-bottom($spacing-xs, '.tags');
+  hyphens: auto;
+  -moz-hyphens: auto;
 }
 
 .title-h1--highlight {

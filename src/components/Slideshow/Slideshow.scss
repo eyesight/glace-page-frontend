@@ -18,8 +18,7 @@
 }
 
 .swiper__title {
-  @include fluid-font-size($font-size-h1-s, $font-size-h1-m);
-  line-height: $line-height-h1;
+  text-align: center
 }
 
 .swiper__image-wrapper {

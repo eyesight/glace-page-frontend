@@ -99,7 +99,7 @@ const Slideshow = ({ items, isLoading, onClickFunc }: Props) => {
 											</figure>
 										<div className='swiper__content'>
 											<h2
-												className='title-h1 swiper__title'
+												className='title-h2 swiper__title'
 												onMouseMove={(event) => detectCursorFuncEye(event)}
 												onMouseEnter={() => dispatch(enterCursor(true))}
 												onMouseLeave={() => dispatch(leaveCursor(true))}

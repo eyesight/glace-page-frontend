@@ -1,6 +1,7 @@
 @import './../../styles/import-all.scss';
 
 .custom-cursor {
+  display: none;
   position: fixed;
   top: -32px;
   left: -32px;
@@ -9,6 +10,10 @@
   user-select: none;
   cursor: none;
   color: $color-white;
+
+  @include sm-min(){
+    display: block;
+  }
 
   svg {
     width: 60%;
