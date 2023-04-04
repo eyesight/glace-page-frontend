@@ -1,26 +1,38 @@
 @import './../../styles/import-all.scss';
 
-.loading-spinner {
-  max-width: 150px;
-  padding: $spacing-xs;
-  color: $color-primary;
+.loading-spinner{
+  width: 8rem;
+  height: 8rem;
+  position: relative;
   margin: auto;
+
+  &::before, &::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  &::before{
+    background-color: $color-primary;
+    animation: pulse2 2s ease-in-out infinite;
+  }
+  &::after{
+    background-color: $color-primary;
+    animation: pulse2 2s 1s ease-in-out infinite;
+  }
 }
 
-.loading-spinner__svg {
-  width: 100%;
-  transform-origin: top;
-  animation: ice-bumps ease 0.5s infinite;
-}
-
-@keyframes ice-rotate {
-  0% {transform: rotate(0deg);}
-  50% {transform: rotate(180deg);}
-  100% {transform: rotate(360deg);}
-}
-
-@keyframes ice-bumps {
-  0% {transform: scale(1);}
-  50% {transform: scale(1.3);}
-  100% {transform: scale(1);}
+@keyframes pulse2{
+  0%, 100%{
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  50%{
+    transform: translate(-50%, -50%) scale(1.0);
+    opacity: 0;
+  }
 }

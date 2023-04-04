@@ -3,7 +3,12 @@ import { useEffect } from 'react';
 import TitleH1 from '../TitleH1/TitleH1';
 import Searchbar from '../Searchbar/Searchbar';
 import Tile from '../Tile/Tile';
-import { FilterCategoriesEqual, PopulatesDetailReceipts, RouteReceipt, RouteReceiptAll } from '../../helper/constants/routes';
+import {
+	FilterCategoriesEqual,
+	PopulatesDetailReceipts,
+	RouteReceipt,
+	RouteReceiptAll,
+} from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReceipts, receiptRandomized, fetchRandomReceipts } from '../../store/actions/receipt';
 import Cursor from '../Cursor/Cursor';
@@ -11,6 +16,7 @@ import { useRef } from 'react';
 import Slideshow from '../Slideshow/Slideshow';
 import { Dispatch } from 'redux';
 import { useParams } from 'react-router-dom';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const ReceiptsPage = () => {
 	const { id } = useParams();
@@ -26,7 +32,9 @@ const ReceiptsPage = () => {
 	const filterTxt = all.filterText;
 	const cursorIsOnElement: ICursor = useSelector((state: CursorState) => state.cursor);
 	//Parameter to differ if it is a category page or the normal receipt-page
-	let route = id ? `${RouteReceipt}${PopulatesDetailReceipts}${FilterCategoriesEqual}${id}` : RouteReceiptAll;
+	let route = id
+		? `${RouteReceipt}${PopulatesDetailReceipts}${FilterCategoriesEqual}${id}`
+		: RouteReceiptAll;
 	let title = id
 		? `Unsere ${allCategory.selectedCategory.data[0]?.attributes.adjektiv} Rezepte`
 		: 'Guten Morgen. Hier findest du Inspiration für die Küche.';
@@ -41,6 +49,8 @@ const ReceiptsPage = () => {
 		};
 		loadDetails();
 	}, [dispatch, id, route]);
+
+	if (isLoading) return <LoadingSpinner />;
 
 	return (
 		<>
