@@ -4,11 +4,12 @@
 export const Endpoint = 'http://localhost:1337/api';
 export const EndpointAssets = 'http://localhost:1337';
 export const Populates = '?populate=*';
-export const SortingTitles = `&&sort[0]=title`;
+export const SortingTitles = `&sort[0]=title`;
 export const PopulatesDetailReceipts = '?populate[ingredients][populate]=ingredient_item.image&populate[ingredients][populate]=ingredient_item.unit&populate[optional_Ingredients][populate]=ingredient_item.image&populate[optional_Ingredients][populate]=ingredient_item.unit&populate[categories][populate]=*&populate[steps][populate]=*&populate[infobox][populate]=*&populate[image][populate]=*';
 export const PopulatesCollections = '?populate[receipts][populate]=*&populate[likers][populate]=*&populate[likes][populate]=*';
 
 export const FilterEqual = '?filters[name][$eq]=';
+export const FilterCategoriesEqual = '&filters[categories][name][$eq]=';
 export const FilterCollections = '?filters[collections][id][$eq]=';
 
 export const RouteReceipt = `${Endpoint}/receipts`;
