@@ -1,0 +1,13 @@
+@import './../../styles/import-all.scss';
+
+.richtext {
+  @include fake-margin-bottom($spacing-s);
+
+  p {
+    @include fake-margin-bottom($spacing-xs);
+    @include fake-margin-bottom($spacing-s, 'h1');
+    @include fake-margin-bottom($spacing-s, 'h2');
+    @include fake-margin-bottom($spacing-s, 'h3');
+    @include fake-margin-bottom($spacing-s, 'h4');
+  }
+}

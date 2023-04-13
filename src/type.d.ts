@@ -22,6 +22,15 @@ interface ICategories {
 	};
 }
 
+interface IPages {
+	isFetching: boolean;
+	items: PageType[];
+	selectedPage: PageType
+	data?: {
+		items: PageType[];
+	}
+}
+
 interface ICollections {
 	pw?: string;
 	secret?: string;
@@ -72,6 +81,10 @@ type LikeState = {
 	likes: ILike;
 };
 
+type PagesState = {
+	pages: IPages
+}
+
 type ReceiptAction = {
 	type: string;
 	payload: IReceipt;
@@ -97,9 +110,14 @@ type LikeAction = {
 	payload: ILike;
 };
 
+type PageAction = {
+	type: string;
+	payload: IPage;
+};
+
 type DispatchType = (
-	args: ReceiptAction | CategoryAction | CursorAction | CollectionAction | LikeAction
-) => ReceiptAction | CategoryAction | CursorAction | CollectionAction | LikeAction;
+	args: ReceiptAction | CategoryAction | CursorAction | CollectionAction | LikeAction | PageAction
+) => ReceiptAction | CategoryAction | CursorAction | CollectionAction | LikeAction | PageAction;
 
 type RezeptType = {
 	id: string;
@@ -295,3 +313,17 @@ type LikersType = {
 		updated_by: string;
 	};
 };
+
+type PageType = {
+	id: string;
+	attributes: {
+		pagename: string;
+		header: {
+			id: string,
+			title: string,
+			lead?: string
+		}
+		content: any[]
+	}
+}
+

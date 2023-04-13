@@ -4,13 +4,14 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Outlet, useParams } from 'react-router-dom';
 import Content from '../Content/Content';
-import { FilterEqual, RouteCategories, RouteCategoriesAll } from '../../helper/constants/routes';
+import { FilterEqual, RouteCategories, RouteCategoriesAll, RoutePages } from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	fetchCategories,
 	selectCategories,
 	fetchOneCategory,
 } from '../../store/actions/categories';
+import { fetchPages } from '../../store/actions/pages';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const DefaultPageSkeleton = () => {
@@ -22,18 +23,21 @@ const DefaultPageSkeleton = () => {
 	const [isNavOpen, setIsNavOpen] = useState(false);
 
 	const dispatch: Dispatch<any> = useDispatch();
-	const all: ICategories = useSelector((state: CategoryState) => state.categories);
-	const categories = all?.items;
-	const isLoading = all.isFetching;
+	const allCategories: ICategories = useSelector((state: CategoryState) => state.categories);
+	const allPages: IPages = useSelector((state: PagesState) => state.pages);
+	const categories = allCategories?.items;
+	const isLoading = allCategories.isFetching;
 	let catId = id;
 
 	useEffect(() => {
 		window.history.scrollRestoration = 'auto';
 	}, []);
 
+	console.log(allPages);
+
 	useEffect(() => {
 		const loadDetails: () => Promise<void> = async () => {
-			await dispatch(
+			dispatch(
 				fetchCategories(RouteCategories, {
 					isFetching: false,
 					data: {},
@@ -41,17 +45,22 @@ const DefaultPageSkeleton = () => {
 					selectedItem: '',
 					selectedCategory: {
 						data: {} as CategoryType[]
-					} ,
+					},
 				})
 			);
+			dispatch(
+				fetchPages(RoutePages),
+			)
+
 			if (catId) {
-				await dispatch(selectCategories(catId));
-				await dispatch(fetchOneCategory(`${RouteCategoriesAll}${FilterEqual}${catId}`, {} as CategoryType));
+				dispatch(selectCategories(catId));
+				dispatch(fetchOneCategory(`${RouteCategoriesAll}${FilterEqual}${catId}`, {} as CategoryType));
 				setselectedNavItem(catId);
 			}
 		};
 		loadDetails();
 	}, [dispatch, catId]);
+
 
 	useLayoutEffect(() => {
 		let rootElement = document.querySelector(':root');
@@ -106,7 +115,7 @@ const DefaultPageSkeleton = () => {
 			<Content ref={contentRef}>
 				<Outlet />
 			</Content>
-			<Footer />
+			<Footer links={allPages.items} />
 		</>
 	);
 };

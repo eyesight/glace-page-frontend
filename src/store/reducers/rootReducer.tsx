@@ -5,11 +5,13 @@ import { cursor as cursorReducer } from './cursor';
 import { categories as categoryReducer } from './categories';
 import { collections as collectionsReducer } from './collections';
 import { likes as likesReducer } from './likes';
+import { pages as pagesReducer } from './pages';
 
 export const rootReducer = combineReducers({
     receipt: receiptReducer,
     cursor: cursorReducer,
     categories: categoryReducer,
     collections: collectionsReducer,
-    likes: likesReducer
+    likes: likesReducer,
+    pages: pagesReducer
 });

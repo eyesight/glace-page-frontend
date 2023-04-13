@@ -7,10 +7,12 @@ export const Populates = '?populate=*';
 export const SortingTitles = `&sort[0]=title`;
 export const PopulatesDetailReceipts = '?populate[ingredients][populate]=ingredient_item.image&populate[ingredients][populate]=ingredient_item.unit&populate[optional_Ingredients][populate]=ingredient_item.image&populate[optional_Ingredients][populate]=ingredient_item.unit&populate[categories][populate]=*&populate[steps][populate]=*&populate[infobox][populate]=*&populate[image][populate]=*';
 export const PopulatesCollections = '?populate[receipts][populate]=*&populate[likers][populate]=*&populate[likes][populate]=*';
+export const PopulatesPageContent = '?populate[content][populate]=*';
 
 export const FilterEqual = '?filters[name][$eq]=';
 export const FilterCategoriesEqual = '&filters[categories][name][$eq]=';
 export const FilterCollections = '?filters[collections][id][$eq]=';
+export const FilterPages = '&filters[id][$eq]=';
 
 export const RouteReceipt = `${Endpoint}/receipts`;
 
@@ -20,6 +22,7 @@ export const RouteCategoriesAll = `${Endpoint}/categories`;
 export const RouteCategory = `${Endpoint}/category`;
 export const RouteCollection = `${Endpoint}/collections`;
 export const RouteLikes = `${Endpoint}/likes`;
+export const RoutePages = `${Endpoint}/pages`;
 
 
 //limit, sort and pagination for strapi here: (default is the limit on 100)

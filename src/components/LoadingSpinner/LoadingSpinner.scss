@@ -18,11 +18,11 @@
   }
   &::before{
     background-color: $color-primary;
-    animation: pulse2 2s ease-in-out infinite;
+    animation: pulse2 1s ease-in-out infinite;
   }
   &::after{
     background-color: $color-primary;
-    animation: pulse2 2s 1s ease-in-out infinite;
+    animation: pulse2 1s 0.5s ease-in-out infinite;
   }
 }
 

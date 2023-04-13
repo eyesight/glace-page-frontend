@@ -50,8 +50,6 @@ const ReceiptsPage = () => {
 		loadDetails();
 	}, [dispatch, id, route]);
 
-	if (isLoading) return <LoadingSpinner />;
-
 	return (
 		<>
 			<TitleH1 text={title} />

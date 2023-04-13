@@ -7,6 +7,7 @@ import The404Page from './_pages/The404Page';
 import ReceiptsPage from './_pages/ReceiptsPage';
 import ReceiptDetailPage from './_pages/ReceiptDetailPage';
 import CollectionsPage from './_pages/CollectionsPage';
+import InfoPage from './_pages/InfoPage';
 
 export default class App extends React.Component {
 	render() {
@@ -16,10 +17,11 @@ export default class App extends React.Component {
 					<Routes>
 						<Route path='/' element={<DefaultPageSkeleton />}>
 							<Route path='/' element={<ReceiptsPage />}></Route>
-							<Route path='creceipt' element={<ReceiptsPage />}></Route>
+							<Route path='receipt' element={<ReceiptsPage />}></Route>
 							<Route path='category/:id' element={<ReceiptsPage />}></Route>
 							<Route path='receipt/:id' element={<ReceiptDetailPage />}></Route>
 							<Route path='collection/:id' element={<CollectionsPage />}></Route>
+							<Route path='info/:id' element={<InfoPage />}></Route>
 							<Route path='*' element={<The404Page />}></Route>
 						</Route>
 					</Routes>

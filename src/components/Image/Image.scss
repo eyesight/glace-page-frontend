@@ -1,0 +1,9 @@
+@import './../../styles/import-all.scss';
+
+.image {
+  @include fake-margin-bottom($spacing-s);
+}
+
+.image__caption {
+  @include fluid-font-size($font-size-info-s, $font-size-info-m);
+}

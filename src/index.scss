@@ -40,18 +40,21 @@ h4 {
 h1 {
   @include fluid-font-size($font-size-h1-s, $font-size-h1-m);
   line-height: $line-height-h1;
+  @include fake-margin-bottom($spacing-xs);
 }
 
 h2 {
   @include fluid-font-size($font-size-h2-s, $font-size-h2-m);
   @include font($type-face-serif, $font-weight-medium);
   line-height: $line-height-h2;
+  @include fake-margin-bottom($spacing-xs);
 }
 
 h3 {
   @include fluid-font-size($font-size-h3-s, $font-size-h3-m);
   @include font($type-face-serif, $font-weight-medium);
   line-height: $line-height-h3;
+  @include fake-margin-bottom($spacing-xs);
 }
 
 h4 {
@@ -156,4 +159,8 @@ div#root {
   //overflow-x: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.container {
+  @include content-width();
 }
