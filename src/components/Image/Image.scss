@@ -4,6 +4,15 @@
   @include fake-margin-bottom($spacing-s);
 }
 
+.image__img {
+  width: 100%;
+  max-width: calc($max-width-content / 2);
+  .image--fullwidth &{
+    max-width: 100%;
+  }
+}
+
+
 .image__caption {
   @include fluid-font-size($font-size-info-s, $font-size-info-m);
 }

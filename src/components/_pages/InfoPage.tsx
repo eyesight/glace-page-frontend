@@ -8,6 +8,8 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { fetchOnePage } from '../../store/actions/pages';
 import Richtext from '../Richtext/Richtext';
 import Image from '../Image/Image';
+import SectionContainer from '../SectionContainer/SectionContainer';
+import TitleH1 from '../TitleH1/TitleH1';
 
 const InfoPage = () => {
 	const { id } = useParams();
@@ -16,7 +18,8 @@ const InfoPage = () => {
 	const all: IPages = useSelector((state: PagesState) => state.pages);
 	const theRoute = `${RoutePages}${PopulatesPageContent}${FilterPages}${id}`;
 	const isLoading = all.isFetching;
-	const selectedPageComponent = all.selectedPage?.attributes?.content
+	const selectedPageComponent = all.selectedPage?.attributes?.content;
+	const selectedPage = all.selectedPage?.attributes;
 
 	console.log(all);
 
@@ -29,20 +32,30 @@ const InfoPage = () => {
 
 	const getComponent = (item: any) => {
 		switch (item.__component) {
-		  case 'pages.text':
-			return <Richtext text={item.text} key={item.id} />
-		  case 'pages.image':
-			return <Image image={item.image} imageUrl={item.imageUrl} caption={item.caption} key={item.id} />
+			case 'pages.text':
+				return <Richtext text={item.text} key={item.id} />;
+			case 'pages.image':
+				return (
+					<Image
+						image={item.image}
+						imageUrl={item.imageUrl}
+						caption={item.caption}
+						key={item.id}
+						isFullwidth={item.fullwidth}
+					/>
+				);
 		}
-	  }
-  
+	};
 
 	if (isLoading) return <LoadingSpinner />;
 	return (
 		<>
-			<section className='section-container'>
-				{ selectedPageComponent?.map((item) => getComponent(item)) }
-			</section>
+			<SectionContainer>
+				<TitleH1 text={selectedPage?.pagename} positioningClass={true} />
+			</SectionContainer>
+			<SectionContainer>
+				{selectedPageComponent?.map((item) => getComponent(item))}
+			</SectionContainer>
 		</>
 	);
 };
