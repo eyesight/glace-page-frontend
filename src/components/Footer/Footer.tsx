@@ -1,15 +1,12 @@
 import './Footer.scss';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
 
 type Props = {
 	links: Array<any>;
 };
 
 const Footer = ({ links }: Props) => {
-	const [footerLinks, setfooterLinks] = useState({});
 
-	console.log(links);
 	return (
 		<footer className='footer'>
 			<div className='footer__inner'>
