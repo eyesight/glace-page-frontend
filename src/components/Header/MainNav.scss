@@ -26,6 +26,10 @@
 	transition: all 0.25s ease-in-out;
 
 	@include sm-min() {
+		padding: 35px 0 80px 0;
+	}
+
+	@include lg-min() {
 		padding: 35px 50px 80px;
 	}
 
@@ -70,9 +74,9 @@
 .main-nav__column {
 	flex: 0 1 50%;
 	margin-bottom: em(35px, 20);
-  padding-right: 20px;
+	padding-right: 20px;
 
-	@include sm-min() {
+	@include md-min() {
 		flex: 0 1 25%;
 	}
 }

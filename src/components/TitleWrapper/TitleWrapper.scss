@@ -4,4 +4,6 @@
   width: 100%;
   background-color: $color-white;
   padding: $spacing-s 0 $spacing-ml 0;
+
+  @include spacing('padding-bottom', $space-settings-ml);
 }

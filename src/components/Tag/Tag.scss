@@ -3,7 +3,7 @@
 .tags {
   @include content-width();
   @include flexbox(row, wrap, center, flex-start);
-  @include fake-margin-bottom($spacing-l);
+	@include spacing-fake-margin-bottom($space-settings-l);
 }
 
 .tags__item {

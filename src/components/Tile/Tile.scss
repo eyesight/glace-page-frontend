@@ -8,7 +8,7 @@
 
 .tiles__title {
   @include font($type-face-serif, $font-weight-medium);
-  @include fake-margin-bottom($spacing-xs);
+  @include spacing-fake-margin-bottom($space-settings-xs);
   width: 100%;
 }
 
@@ -53,10 +53,10 @@
 }
 
 .tiles__item-inner {
-  padding: 1.5rem;
+  padding: 1rem 0;
 
   @include lg-min {
-    padding: 1.5rem 4rem 4rem;
+    padding: 1.5rem 0rem 4rem;
   }
 }
 

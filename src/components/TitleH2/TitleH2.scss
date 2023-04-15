@@ -4,7 +4,7 @@
   color: $color-primary;
   @include content-width();
   @include font($type-face-serif, $font-weight-medium);
-  @include fake-margin-bottom(2 * $spacing-xxs);
+  @include spacing-fake-margin-bottom($space-settings-xs-double);
   @include fake-margin-bottom(0, '.tiles__item');
 }
 

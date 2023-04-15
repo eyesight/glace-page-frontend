@@ -1,0 +1,32 @@
+@mixin responsive-spacing(
+  $fs-map: $font-settings-body,
+  $fs-breakpoints: $layout-breakpoints
+) {
+  @each $fs-breakpoint, $fs-responsive-spacing in $fs-map {
+    @if $fs-breakpoint == null {
+      @include make-responsive-spacing($fs-responsive-spacing);
+    } @else if $fs-breakpoint == print {
+      @media print {
+        @include make-responsive-spacing($fs-responsive-spacing);
+      }
+    } @else {
+      @if map-has-key($fs-breakpoints, $fs-breakpoint) {
+        $fs-breakpoint: map-get($fs-breakpoints, $fs-breakpoint);
+      }
+      @media screen and (min-width: $fs-breakpoint) {
+        @include make-responsive-spacing($fs-responsive-spacing);
+      }
+    }
+  }
+}
+
+@mixin make-responsive-spacing($fs-responsive-spacing) {
+  @if type-of($fs-responsive-spacing) == 'list' {
+    responsive-spacing: nth($fs-responsive-spacing, 1);
+    @if (length($fs-responsive-spacing) > 1) {
+      line-height: nth($fs-responsive-spacing, 2);
+    }
+  } @else {
+    responsive-spacing: $fs-responsive-spacing;
+  }
+}

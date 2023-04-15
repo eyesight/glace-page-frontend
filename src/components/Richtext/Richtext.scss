@@ -3,11 +3,12 @@
 .richtext {
   @include fake-margin-bottom($spacing-s);
 
-  p {
-    @include fake-margin-bottom($spacing-xs);
-    @include fake-margin-bottom($spacing-s, 'h1');
-    @include fake-margin-bottom($spacing-s, 'h2');
-    @include fake-margin-bottom($spacing-s, 'h3');
-    @include fake-margin-bottom($spacing-s, 'h4');
-  }
+	p {
+		@include fake-margin-bottom($spacing-xs);
+		@include spacing-fake-margin-bottom($space-settings-xs);
+		@include fake-margin-bottom($spacing-s, 'h1');
+		@include spacing-fake-margin-bottom($space-settings-s, 'h2');
+		@include spacing-fake-margin-bottom($space-settings-s, 'h3');
+		@include spacing-fake-margin-bottom($space-settings-s, 'h4');
+	}
 }

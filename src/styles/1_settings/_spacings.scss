@@ -7,3 +7,57 @@ $spacing-l: 10rem;
 
 $spacing-6: 6rem;
 $spacing-35: 3.5rem;
+
+$space-settings-xs: (
+	null: (
+		$spacing-xxs,
+	),
+	md: (
+		$spacing-xs,
+	),
+) !default;
+
+$space-settings-xs-double: (
+	null: (
+		$spacing-xxs,
+	),
+	md: (
+		2 * $spacing-xxs,
+	),
+) !default;
+
+$space-settings-s: (
+	null: (
+		$spacing-xs,
+	),
+	md: (
+		$spacing-s,
+	),
+) !default;
+
+$space-settings-m: (
+	null: (
+		$spacing-s,
+	),
+	md: (
+		$spacing-m,
+	),
+) !default;
+
+$space-settings-ml: (
+	null: (
+		$spacing-s,
+	),
+	md: (
+		$spacing-ml,
+	),
+) !default;
+
+$space-settings-l: (
+	null: (
+		$spacing-s,
+	),
+	md: (
+		$spacing-l,
+	),
+) !default;

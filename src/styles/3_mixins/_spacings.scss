@@ -1,149 +1,147 @@
 @mixin fake-margin-bottom($margin: $gutter, $selector: '*') {
-  & + #{$selector} {
-    margin-top: $margin;
-  }
+	& + #{$selector} {
+		margin-top: $margin;
+	}
 }
 
 @mixin spacing-fake-margin-bottom(
-  $spacing-map,
-  $margin: $gutter,
-  $selector: '*'
+	$spacing-map: $space-settings-m,
+	$selector: '*',
+	$spacing-breakpoints: $layout-breakpoints
 ) {
-  @if is-map($spacing-map) {
-    @each $spacing-breakpoint, $spacing in $spacing-map {
-      @if $spacing-breakpoint == null {
+	@each $spacing-breakpoints, $spacing in $spacing-map {
+		@if $spacing-breakpoints == null {
+			& + #{$selector} {
+				@include make-spacing($spacing, 'margin-top');
+			}
+		} @else {
+			@include media-breakpoint-up($spacing-breakpoints) {
         & + #{$selector} {
-          margin-top: $margin;
-        }
-      } @else {
-        @include media-breakpoint-up($spacing-breakpoint) {
-          & + #{$selector} {
-            margin-top: $margin;
-          }
-        }
-      }
-    }
-  } @else {
-    & + #{$selector} {
-      margin-top: $margin;
-    }
-  }
+					@include make-spacing($spacing, 'margin-top');
+				}
+			}
+		}
+	}
 }
 
 @mixin spacing($type, $spacing-map) {
-  @if is-map($spacing-map) {
-    @each $spacing-breakpoint, $spacing in $spacing-map {
-      @if $spacing-breakpoint == null {
-        #{$type}: $spacing;
-      } @else {
-        @include media-breakpoint-up($spacing-breakpoint) {
-          #{$type}: $spacing;
-        }
-      }
-    }
-  } @else {
-    #{$type}: $spacing-map;
-  }
+		@each $spacing-breakpoint, $spacing in $spacing-map {
+			@if $spacing-breakpoint == null {
+				@include make-spacing($spacing, $type);
+			} @else {
+				@include media-breakpoint-up($spacing-breakpoint) {
+					@include make-spacing($spacing, $type);
+				}
+			}
+		}
+}
+
+@mixin make-spacing($fs-spacing, $type) {
+	@if type-of($fs-spacing) == 'list' {
+		#{$type}: nth($fs-spacing, 1);
+	} @else {
+		#{$type}: $fs-spacing;
+	}
 }
 
 @mixin spacing-top-bottom($type, $spacing-map) {
-  @if is-map($spacing-map) {
-    @each $spacing-breakpoint, $spacing in $spacing-map {
-      @if $spacing-breakpoint == null {
-        #{$type}-top: $spacing;
-        #{$type}-bottom: $spacing;
-      } @else {
-        @include media-breakpoint-up($spacing-breakpoint) {
-          #{$type}-top: $spacing;
-          #{$type}-bottom: $spacing;
-        }
-      }
-    }
-  } @else {
-    #{$type}-top: $spacing-map;
-    #{$type}-bottom: $spacing-map;
-  }
+	@if is-map($spacing-map) {
+		@each $spacing-breakpoint, $spacing in $spacing-map {
+			@if $spacing-breakpoint == null {
+				#{$type}-top: $spacing;
+				#{$type}-bottom: $spacing;
+			} @else {
+				@include media-breakpoint-up($spacing-breakpoint) {
+					#{$type}-top: $spacing;
+					#{$type}-bottom: $spacing;
+				}
+			}
+		}
+	} @else {
+		#{$type}-top: $spacing-map;
+		#{$type}-bottom: $spacing-map;
+	}
 }
 
 @mixin spacing-top($type, $spacing-map) {
-  @if is-map($spacing-map) {
-    @each $spacing-breakpoint, $spacing in $spacing-map {
-      @if $spacing-breakpoint == null {
-        #{$type}-top: $spacing;
-      } @else {
-        @include media-breakpoint-up($spacing-breakpoint) {
-          #{$type}-top: $spacing;
-        }
-      }
-    }
-  } @else {
-    #{$type}-top: $spacing-map;
-  }
+	@if is-map($spacing-map) {
+		@each $spacing-breakpoint, $spacing in $spacing-map {
+			@if $spacing-breakpoint == null {
+				#{$type}-top: $spacing;
+			} @else {
+				@include media-breakpoint-up($spacing-breakpoint) {
+					#{$type}-top: $spacing;
+				}
+			}
+		}
+	} @else {
+		#{$type}-top: $spacing-map;
+	}
 }
 
 @mixin spacing-bottom($type, $spacing-map) {
-  @if is-map($spacing-map) {
-    @each $spacing-breakpoint, $spacing in $spacing-map {
-      @if $spacing-breakpoint == null {
-        #{$type}-bottom: $spacing;
-      } @else {
-        @include media-breakpoint-up($spacing-breakpoint) {
-          #{$type}-bottom: $spacing;
-        }
-      }
-    }
-  } @else {
-    #{$type}-bottom: $spacing-map;
-  }
+	@if is-map($spacing-map) {
+		@each $spacing-breakpoint, $spacing in $spacing-map {
+			@if $spacing-breakpoint == null {
+				#{$type}-bottom: $spacing;
+			} @else {
+				@include media-breakpoint-up($spacing-breakpoint) {
+					#{$type}-bottom: $spacing;
+				}
+			}
+		}
+	} @else {
+		#{$type}-bottom: $spacing-map;
+	}
 }
 
 @mixin spacing-left-right($type, $spacing-map) {
-  @if is-map($spacing-map) {
-    @each $spacing-breakpoint, $spacing in $spacing-map {
-      @if $spacing-breakpoint == null {
-        #{$type}-left: $spacing;
-        #{$type}-right: $spacing;
-      } @else {
-        @include media-breakpoint-up($spacing-breakpoint) {
-          #{$type}-left: $spacing;
-          #{$type}-right: $spacing;
-        }
-      }
-    }
-  } @else {
-    #{$type}-left: $spacing-map;
-    #{$type}-right: $spacing-map;
-  }
+	@if is-map($spacing-map) {
+		@each $spacing-breakpoint, $spacing in $spacing-map {
+			@if $spacing-breakpoint == null {
+				#{$type}-left: $spacing;
+				#{$type}-right: $spacing;
+			} @else {
+				@include media-breakpoint-up($spacing-breakpoint) {
+					#{$type}-left: $spacing;
+					#{$type}-right: $spacing;
+				}
+			}
+		}
+	} @else {
+		#{$type}-left: $spacing-map;
+		#{$type}-right: $spacing-map;
+	}
 }
 
 @mixin spacing-left($type, $spacing-map) {
-  @if is-map($spacing-map) {
-    @each $spacing-breakpoint, $spacing in $spacing-map {
-      @if $spacing-breakpoint == null {
-        #{$type}-left: $spacing;
-      } @else {
-        @include media-breakpoint-up($spacing-breakpoint) {
-          #{$type}-left: $spacing;
-        }
-      }
-    }
-  } @else {
-    #{$type}-left: $spacing-map;
-  }
+	@if is-map($spacing-map) {
+		@each $spacing-breakpoint, $spacing in $spacing-map {
+			@if $spacing-breakpoint == null {
+				#{$type}-left: $spacing;
+			} @else {
+				@include media-breakpoint-up($spacing-breakpoint) {
+					#{$type}-left: $spacing;
+				}
+			}
+		}
+	} @else {
+		#{$type}-left: $spacing-map;
+	}
 }
 
 @mixin spacing-right($type, $spacing-map) {
-  @if is-map($spacing-map) {
-    @each $spacing-breakpoint, $spacing in $spacing-map {
-      @if $spacing-breakpoint == null {
-        #{$type}-right: $spacing;
-      } @else {
-        @include media-breakpoint-up($spacing-breakpoint) {
-          #{$type}-right: $spacing;
-        }
-      }
-    }
-  } @else {
-    #{$type}-right: $spacing-map;
-  }
+	@if is-map($spacing-map) {
+		@each $spacing-breakpoint, $spacing in $spacing-map {
+			@if $spacing-breakpoint == null {
+				#{$type}-right: $spacing;
+			} @else {
+				@include media-breakpoint-up($spacing-breakpoint) {
+					#{$type}-right: $spacing;
+				}
+			}
+		}
+	} @else {
+		#{$type}-right: $spacing-map;
+	}
 }

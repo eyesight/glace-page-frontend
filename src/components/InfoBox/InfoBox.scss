@@ -31,7 +31,7 @@
 }
 
 .info-box__list-item {
-  @include fake-margin-bottom($spacing-xs);
+	@include spacing-fake-margin-bottom($space-settings-xs);
 }
 
 .info-box__text-bold {

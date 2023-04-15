@@ -3,5 +3,5 @@
 .section-container {
   width: 100%;
   background-color: $color-white;
-  padding-top: $spacing-ml;
+  @include spacing('padding-top', $space-settings-ml);
 }

@@ -7,7 +7,8 @@
     $font-size-button-random-s,
     $font-size-button-random-m
   );
-  @include fake-margin-bottom($spacing-s);
+	@include spacing-fake-margin-bottom($space-settings-s);
+
   line-height: $line-height-button-random;
 
   &:hover,

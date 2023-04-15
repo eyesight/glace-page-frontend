@@ -23,7 +23,7 @@
 
 .swiper__image-wrapper {
   @include responsive-ratio(100%, 91, 51, 'img');
-  @include fake-margin-bottom($spacing-s);
+  @include spacing-fake-margin-bottom($space-settings-s);
   overflow: hidden;
   display: flex;
   align-items: center;

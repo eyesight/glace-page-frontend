@@ -3,11 +3,13 @@
 .title-h1 {
 	text-align: center;
 	@include content-width();
-	@include fake-margin-bottom($spacing-l);
-	@include fake-margin-bottom($spacing-m, '.searchbar');
-	@include fake-margin-bottom($spacing-s, '.lead');
-	@include fake-margin-bottom($spacing-xs, '.tags');
+	@include spacing-fake-margin-bottom($space-settings-l);
+	@include spacing-fake-margin-bottom($space-settings-m, '.searchbar');
+	@include spacing-fake-margin-bottom($space-settings-s, '.lead');
+	@include spacing-fake-margin-bottom($space-settings-xs, '.tags');
 	@include fake-margin-bottom(0, '.section-container');
+
+
 	-ms-hyphens: auto;
 	-moz-hyphens: auto;
 	-webkit-hyphens: auto;

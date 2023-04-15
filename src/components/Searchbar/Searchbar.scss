@@ -2,7 +2,7 @@
 
 .searchbar {
   @include content-width();
-  @include fake-margin-bottom($spacing-l);
+	@include spacing-fake-margin-bottom($space-settings-l);
   @include flexbox(row, wrap, center, flex-start);
 }
 

@@ -2,7 +2,7 @@
 
 .login-form {
   @include content-width(true);
-  @include fake-margin-bottom($spacing-l);
+	@include spacing-fake-margin-bottom($space-settings-l);
   @include flexbox(row, wrap, center, flex-start);
 }
 
@@ -18,7 +18,7 @@
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
-  @include fake-margin-bottom($spacing-xs);
+	@include spacing-fake-margin-bottom($space-settings-xs);
 }
 
 //Todo: the search-field and this as mixin to have no doublicated fields
@@ -57,7 +57,7 @@
 
 .login-form__btn-wrapper {
   @include grid(9);
-  @include fake-margin-bottom($spacing-l);
+	@include spacing-fake-margin-bottom($space-settings-l);
 }
 
 .login-form__error-txt {
