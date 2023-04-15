@@ -324,6 +324,7 @@ type PageType = {
 			lead?: string
 		}
 		content: any[]
+		header: any
 	}
 }
 

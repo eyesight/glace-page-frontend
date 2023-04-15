@@ -7,7 +7,7 @@ export const Populates = '?populate=*';
 export const SortingTitles = `&sort[0]=title`;
 export const PopulatesDetailReceipts = '?populate[ingredients][populate]=ingredient_item.image&populate[ingredients][populate]=ingredient_item.unit&populate[optional_Ingredients][populate]=ingredient_item.image&populate[optional_Ingredients][populate]=ingredient_item.unit&populate[categories][populate]=*&populate[steps][populate]=*&populate[infobox][populate]=*&populate[image][populate]=*';
 export const PopulatesCollections = '?populate[receipts][populate]=*&populate[likers][populate]=*&populate[likes][populate]=*';
-export const PopulatesPageContent = '?populate[content][populate]=*';
+export const PopulatesPageContent = '?populate[content][populate]=*&populate[header][populate]=*';
 
 export const FilterEqual = '?filters[name][$eq]=';
 export const FilterCategoriesEqual = '&filters[categories][name][$eq]=';

@@ -1,0 +1,7 @@
+@import './../../styles/import-all.scss';
+
+.lead {
+	@include content-width();
+	@include fluid-font-size($font-size-lead-s, $font-size-lead-m);
+	line-height: $line-height-lead;
+}
