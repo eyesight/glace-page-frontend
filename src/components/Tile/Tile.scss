@@ -15,10 +15,11 @@
 .tiles__item,
 .tiles__item.title-h2 {
   @include grid(9);
-  margin-bottom: 3.5%;
-
+  margin-bottom: 7%;
+  
   @include md-min {
     @include grid(4.5);
+    margin-bottom: 3.5%;
   }
 
   @include lg-min {

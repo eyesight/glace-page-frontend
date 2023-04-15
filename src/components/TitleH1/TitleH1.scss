@@ -25,5 +25,5 @@
 }
 
 .content > .title-h1:first-child {
-	margin-top: $spacing-s;
+	@include spacing('margin-top', $space-settings-s);
 }
