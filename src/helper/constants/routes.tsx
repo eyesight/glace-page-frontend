@@ -1,8 +1,12 @@
 //routes
-// export const Endpoint = 'https://glace-page-backend-production.up.railway.app/api';
-// export const EndpointAssets = 'https://glace-page-backend-production.up.railway.app/';
-export const Endpoint = 'http://localhost:1337/api';
-export const EndpointAssets = 'http://localhost:1337';
+export const Endpoint = process.env.NODE_ENV === 'production'
+  ? 'https://glace-page-backend-production.up.railway.app/api'
+  : 'http://localhost:1337/api';
+
+  export const EndpointAssets = process.env.NODE_ENV === 'production'
+  ? 'https://glace-page-backend-production.up.railway.app'
+  : 'http://localhost:1337';
+
 export const Populates = '?populate=*';
 export const SortingTitles = `&sort[0]=title`;
 export const PopulatesDetailReceipts = '?populate[ingredients][populate]=ingredient_item.image&populate[ingredients][populate]=ingredient_item.unit&populate[optional_Ingredients][populate]=ingredient_item.image&populate[optional_Ingredients][populate]=ingredient_item.unit&populate[categories][populate]=*&populate[steps][populate]=*&populate[infobox][populate]=*&populate[image][populate]=*';
