@@ -33,8 +33,6 @@ const DefaultPageSkeleton = () => {
 		window.history.scrollRestoration = 'auto';
 	}, []);
 
-	console.log(allPages);
-
 	useEffect(() => {
 		const loadDetails: () => Promise<void> = async () => {
 			dispatch(
