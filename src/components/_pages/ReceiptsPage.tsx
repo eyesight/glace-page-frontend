@@ -30,13 +30,15 @@ const ReceiptsPage = () => {
 	const cursorRef = useRef(null);
 	const filterTxt = all.filterText;
 	const cursorIsOnElement: ICursor = useSelector((state: CursorState) => state.cursor);
+	const user = localStorage.getItem("user");
+	const liker = user ? JSON.parse(user) : null;
 	//Parameter to differ if it is a category page or the normal receipt-page
 	let route = id
 		? `${RouteReceipt}${PopulatesDetailReceipts}${FilterCategoriesEqual}${id}`
 		: RouteReceiptAll;
 	let title = id
 		? `Unsere ${allCategory.selectedCategory.data[0]?.attributes.adjektiv} Rezepte`
-		: 'Guten Morgen. Hier findest du Inspiration für die Küche.';
+		: `Hey${liker ? ' ' + liker : ''}.\n\rWas für es Glace darfs sii?`;
 	let tiletitle = id
 		? `Alle Sorten mit #${allCategory.selectedCategory.data[0]?.attributes.name}`
 		: `${receipts ? receipts.length : 0} Rezepte`;
