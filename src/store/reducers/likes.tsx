@@ -26,7 +26,7 @@ export const likes = (state: ILike = initialState, action: LikeAction) => {
         case ADD_LIKE:
             return {
                 ...state,
-                item: action.payload.data
+                data: action.payload.data
             }
 
         default:

@@ -30,54 +30,41 @@ export const addedLike = (like: ILike) => ({
  * Thunk Actions
  */
 
-export const fetchLikes =
-	(url: string, likes = {}) =>
-	(dispatch: DispatchType) => {
-		dispatch(requestLikes(likes));
-		const sendGetRequest = async () => {
-			try {
-				const response = await axios.get(url);
-				dispatch(receiveLikes(response.data));
-			} catch (err) {
-				// Handle Error TODO
-				console.error(err);
-			} finally {
-				console.log('finally');
-			}
+export const fetchLikes = (url: string) => async (dispatch: DispatchType) => {
+	dispatch(requestLikes({}));
+	try {
+	  const response = await axios.get(url);
+	  dispatch(receiveLikes(response.data));
+	} catch (err) {
+	  // Handle Error TODO
+	  console.error(err);
+	} finally {
+	  console.log('finally');
+	}
+  };
+
+	export const addLike = (url: string, likeItem: any, likeReceipt: any) => async (dispatch: DispatchType) => {
+		const element = {
+		  "data": {
+			"collections": {
+			  "connect": [likeItem?.id],
+			},
+			"receipts": {
+			  "connect": [likeReceipt?.id],
+			},
+			"receiptId": likeReceipt?.id.toString(),
+			"collectionId": likeItem?.id.toString(),
+			"liker": getStorage('user'),
+		  },
 		};
-
-		return sendGetRequest();
-	};
-
-export const addLike =
-	(url: string, likeItem: any, likeReceipt: any) => (dispatch: DispatchType) => {
-		console.log(likeItem);
-		let element = {
-			"data": {
-					"collections": {
-                        "connect": [likeItem?.id],
-					},
-					"receipts": {
-                        "connect": [likeReceipt?.id],
-					},
-					"receiptId": likeReceipt?.id.toString(),
-					"collectionId": likeItem?.id.toString(),
-					"liker": getStorage('user'),
-				},
-			}
-
-		const sendPostRequest = async () => {
-			try {
-				const response = await axios.post(url, { ...element });
-				const x = dispatch(addedLike(response.data));
-				return x;
-			} catch (err) {
-				// Handle Error TODO
-				console.error(err);
-			} finally {
-				console.log('finally');
-			}
-		};
-
-		return sendPostRequest();
-	};
+	  
+		try {
+		  const response = await axios.post(url, { ...element });
+		  dispatch(addedLike(response.data));
+		} catch (err) {
+		  // Handle Error TODO
+		  console.error(err);
+		} finally {
+		  console.log('finally');
+		}
+	  };
