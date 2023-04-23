@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
-import { EndpointAssets, RouteLikes } from '../../helper/constants/routes';
-import { useDispatch, useSelector } from 'react-redux';
+import { EndpointAssets, FilterCollections, RouteLikes } from '../../helper/constants/routes';
+import { useDispatch } from 'react-redux';
 import { enterCursor, leaveCursor, detectCursor } from '../../store/actions/cursor';
 import { useEffect, useState } from 'react';
 import { addLike } from '../../store/actions/likes';
-import { fetchLikes } from '../../store/actions/likes';
 
-const TilesItem = ({ title, image, id, isVisible = false, nr, collection, imageUrl }: any) => {
+const TilesItem = ({ title, image, id, isLikesVisible = false, nr, collection, imageUrl, countedLikes }: any) => {
 	const dispatch = useDispatch();
-	const [countLikes, setCountLikes] = useState(0);
-	let allLikes: ILike = useSelector((state: LikeState) => state.likes);
+	
+	const user = localStorage.getItem("user");
+	const liker = user ? JSON.parse(user) : null;
+	const [countLikes, setCountLikes] = useState(countedLikes);
 
 	useEffect(() => {
-		countLike(allLikes?.item, id);
-	}, [allLikes, id]);
+		setCountLikes(countedLikes);
+	  }, [countedLikes]);
 
 	const receipt = {
 		id: id,
@@ -23,6 +24,12 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, imageU
 		id: collection?.collectionItem.id,
 	};
 
+	//to do: not fetch the likes, when it is not on collection-page
+	const routeCollectionLikes = targetCollection.id
+		? `${RouteLikes}${FilterCollections}${targetCollection.id}`
+		: RouteLikes;
+
+
 	const detectCursorFunc = (e: React.MouseEvent<HTMLElement>) => {
 		let mousePos = { x: 0, y: 0, className: '' };
 		mousePos.x = e.clientX;
@@ -31,12 +38,12 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, imageU
 		dispatch(detectCursor(mousePos));
 	};
 
-	const countLike = (arr: LikeType[], id: string) => {
-		if (arr && arr.length > 0) {
-			const result = arr.filter((like) => {
-				return like.attributes.receiptId === id.toString();
-			});
-			setCountLikes(result.length);
+	const handleClick = async () => {
+		try {
+			await dispatch(addLike(routeCollectionLikes, targetCollection, receipt));
+			setCountLikes(countLikes + 1);
+		} catch (err) {
+			console.error(err);
 		}
 	};
 
@@ -50,7 +57,17 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, imageU
 		>
 			<Link className='tiles__anchor' to={`/receipt/${id}`} tabIndex={-1}>
 				<figure className='tiles__image-wrapper'>
-					<img className='tiles__img' alt='' src={imageUrl ? imageUrl : (image?.data ? `${EndpointAssets}${image.data.attributes.url}` : 'http://placekitten.com/200/300')} />
+					<img
+						className='tiles__img'
+						alt=''
+						src={
+							imageUrl
+								? imageUrl
+								: image?.data
+								? `${EndpointAssets}${image.data.attributes.url}`
+								: 'http://placekitten.com/200/300'
+						}
+					/>
 				</figure>
 			</Link>
 			<div className='tiles__item-inner'>
@@ -59,29 +76,50 @@ const TilesItem = ({ title, image, id, isVisible = false, nr, collection, imageU
 						{title}
 					</Link>
 				</h3>
-				{isVisible ? (
+				{isLikesVisible ? (
 					<div className='tiles__button-wrap'>
 						<button
 							className='tiles__button'
 							type='button'
-							onClick={() => {
-								dispatch(addLike(RouteLikes, targetCollection, receipt));
-								dispatch(fetchLikes(RouteLikes));
-								countLike(allLikes?.item, id);
-							}}
+							onClick={handleClick}
 							data-itemid={id}
 							data-itemnr={nr}
 						>
-							<svg className='tiles__icon-smile' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'>
+							<svg
+								className='tiles__icon-smile'
+								xmlns='http://www.w3.org/2000/svg'
+								viewBox='0 0 28 28'
+							>
 								<g className='Smile' transform='translate(-546.252 -647.893)'>
-									<g className='Head' transform='translate(546.252 647.893)' fill='none' stroke='currentColor' strokeWidth='2'>
+									<g
+										className='Head'
+										transform='translate(546.252 647.893)'
+										fill='none'
+										stroke='currentColor'
+										strokeWidth='2'
+									>
 										<circle cx='14' cy='14' r='14' stroke='none' />
 										<circle cx='14' cy='14' r='13' fill='none' />
 									</g>
 									<g className='Details' transform='translate(553.826 657.963)'>
 										<g className='Eyes' transform='translate(2.466 1.455)'>
-											<line className='right' y2='1.693' fill='none' stroke='currentColor' strokeLinecap='round' strokeWidth='2' />
-											<path className='left' d='M0,0V1.693' transform='translate(7.562)' fill='currentColor' stroke='currentColor' strokeLinecap='round' strokeWidth='2' />
+											<line
+												className='right'
+												y2='1.693'
+												fill='none'
+												stroke='currentColor'
+												strokeLinecap='round'
+												strokeWidth='2'
+											/>
+											<path
+												className='left'
+												d='M0,0V1.693'
+												transform='translate(7.562)'
+												fill='currentColor'
+												stroke='currentColor'
+												strokeLinecap='round'
+												strokeWidth='2'
+											/>
 										</g>
 										<path
 											className='mouth'

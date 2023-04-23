@@ -19,7 +19,7 @@ const CollectionsPage = () => {
 
 	const dispatch: Dispatch<any> = useDispatch();
 	const all: ICollections = useSelector((state: CollectionState) => state.collections);
-	let allLikes: ILike = useSelector((state: LikeState) => state.likes);
+	const allLikes: ILike = useSelector((state: LikeState) => state.likes);
 	const theRoute = `${RouteLikes}${FilterCollections}${id}`;
 	const isLoading = all.isFetching;
 	const cursorRef = useRef(null);
@@ -60,7 +60,7 @@ const CollectionsPage = () => {
 			{isAllowed ? (
 				<>
 					<TitleH1 text={title} />
-					<Tile items={receipts} isLoading={isLoading} title={tiletitle} isVisible={true} likes={allLikes?.item} collection={all}/>
+					<Tile items={receipts} isLoading={isLoading} title={tiletitle} isLikesVisible={true} likes={allLikes?.item} collection={all}/>
 					<Cursor aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''} ref={cursorRef} />
 				</>
 			) : (

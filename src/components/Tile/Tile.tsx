@@ -2,33 +2,21 @@ import './Tile.scss';
 import TilesItem from './TilesItem';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import TitleH2 from '../TitleH2/TitleH2';
+import { getCountedLikes } from '../../helper/constants/getLikeCount';
 
 type Props = {
     items: RezeptType[],
     isLoading: boolean,
     title: string,
-    isVisible: boolean,
+    isLikesVisible: boolean,
     likes?: LikeType[],
     collection?: {
         data: CollectionType
     }
 }
-
-const Tile = ({ items, isLoading, title, collection, likes, isVisible = false }: Props) => {
+const Tile = ({ items, isLoading, title, collection, likes, isLikesVisible = false }: Props) => {
 
     if (isLoading) return (<section className="section tiles section--loading-spinner"><LoadingSpinner /></section>);
-
-    function countLike(arr: LikeType[] | undefined, id: string) {
-        if(arr && arr.length > 0) {
-            const result = arr.filter(like => {
-                return like.attributes.receiptId === id.toString()
-            });
-
-            return result;
-        }
-
-        return 0;
-    }
 
     return (
         <section className="tiles" role="list">
@@ -38,7 +26,7 @@ const Tile = ({ items, isLoading, title, collection, likes, isVisible = false }:
             />
             {items?.length > 0 ?
                 items.map((item, index) => (
-                    <TilesItem {...item.attributes} id={item.id} key={item.id} isVisible={isVisible} nr={index} collection={collection} likes={countLike(likes, item.id)} />
+                    <TilesItem {...item.attributes} id={item.id} key={item.id} isLikesVisible={isLikesVisible} nr={index} collection={collection} countedLikes={isLikesVisible ? getCountedLikes(likes, item.id.toString()) : null} />
                 )) : <p>no content</p>}
         </section>
     )

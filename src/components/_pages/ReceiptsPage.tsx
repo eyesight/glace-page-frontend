@@ -16,7 +16,6 @@ import { useRef } from 'react';
 import Slideshow from '../Slideshow/Slideshow';
 import { Dispatch } from 'redux';
 import { useParams } from 'react-router-dom';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const ReceiptsPage = () => {
 	const { id } = useParams();
@@ -54,7 +53,7 @@ const ReceiptsPage = () => {
 		<>
 			<TitleH1 text={title} />
 			<Searchbar searchValue={filterTxt} />
-			<Tile items={receipts} isLoading={isLoading} title={tiletitle} isVisible={false} />
+			<Tile items={receipts} isLoading={isLoading} title={tiletitle} isLikesVisible={false} />
 			<Slideshow
 				items={randomitems}
 				isLoading={isLoading}
