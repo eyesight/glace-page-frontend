@@ -25,10 +25,10 @@ interface ICategories {
 interface IPages {
 	isFetching: boolean;
 	items: PageType[];
-	selectedPage: PageType
+	selectedPage: PageType;
 	data?: {
 		items: PageType[];
-	}
+	};
 }
 
 interface ICollections {
@@ -82,8 +82,8 @@ type LikeState = {
 };
 
 type PagesState = {
-	pages: IPages
-}
+	pages: IPages;
+};
 
 type ReceiptAction = {
 	type: string;
@@ -147,6 +147,7 @@ type RezeptType = {
 				id: string;
 				mass: number;
 				ingredient_item: IngredientsItemType;
+				unit: Unit;
 			}
 		];
 		portions: number;
@@ -155,6 +156,7 @@ type RezeptType = {
 				id: string;
 				mass: number;
 				ingredient_item: IngredientsItemType;
+				unit: Unit;
 			}
 		];
 		collections: [
@@ -319,12 +321,20 @@ type PageType = {
 	attributes: {
 		pagename: string;
 		header: {
-			id: string,
-			title: string,
-			lead?: string
-		}
-		content: any[]
-		header: any
-	}
-}
+			id: string;
+			title: string;
+			lead?: string;
+		};
+		content: any[];
+		header: any;
+	};
+};
 
+type Unit = {
+	data: {
+		id: string;
+		attributes: {
+			short: string;
+		};
+	};
+};

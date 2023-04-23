@@ -9,7 +9,7 @@ export const Endpoint = process.env.NODE_ENV === 'production'
 
 export const Populates = '?populate=*';
 export const SortingTitles = `&sort[0]=title`;
-export const PopulatesDetailReceipts = '?populate[ingredients][populate]=ingredient_item.image&populate[ingredients][populate]=ingredient_item.unit&populate[optional_Ingredients][populate]=ingredient_item.image&populate[optional_Ingredients][populate]=ingredient_item.unit&populate[categories][populate]=*&populate[steps][populate]=*&populate[infobox][populate]=*&populate[image][populate]=*';
+export const PopulatesDetailReceipts = '?populate[ingredients][populate]=ingredient_item.image&populate[ingredients][populate]=unit&populate[optional_Ingredients][populate]=ingredient_item.image&populate[optional_Ingredients][populate]=unit&populate[categories][populate]=*&populate[steps][populate]=*&populate[infobox][populate]=*&populate[image][populate]=*';
 export const PopulatesCollections = '?populate[receipts][populate]=*&populate[likers][populate]=*&populate[likes][populate]=*';
 export const PopulatesPageContent = '?populate[content][populate]=*&populate[header][populate]=*';
 

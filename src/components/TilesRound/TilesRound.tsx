@@ -10,6 +10,7 @@ type Props = {
 type ItemPros = {
     mass: number,
     ingredient_item: IngredientsItemType
+    unit: Unit
 }
 
 const round = (value: number, decimalPlaces: number) => {
@@ -32,7 +33,7 @@ const TilesRound = ({ items, portion, originalPortion }: Props) => {
                                 />
                             </figure>
                             <div className="tiles-round__item-text-wrap">
-                                <p className="tiles-round__item-nr">{`${round(((item.mass / originalPortion) * portion), 1)} ${item?.ingredient_item.data.attributes.unit?.data?.attributes?.short}`}</p>
+                                <p className="tiles-round__item-nr">{`${round(((item.mass / originalPortion) * portion), 1)} ${item?.unit.data.attributes.short}`}</p>
                                 <p className="tiles-round__item-text">{item?.ingredient_item?.data?.attributes?.name}</p>
                             </div>
                         </li>
