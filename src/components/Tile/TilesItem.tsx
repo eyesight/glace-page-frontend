@@ -2,19 +2,17 @@ import { Link } from 'react-router-dom';
 import { EndpointAssets, FilterCollections, RouteLikes } from '../../helper/constants/routes';
 import { useDispatch } from 'react-redux';
 import { enterCursor, leaveCursor, detectCursor } from '../../store/actions/cursor';
-import { useEffect, useState } from 'react';
-import { addLike } from '../../store/actions/likes';
+import { useState } from 'react';
+import { addLike, removeLike } from '../../store/actions/likes';
+import { getCountedLikes, hasUserLikedReceipt } from '../../helper/constants/getLikeCount';
 
-const TilesItem = ({ title, image, id, isLikesVisible = false, nr, collection, imageUrl, countedLikes }: any) => {
+const TilesItem = ({ title, image, id, isLikesVisible = false, nr, collection, imageUrl, likes }: any) => {
 	const dispatch = useDispatch();
 	
 	const user = localStorage.getItem("user");
 	const liker = user ? JSON.parse(user) : null;
-	const [countLikes, setCountLikes] = useState(countedLikes);
-
-	useEffect(() => {
-		setCountLikes(countedLikes);
-	  }, [countedLikes]);
+	const [countLikes, setCountLikes] = useState(getCountedLikes(likes.data, id.toString()));
+	const [liked, setLiked] = useState(hasUserLikedReceipt(likes.data, liker, id.toString()));
 
 	const receipt = {
 		id: id,
@@ -40,8 +38,14 @@ const TilesItem = ({ title, image, id, isLikesVisible = false, nr, collection, i
 
 	const handleClick = async () => {
 		try {
-			await dispatch(addLike(routeCollectionLikes, targetCollection, receipt));
-			setCountLikes(countLikes + 1);
+			if (!liked) {
+				await dispatch(addLike(routeCollectionLikes, targetCollection, receipt));
+				setCountLikes(countLikes + 1); 
+			} else {
+				await dispatch(removeLike(routeCollectionLikes, receipt));
+				setCountLikes(countLikes - 1); 
+			}
+			setLiked(!liked); // toggle liked
 		} catch (err) {
 			console.error(err);
 		}

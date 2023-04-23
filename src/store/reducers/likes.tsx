@@ -1,7 +1,8 @@
 import {
     LIKE_RECEIVED,
     LIKE_REQUEST,
-    ADD_LIKE
+    ADD_LIKE,
+    REMOVE_LIKE
 } from '../actions/likes';
 
 export const initialState: ILike = {
@@ -24,6 +25,11 @@ export const likes = (state: ILike = initialState, action: LikeAction) => {
             }
 
         case ADD_LIKE:
+            return {
+                ...state,
+                data: action.payload.data
+            }
+        case REMOVE_LIKE:
             return {
                 ...state,
                 data: action.payload.data

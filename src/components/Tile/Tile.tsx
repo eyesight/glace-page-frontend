@@ -26,7 +26,7 @@ const Tile = ({ items, isLoading, title, collection, likes, isLikesVisible = fal
             />
             {items?.length > 0 ?
                 items.map((item, index) => (
-                    <TilesItem {...item.attributes} id={item.id} key={item.id} isLikesVisible={isLikesVisible} nr={index} collection={collection} countedLikes={isLikesVisible ? getCountedLikes(likes, item.id.toString()) : null} />
+                    <TilesItem {...item.attributes} id={item.id} key={item.id} isLikesVisible={isLikesVisible} nr={index} collection={collection} />
                 )) : <p>no content</p>}
         </section>
     )
