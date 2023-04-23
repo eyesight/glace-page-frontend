@@ -24,8 +24,10 @@ const CollectionsPage = () => {
 	const isLoading = all.isFetching;
 	const cursorRef = useRef(null);
 	const cursorIsOnElement: ICursor = useSelector((state: CursorState) => state.cursor);
+	const user = localStorage.getItem("user");
+	const liker = user ? JSON.parse(user) : null;
 	let receipts = all?.collectionItem?.attributes?.receipts.data;
-	let title = all?.collectionItem?.attributes?.Title;
+	let title = `Hey ${liker}. \n${all?.collectionItem?.attributes?.Title}`;
 	let tiletitle = all?.collectionItem?.attributes?.description;
 	let isAllowed = all?.isAccessed;
 
