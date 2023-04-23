@@ -5,6 +5,7 @@ import { enterCursor, leaveCursor, detectCursor } from '../../store/actions/curs
 import { useState } from 'react';
 import { addLike, removeLike } from '../../store/actions/likes';
 import { getCountedLikes, hasUserLikedReceipt } from '../../helper/constants/getLikeCount';
+import Confetti from './Confetti';
 
 const TilesItem = ({
 	title,
@@ -22,6 +23,7 @@ const TilesItem = ({
 	const liker = user ? JSON.parse(user) : null;
 	const [countLikes, setCountLikes] = useState(getCountedLikes(likes.data, id.toString()));
 	const [liked, setLiked] = useState(hasUserLikedReceipt(likes.data, liker, id.toString()));
+	const [isConfettiVisible, setisConfettiVisible] = useState(false);
 
 	const receipt = {
 		id: id,
@@ -49,9 +51,11 @@ const TilesItem = ({
 			if (!liked) {
 				await dispatch(addLike(routeCollectionLikes, targetCollection, receipt));
 				setCountLikes(countLikes + 1);
+				setisConfettiVisible(true);
 			} else {
 				await dispatch(removeLike(routeCollectionLikes, receipt));
 				setCountLikes(countLikes - 1);
+				setisConfettiVisible(false);
 			}
 			setLiked(!liked); // toggle liked
 		} catch (err) {
@@ -134,6 +138,7 @@ const TilesItem = ({
 							</svg>
 							Das nehme ich {countLikes > 0 && `(${countLikes} Stimme${countLikes > 1 ? 'n' : ''})`}
 						</button>
+						{isConfettiVisible && <Confetti />}
 					</div>
 				)}
 			</div>

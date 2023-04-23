@@ -2,7 +2,6 @@ import './Tile.scss';
 import TilesItem from './TilesItem';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import TitleH2 from '../TitleH2/TitleH2';
-import { getCountedLikes } from '../../helper/constants/getLikeCount';
 
 type Props = {
     items: RezeptType[],
