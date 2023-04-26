@@ -80,16 +80,18 @@ export const addLike =
 	//todo optimize this code
 	export const removeLike = (url: string, likeReceipt: any) => async (dispatch: DispatchType) => {
 		try {
-		  const finalUrl = `${url}&[receipts][id][$eq]=${likeReceipt.id}&[likers][name][$eq]=${getStorage('user')}`;
-		  const response = await axios.get(finalUrl);
-		  const deletingId = response.data.data[0].id;
-		  
-		  if (!deletingId) {
-			console.error(`No item found with criteria: ${finalUrl}`);
-			return;
-		  }
-	  
-		  const deletingResponse = await axios.delete(`${RouteLikes}/${deletingId}`);
+			const finalUrl = `${url}&filters[receipts][id][$eq]=${likeReceipt.id}&filters[liker][$eq]=${getStorage('user')}`;
+			
+			const response = await axios.get(finalUrl);
+			const lastPost = response.data.data.length - 1;
+			const deletingId = response.data.data[lastPost].id;
+			
+			if (!deletingId) {
+				console.error(`No item found with criteria: ${finalUrl}`);
+				return;
+			}
+			
+			const deletingResponse = await axios.delete(`${RouteLikes}/${deletingId}`);
 		  dispatch(removedLike(deletingResponse.data));
 		} catch (err) {
 		  console.error(err);

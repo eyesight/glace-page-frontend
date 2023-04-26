@@ -21,8 +21,10 @@ const TilesItem = ({
 
 	const user = localStorage.getItem('user');
 	const liker = user ? JSON.parse(user) : null;
-	const [countLikes, setCountLikes] = useState(getCountedLikes(likes.data, id.toString()));
-	const [liked, setLiked] = useState(hasUserLikedReceipt(likes.data, liker, id.toString()));
+	const countedLikes = likes?.data ? getCountedLikes(likes.data, id.toString()) : 0;
+	const userLikedReceipt = likes?.data ? hasUserLikedReceipt(likes.data, liker, id.toString()) : false;
+	const [countLikes, setCountLikes] = useState(countedLikes);
+	const [liked, setLiked] = useState(userLikedReceipt);
 	const [isConfettiVisible, setisConfettiVisible] = useState(false);
 
 	const receipt = {
