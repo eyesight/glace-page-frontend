@@ -1,12 +1,12 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 import SwiperCore, { A11y, EffectCoverflow } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { EndpointAssets } from '../../helper/constants/routes';
 
-import 'swiper/swiper.scss'; // core Swiper
-import 'swiper/modules/a11y/a11y.scss';
-import 'swiper/modules/effect-coverflow/effect-coverflow.scss';
+import 'swiper/css'; // core Swiper
+import 'swiper/css/a11y';
+import 'swiper/css/effect-coverflow';
 
 import './Slideshow.scss';
 import { Link } from 'react-router-dom';
