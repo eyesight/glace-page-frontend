@@ -13,7 +13,7 @@ type Props = {
         data: CollectionType
     }
 }
-const Tile = ({ items, isLoading, title, collection, likes, isLikesVisible = false }: Props) => {
+const Tile = ({ items, isLoading, title, collection, isLikesVisible = false }: Props) => {
 
     if (isLoading) return (<section className="section tiles section--loading-spinner"><LoadingSpinner /></section>);
 

@@ -52,6 +52,8 @@ interface ICursor {
 interface ILike {
 	item: LikeType[];
 	data: LikeType[];
+	error: any;
+	isFetching: boolean;
 }
 
 type Inputs = {

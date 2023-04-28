@@ -38,7 +38,7 @@ const ReceiptsPage = () => {
 		: RouteReceiptAll;
 	let title = id
 		? `Unsere ${allCategory.selectedCategory.data[0]?.attributes.adjektiv} Rezepte`
-		: `Hey${liker ? ' ' + liker : ''}.\n\rWas für es Glace darfs sii?`;
+		: `Hey${liker ? ' ' + liker : ''}.\n\rHie findsch aui üsi Rezept`;
 	let tiletitle = id
 		? `Alle Sorten mit #${allCategory.selectedCategory.data[0]?.attributes.name}`
 		: `${receipts ? receipts.length : 0} Rezepte`;

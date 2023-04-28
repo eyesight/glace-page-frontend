@@ -9,6 +9,7 @@ export const LIKE_REQUEST = 'LIKE_REQUEST';
 export const LIKE_RECEIVED = 'LIKE_RECEIVED';
 export const ADD_LIKE = 'ADD_LIKE';
 export const REMOVE_LIKE = 'REMOVE_LIKE';
+export const LIKE_FAILED = 'LIKE_FAILED';
 
 /*
  * Action Creators
@@ -21,6 +22,11 @@ export const requestLikes = (likes: ILike | any) => ({
 export const receiveLikes = (likes: ILike) => ({
 	type: LIKE_RECEIVED,
 	payload: likes,
+});
+
+export const failedRequestLikes = (error: any) => ({
+	type: LIKE_FAILED,
+	payload: error,
 });
 
 export const addedLike = (like: ILike) => ({
@@ -43,7 +49,7 @@ export const fetchLikes = (url: string) => async (dispatch: DispatchType) => {
 		const response = await axios.get(url);
 		dispatch(receiveLikes(response.data));
 	} catch (err) {
-		// Handle Error TODO
+		dispatch(failedRequestLikes(err));
 		console.error(err);
 	} finally {
 		console.log('finally');
@@ -71,6 +77,7 @@ export const addLike =
 			dispatch(addedLike(response.data));
 		} catch (err) {
 			// Handle Error TODO
+			dispatch(failedRequestLikes(err));
 			console.error(err);
 		} finally {
 			console.log('finally');
@@ -94,8 +101,8 @@ export const addLike =
 			const deletingResponse = await axios.delete(`${RouteLikes}/${deletingId}`);
 		  dispatch(removedLike(deletingResponse.data));
 		} catch (err) {
+		  dispatch(failedRequestLikes(err));
 		  console.error(err);
-		  // Handle Error TODO
 		} finally {
 		  console.log('finally');
 		}

@@ -93,8 +93,6 @@ const DefaultPageSkeleton = () => {
 		rootEl.style.setProperty('--color-h', colorFinal.toString());
 	};
 
-	if (isLoading) return <LoadingSpinner />;
-
 	return (
 		<>
 			<Header
