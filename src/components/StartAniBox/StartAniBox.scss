@@ -1,0 +1,47 @@
+@import './../../styles/import-all.scss';
+
+.startanibox {
+  height: calc(100vh + 350px);
+  width: 100%;
+  position: fixed;
+  top:0;
+  z-index: 100000;
+}
+
+.startanibox__text {
+  @include fluid-font-size($font-size-h1-s, $font-size-h1-m);
+  color: $color-white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.startanibox__box {
+  background-color: $color-primary;
+  height: calc(100% - 480px);
+  width: 100%;
+  z-index: 20;
+  position: absolute;
+  top: 0;
+}
+
+.startanibox__waves {
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  .st0 {
+    // fill: mix($color-turkies, $color-black, 90%);
+    fill: transparent;
+  }
+  
+  .st1 {
+    // fill: mix($color-turkies, $color-white, 20%);
+    fill: transparent;
+  }
+
+  .st2 {
+    fill: $color-primary;
+  }
+}

@@ -4,7 +4,12 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Outlet, useParams } from 'react-router-dom';
 import Content from '../Content/Content';
-import { FilterEqual, RouteCategories, RouteCategoriesAll, RoutePages } from '../../helper/constants/routes';
+import {
+	FilterEqual,
+	RouteCategories,
+	RouteCategoriesAll,
+	RoutePages,
+} from '../../helper/constants/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	fetchCategories,
@@ -12,7 +17,7 @@ import {
 	fetchOneCategory,
 } from '../../store/actions/categories';
 import { fetchPages } from '../../store/actions/pages';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import StartAniBox from '../StartAniBox/StartAniBox';
 
 const DefaultPageSkeleton = () => {
 	const { id } = useParams();
@@ -42,23 +47,22 @@ const DefaultPageSkeleton = () => {
 					items: [],
 					selectedItem: '',
 					selectedCategory: {
-						data: {} as CategoryType[]
+						data: {} as CategoryType[],
 					},
 				})
 			);
-			dispatch(
-				fetchPages(RoutePages),
-			)
+			dispatch(fetchPages(RoutePages));
 
 			if (catId) {
 				dispatch(selectCategories(catId));
-				dispatch(fetchOneCategory(`${RouteCategoriesAll}${FilterEqual}${catId}`, {} as CategoryType));
+				dispatch(
+					fetchOneCategory(`${RouteCategoriesAll}${FilterEqual}${catId}`, {} as CategoryType)
+				);
 				setselectedNavItem(catId);
 			}
 		};
 		loadDetails();
 	}, [dispatch, catId]);
-
 
 	useLayoutEffect(() => {
 		let rootElement = document.querySelector(':root');
@@ -112,6 +116,7 @@ const DefaultPageSkeleton = () => {
 				<Outlet />
 			</Content>
 			<Footer links={allPages.items} />
+			<StartAniBox />
 		</>
 	);
 };

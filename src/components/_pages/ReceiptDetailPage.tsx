@@ -13,6 +13,7 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Tag from '../Tag/Tag';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOneReceipts, receiptMinusPortion, receiptPlusPortion } from '../../store/actions/receipt';
+import StartAniBox from '../StartAniBox/StartAniBox';
 
 const ReceiptDetailPage = () => {
     const { id } = useParams();
@@ -101,6 +102,7 @@ const ReceiptDetailPage = () => {
                 </>
             </SectionContainer>
             {renderSteps}
+            <StartAniBox text={oneReceipt.title} />
         </>
     );
 };

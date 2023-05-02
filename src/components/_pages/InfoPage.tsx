@@ -11,6 +11,7 @@ import Image from '../Image/Image';
 import SectionContainer from '../SectionContainer/SectionContainer';
 import TitleH1 from '../TitleH1/TitleH1';
 import Lead from '../Lead/Lead';
+import StartAniBox from '../StartAniBox/StartAniBox';
 
 const InfoPage = () => {
 	const { id } = useParams();
@@ -51,11 +52,12 @@ const InfoPage = () => {
 	if (isLoading) return <LoadingSpinner />;
 	return (
 		<>
-				<TitleH1 text={selectedPage?.header?.title} positioningClass={true} />
-				{selectedPage?.header?.lead ? <Lead text={selectedPage?.header?.lead} /> : null}
+			<TitleH1 text={selectedPage?.header?.title} positioningClass={true} />
+			{selectedPage?.header?.lead ? <Lead text={selectedPage?.header?.lead} /> : null}
 			<SectionContainer>
 				{selectedPageComponent?.map((item) => getComponent(item))}
 			</SectionContainer>
+            <StartAniBox text={selectedPage?.header?.title} />
 		</>
 	);
 };

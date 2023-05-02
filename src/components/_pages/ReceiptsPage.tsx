@@ -16,6 +16,7 @@ import { useRef } from 'react';
 import Slideshow from '../Slideshow/Slideshow';
 import { Dispatch } from 'redux';
 import { useParams } from 'react-router-dom';
+import StartAniBox from '../StartAniBox/StartAniBox';
 
 const ReceiptsPage = () => {
 	const { id } = useParams();
@@ -61,6 +62,7 @@ const ReceiptsPage = () => {
 				isLoading={isLoading}
 				onClickFunc={() => dispatch(receiptRandomized(RouteReceiptAll))}
 			/>
+			<StartAniBox text={id ? `${allCategory.selectedCategory.data[0]?.attributes.name ?? ''} ` : `Hey`} anikey={id ? `${allCategory.selectedCategory.data[0]?.attributes.name ?? 'noCategory'} ` : `Hey`} />
 			<Cursor aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''} ref={cursorRef} />
 		</>
 	);
