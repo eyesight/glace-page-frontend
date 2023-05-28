@@ -16,7 +16,7 @@ import { useRef } from 'react';
 import Slideshow from '../Slideshow/Slideshow';
 import { Dispatch } from 'redux';
 import { useParams } from 'react-router-dom';
-import StartAniBox from '../StartAniBox/StartAniBox';
+import LoadingBox from '../LoadingBox/LoadingBox';
 
 const ReceiptsPage = () => {
 	const { id } = useParams();
@@ -38,7 +38,7 @@ const ReceiptsPage = () => {
 		? `${RouteReceipt}${PopulatesDetailReceipts}${FilterCategoriesEqual}${id}`
 		: RouteReceiptAll;
 	let title = id
-		? `Unsere ${allCategory.selectedCategory.data[0]?.attributes.adjektiv} Rezepte`
+		? `Unsere ${allCategory.selectedCategory.data[0]?.attributes.adjektiv ?? ''} Rezepte`
 		: `Hey${liker ? ' ' + liker : ''}.\n\rHie findsch aui üsi Rezept`;
 	let tiletitle = id
 		? `Alle Sorten mit #${allCategory.selectedCategory.data[0]?.attributes.name}`
@@ -52,6 +52,8 @@ const ReceiptsPage = () => {
 		loadDetails();
 	}, [dispatch, id, route]);
 
+	if (isLoading) return <LoadingBox />;
+
 	return (
 		<>
 			<TitleH1 text={title} />
@@ -62,7 +64,6 @@ const ReceiptsPage = () => {
 				isLoading={isLoading}
 				onClickFunc={() => dispatch(receiptRandomized(RouteReceiptAll))}
 			/>
-			<StartAniBox text={id ? `${allCategory.selectedCategory.data[0]?.attributes.name ?? ''} ` : `Hey`} anikey={id ? `${allCategory.selectedCategory.data[0]?.attributes.name ?? 'noCategory'} ` : `Hey`} />
 			<Cursor aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''} ref={cursorRef} />
 		</>
 	);

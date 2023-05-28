@@ -22,6 +22,11 @@ interface ICategories {
 	};
 }
 
+interface ILOADER {
+	title: string;
+	anikey: string;
+}
+
 interface IPages {
 	isFetching: boolean;
 	items: PageType[];
@@ -71,6 +76,10 @@ type CategoryState = {
 	categories: ICategories;
 };
 
+type LoaderState = {
+	loader: ILOADER;
+};
+
 type CollectionState = {
 	collections: ICollections;
 };
@@ -97,6 +106,11 @@ type CategoryAction = {
 	payload: ICategories;
 };
 
+type LoaderAction = {
+	type: string;
+	payload: ILOADER;
+};
+
 type CursorAction = {
 	type: string;
 	payload: ICursor;
@@ -118,8 +132,8 @@ type PageAction = {
 };
 
 type DispatchType = (
-	args: ReceiptAction | CategoryAction | CursorAction | CollectionAction | LikeAction | PageAction
-) => ReceiptAction | CategoryAction | CursorAction | CollectionAction | LikeAction | PageAction;
+	args: ReceiptAction | CategoryAction | CursorAction | CollectionAction | LikeAction | PageAction | LoaderAction
+) => ReceiptAction | CategoryAction | CursorAction | CollectionAction | LikeAction | PageAction | LoaderAction;
 
 type RezeptType = {
 	id: string;

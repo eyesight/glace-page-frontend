@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setTitle, stopLoading } from './loader';
 
 /*
  * Action Type Constants
@@ -31,13 +32,13 @@ export const receiveOnePage = (page: PageType | any) => ({
 	payload: page,
 });
 
-
 /*
  * Thunk Actions
  */
 
 export const fetchPages =
-	(url: string, pages= {}) => (dispatch: DispatchType) => {
+	(url: string, pages = {}) =>
+	(dispatch: DispatchType) => {
 		dispatch(requestPages(pages));
 		const sendGetRequest = async () => {
 			try {
@@ -54,17 +55,23 @@ export const fetchPages =
 	};
 
 export const fetchOnePage =
-	(url: string, page={}) => (dispatch: DispatchType) => {
+	(url: string, page = {}) =>
+	(dispatch: DispatchType) => {
 		dispatch(requestOnePage(page));
+		let response: any;
 		const sendGetRequest = async () => {
 			try {
-				const response = await axios.get(url);
+				response = await axios.get(url);
 				dispatch(receiveOnePage(response.data));
+				dispatch(setTitle(''));
 			} catch (err) {
 				// Handle Error TODO
 				console.error(err);
 			} finally {
-				console.log('finally');
+				if (response && response.data && response.data.data) {
+					dispatch(setTitle(response.data.data[0].attributes.pagename));
+					dispatch(stopLoading(''));
+				}
 			}
 		};
 		return sendGetRequest();

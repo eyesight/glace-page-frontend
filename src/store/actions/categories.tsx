@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setTitle, stopLoading } from './loader';
 
 /*
  * Action Type Constants
@@ -61,15 +62,21 @@ export const fetchCategories =
 export const fetchOneCategory =
 	(url: string, category: CategoryType) => (dispatch: DispatchType) => {
 		dispatch(requestOneCategory(category));
+		dispatch(setTitle(''));
+		let response: any;
 		const sendGetRequest = async () => {
 			try {
-				const response = await axios.get(url);
+				response = await axios.get(url);
 				dispatch(receiveOneCategory(response.data));
+				console.log(response);
 			} catch (err) {
 				// Handle Error TODO
 				console.error(err);
 			} finally {
-				console.log('finally');
+				if (response && response.data && response.data.data && response.data.data[0]) {
+					dispatch(setTitle(`Unsere ${response.data.data[0]?.attributes.adjektiv} Rezepte`));
+					dispatch(stopLoading(''));
+				  }
 			}
 		};
 		return sendGetRequest();

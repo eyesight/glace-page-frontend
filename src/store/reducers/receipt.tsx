@@ -16,7 +16,7 @@ import {
 } from '../actions/receipt';
 
 export const initialState: IReceipt = {
-	isFetching: false,
+	isFetching: true,
 	data: {} as RezeptType,
 	items: [],
 	oneItem: {} as RezeptType,

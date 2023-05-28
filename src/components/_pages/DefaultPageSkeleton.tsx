@@ -1,4 +1,4 @@
-import { useRef, useState, useLayoutEffect, useEffect } from 'react';
+import { useRef, useState, useLayoutEffect, useEffect, useMemo } from 'react';
 import { Dispatch } from 'redux';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -18,6 +18,7 @@ import {
 } from '../../store/actions/categories';
 import { fetchPages } from '../../store/actions/pages';
 import StartAniBox from '../StartAniBox/StartAniBox';
+import LoadingBox from '../LoadingBox/LoadingBox';
 
 const DefaultPageSkeleton = () => {
 	const { id } = useParams();
@@ -30,9 +31,15 @@ const DefaultPageSkeleton = () => {
 	const dispatch: Dispatch<any> = useDispatch();
 	const allCategories: ICategories = useSelector((state: CategoryState) => state.categories);
 	const allPages: IPages = useSelector((state: PagesState) => state.pages);
+	const loader: ILOADER = useSelector((state: LoaderState) => state.loader);
+	
+	// const allReceipts: IReceipt = useSelector((state: ReceiptState) => state.receipt);
 	const categories = allCategories?.items;
-	const isLoading = allCategories.isFetching;
+	const memoizedCategories = useMemo(() => categories, [categories]);
+	const isLoadingCategories = allCategories.isFetching;
 	let catId = id;
+
+	console.log(memoizedCategories);
 
 	useEffect(() => {
 		window.history.scrollRestoration = 'auto';
@@ -62,7 +69,7 @@ const DefaultPageSkeleton = () => {
 			}
 		};
 		loadDetails();
-	}, [dispatch, catId]);
+	}, [catId, dispatch]);
 
 	useLayoutEffect(() => {
 		let rootElement = document.querySelector(':root');
@@ -97,12 +104,14 @@ const DefaultPageSkeleton = () => {
 		rootEl.style.setProperty('--color-h', colorFinal.toString());
 	};
 
+	if (isLoadingCategories) return <LoadingBox />;
+
 	return (
 		<>
 			<Header
 				ref={headerRef}
-				categories={categories}
-				isLoading={isLoading}
+				categories={memoizedCategories}
+				isLoading={isLoadingCategories}
 				onClick={(e) => {
 					clickNav(e);
 				}}
@@ -116,7 +125,7 @@ const DefaultPageSkeleton = () => {
 				<Outlet />
 			</Content>
 			<Footer links={allPages.items} />
-			<StartAniBox />
+			<StartAniBox text={loader.title} anikey={loader.anikey}/>
 		</>
 	);
 };

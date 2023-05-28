@@ -11,7 +11,6 @@ import Image from '../Image/Image';
 import SectionContainer from '../SectionContainer/SectionContainer';
 import TitleH1 from '../TitleH1/TitleH1';
 import Lead from '../Lead/Lead';
-import StartAniBox from '../StartAniBox/StartAniBox';
 
 const InfoPage = () => {
 	const { id } = useParams();
@@ -57,7 +56,6 @@ const InfoPage = () => {
 			<SectionContainer>
 				{selectedPageComponent?.map((item) => getComponent(item))}
 			</SectionContainer>
-            <StartAniBox text={selectedPage?.header?.title} />
 		</>
 	);
 };

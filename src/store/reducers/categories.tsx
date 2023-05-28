@@ -6,7 +6,7 @@ import {
 } from '../actions/categories';
 
 export const initialState: ICategories = {
-	isFetching: false,
+	isFetching: true,
 	data: {},
 	items: [],
 	selectedItem: '',

@@ -4,7 +4,6 @@ import './Header.scss';
 import './MainNav.scss';
 import Logo from '../Logo/Logo';
 import Burger from '../Burger/Burger';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { motion } from 'framer-motion';
 
 //TODO: define this the right way! -> declare a interface and check line 37 not t be any
@@ -51,13 +50,15 @@ const Header = forwardRef<HTMLDivElement, Props>(
 			});
 		};
 
-		if (isLoading) return <LoadingSpinner />;
 		return (
 			<motion.header
 				initial={{ opacity: 0 }}
 				animate={{
 					opacity: 1,
-					transition: { duration: 1, delay: 0.2, ease: [0.87, 0, 0.13, 1] },
+					transition: {
+						duration: 0.1,
+						delay: 1.3
+					},
 				}}
 				className={`header ${isNavOpen ? 'header--open' : ''}`}
 			>

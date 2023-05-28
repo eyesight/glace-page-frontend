@@ -6,6 +6,7 @@ import { categories as categoryReducer } from './categories';
 import { collections as collectionsReducer } from './collections';
 import { likes as likesReducer } from './likes';
 import { pages as pagesReducer } from './pages';
+import { loader as loaderReducer } from './loader';
 
 export const rootReducer = combineReducers({
     receipt: receiptReducer,
@@ -13,5 +14,6 @@ export const rootReducer = combineReducers({
     categories: categoryReducer,
     collections: collectionsReducer,
     likes: likesReducer,
-    pages: pagesReducer
+    pages: pagesReducer,
+    loader: loaderReducer
 });

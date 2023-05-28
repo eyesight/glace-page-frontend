@@ -2,13 +2,13 @@ import { waveAni } from '../../helper/constants/animationVariants';
 import './StartAniBox.scss';
 import { motion } from 'framer-motion';
 
-const StartAniBox = ({ text = 'Hey', anikey='keyStartAniBox' }) => {
+const StartAniBox = ({ text = '', anikey='keyStartAniBox' }) => {
 
 	return (
 		<motion.div key={anikey} initial='initial' animate='animate' variants={waveAni} className={`startanibox`}>
 			<div className='startanibox__box'>
 				<motion.p
-					animate={{ opacity: 0, transition: { duration: 0.1, delay: 0.9 } }}
+					animate={{ opacity: 0, transition: { duration: 0.2, delay: 0.7 } }}
 					className='startanibox__text'
 				>
 					{text}

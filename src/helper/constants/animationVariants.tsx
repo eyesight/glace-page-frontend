@@ -1,7 +1,7 @@
 export const waveAni = {
 	initial: {
 		opacity: 1,
-		height: 'calc(100vh + 500px)',
+		height: 'calc(100vh + 400px)',
 		bottom: 0,
 	},
 	animate: {
@@ -9,7 +9,7 @@ export const waveAni = {
 		height: 0,
 		bottom: 'calc(100% + 500px)',
 		transition: {
-			duration: 1,
+			duration: 1.5,
 			ease: [0.87, 0, 0.13, 1],
 		},
 	},
@@ -26,7 +26,6 @@ export const slideIn = {
 		translateY: 0,
 		transition: {
 			duration: 0.3, 
-			delay: 0.5,
 			ease: [0.87, 0, 0.13, 1],
 		},
 	},
@@ -43,7 +42,6 @@ export const slideIn2 = {
 		translateY: 0,
 		transition: {
 			duration: 0.3, 
-			delay: 0.25,
 			ease: [0.87, 0, 0.13, 1],
 		},
 	},
