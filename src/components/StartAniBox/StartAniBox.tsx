@@ -8,7 +8,7 @@ const StartAniBox = ({ text = '', anikey='keyStartAniBox' }) => {
 		<motion.div key={anikey} initial='initial' animate='animate' variants={waveAni} className={`startanibox`}>
 			<div className='startanibox__box'>
 				<motion.p
-					animate={{ opacity: 0, transition: { duration: 0.2, delay: 0.7 } }}
+					animate={{ opacity: 0, visibility: 'hidden', transition: { duration: 0.2, delay: 0.7 } }}
 					className='startanibox__text'
 				>
 					{text}

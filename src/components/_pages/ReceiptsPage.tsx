@@ -16,7 +16,7 @@ import { useRef } from 'react';
 import Slideshow from '../Slideshow/Slideshow';
 import { Dispatch } from 'redux';
 import { useParams } from 'react-router-dom';
-import LoadingBox from '../LoadingBox/LoadingBox';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const ReceiptsPage = () => {
 	const { id } = useParams();
@@ -52,7 +52,7 @@ const ReceiptsPage = () => {
 		loadDetails();
 	}, [dispatch, id, route]);
 
-	if (isLoading) return <LoadingBox />;
+	if (isLoading) return <LoadingSpinner />;
 
 	return (
 		<>

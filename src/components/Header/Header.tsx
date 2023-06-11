@@ -4,7 +4,6 @@ import './Header.scss';
 import './MainNav.scss';
 import Logo from '../Logo/Logo';
 import Burger from '../Burger/Burger';
-import { motion } from 'framer-motion';
 
 //TODO: define this the right way! -> declare a interface and check line 37 not t be any
 type Props = {
@@ -51,17 +50,7 @@ const Header = forwardRef<HTMLDivElement, Props>(
 		};
 
 		return (
-			<motion.header
-				initial={{ opacity: 0 }}
-				animate={{
-					opacity: 1,
-					transition: {
-						duration: 0.1,
-						delay: 1.3
-					},
-				}}
-				className={`header ${isNavOpen ? 'header--open' : ''}`}
-			>
+			<header className={`header ${isNavOpen ? 'header--open' : ''}`}>
 				<div className={`header__wrapper`} ref={ref}>
 					<div className={`header__inner`}>
 						<div className='header__item header__left'>
@@ -86,7 +75,7 @@ const Header = forwardRef<HTMLDivElement, Props>(
 						</ul>
 					</div>
 				</nav>
-			</motion.header>
+			</header>
 		);
 	}
 );

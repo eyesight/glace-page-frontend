@@ -39,8 +39,6 @@ const DefaultPageSkeleton = () => {
 	const isLoadingCategories = allCategories.isFetching;
 	let catId = id;
 
-	console.log(memoizedCategories);
-
 	useEffect(() => {
 		window.history.scrollRestoration = 'auto';
 	}, []);

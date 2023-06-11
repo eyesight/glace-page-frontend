@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import TitleWrapper from '../TitleWrapper/TitleWrapper';
 import FullscreenImage from '../FullscreenImage/FullscreenImage';
 import SectionContainer from '../SectionContainer/SectionContainer';
@@ -20,7 +20,7 @@ import {
 	receiptMinusPortion,
 	receiptPlusPortion,
 } from '../../store/actions/receipt';
-import LoadingBox from '../LoadingBox/LoadingBox';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const ReceiptDetailPage = () => {
 	const { id } = useParams();
@@ -55,7 +55,7 @@ const ReceiptDetailPage = () => {
 			  ))
 			: null;
 
-	if (isLoading || !oneReceipt) return <LoadingBox />;
+	if (isLoading || !oneReceipt) return <LoadingSpinner />;
 
 	return (
 		<>

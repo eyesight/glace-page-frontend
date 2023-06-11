@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import './Footer.scss';
 import { NavLink } from 'react-router-dom';
 
@@ -8,14 +7,7 @@ type Props = {
 
 const Footer = ({ links }: Props) => {
 	return (
-		<motion.footer
-			initial={{ opacity: 0 }}
-			animate={{
-				opacity: 1,
-				transition: { duration: 1, ease: [0.87, 0, 0.13, 1] },
-			}}
-			className='footer'
-		>
+		<footer className='footer'>
 			<div className='footer__inner'>
 				<div className='footer__wrap'>
 					<div className='footer__left'>
@@ -36,7 +28,7 @@ const Footer = ({ links }: Props) => {
 					</div>
 				</div>
 			</div>
-		</motion.footer>
+		</footer>
 	);
 };
 
