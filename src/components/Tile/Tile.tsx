@@ -15,7 +15,7 @@ type Props = {
 		data: CollectionType;
 	};
 };
-const Tile = ({ items, isLoading, title, collection, isLikesVisible = false }: Props) => {
+const Tile = ({ items, likes, isLoading, title, collection, isLikesVisible = false }: Props) => {
 	if (isLoading)
 		return (
 			<section className='section tiles section--loading-spinner'>
@@ -39,6 +39,7 @@ const Tile = ({ items, isLoading, title, collection, isLikesVisible = false }: P
 						id={item.id}
 						key={item.id}
 						isLikesVisible={isLikesVisible}
+						likes={likes}
 						nr={index}
 						collection={collection}
 					/>

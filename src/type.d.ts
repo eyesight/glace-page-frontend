@@ -132,8 +132,22 @@ type PageAction = {
 };
 
 type DispatchType = (
-	args: ReceiptAction | CategoryAction | CursorAction | CollectionAction | LikeAction | PageAction | LoaderAction
-) => ReceiptAction | CategoryAction | CursorAction | CollectionAction | LikeAction | PageAction | LoaderAction;
+	args:
+		| ReceiptAction
+		| CategoryAction
+		| CursorAction
+		| CollectionAction
+		| LikeAction
+		| PageAction
+		| LoaderAction
+) =>
+	| ReceiptAction
+	| CategoryAction
+	| CursorAction
+	| CollectionAction
+	| LikeAction
+	| PageAction
+	| LoaderAction;
 
 type RezeptType = {
 	id: string;
@@ -300,7 +314,7 @@ type CollectionType = {
 		published_at: string;
 		Title: string;
 		description: string;
-		likes: [];
+		likes?: { data: LikeType[] };
 		secret: string;
 		isAccessed: boolean;
 	};

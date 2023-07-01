@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { addLike, removeLike } from '../../store/actions/likes';
 import { getCountedLikes, hasUserLikedReceipt } from '../../helper/constants/getLikeCount';
 import Confetti from './Confetti';
+import { motion } from 'framer-motion';
 
 const TilesItem = ({
 	title,
@@ -21,8 +22,8 @@ const TilesItem = ({
 
 	const user = localStorage.getItem('user');
 	const liker = user ? JSON.parse(user) : null;
-	const countedLikes = likes?.data ? getCountedLikes(likes.data, id.toString()) : 0;
-	const userLikedReceipt = likes?.data ? hasUserLikedReceipt(likes.data, liker, id.toString()) : false;
+	const countedLikes = likes ? getCountedLikes(likes, id.toString()) : 0;
+	const userLikedReceipt = likes ? hasUserLikedReceipt(likes, liker, id.toString()) : false;
 	const [countLikes, setCountLikes] = useState(countedLikes);
 	const [liked, setLiked] = useState(userLikedReceipt);
 	const [isConfettiVisible, setisConfettiVisible] = useState(false);
@@ -74,7 +75,7 @@ const TilesItem = ({
 			onMouseLeave={() => dispatch(leaveCursor(true))}
 		>
 			<Link className='tiles__anchor' to={`/receipt/${id}`} tabIndex={-1}>
-				<figure className='tiles__image-wrapper'>
+				<motion.figure className='tiles__image-wrapper'>
 					<img
 						className='tiles__img'
 						alt=''
@@ -86,7 +87,7 @@ const TilesItem = ({
 								: 'http://placekitten.com/200/300'
 						}
 					/>
-				</figure>
+				</motion.figure>
 			</Link>
 			<div className='tiles__item-inner'>
 				<h3 className='tiles__title'>

@@ -62,7 +62,7 @@ const CollectionsPage = () => {
 			{isAllowed ? (
 				<>
 					<TitleH1 text={title} />
-					<Tile items={receipts} isLoading={isLoading} title={tiletitle} isLikesVisible={true} likes={allLikes?.item} collection={all}/>
+					<Tile items={receipts} isLoading={isLoading} title={tiletitle} isLikesVisible={true} likes={all?.collectionItem?.attributes?.likes?.data} collection={all}/>
 					<Cursor aniClass={cursorIsOnElement.isOnElement ? 'is-visible' : ''} ref={cursorRef} />
 				</>
 			) : (
