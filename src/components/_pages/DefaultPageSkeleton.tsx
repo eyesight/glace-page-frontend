@@ -82,7 +82,11 @@ const DefaultPageSkeleton = () => {
 		};
 		updatePosition();
 		document.addEventListener('wheel', updatePosition);
-		return () => window.removeEventListener('wheel', updatePosition);
+		document.addEventListener('scroll', updatePosition);
+		return () => {
+			document.removeEventListener('wheel', updatePosition);
+			document.removeEventListener('scroll', updatePosition);
+		  };
 	}, [scrollPosition]);
 
 	const clickNav = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
