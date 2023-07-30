@@ -3,9 +3,17 @@
 .fullscreen-image {
   width: 100%;
   height: auto;
+  background-color: $color-primary;
 
   @include md-min {
     height: 100vh;
+  }
+
+  &--center {
+    background-color: $color-primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -21,5 +29,19 @@
     transform: translateY(-50%);
     position: fixed;
     top: 50%;
+  }
+}
+
+.fullscreen-image__svg {
+  max-width: 100%;
+  width: 500px;
+  margin: auto;
+
+  .bg {
+    fill: $color-primary;
+  }
+
+  .ice__path {
+    fill: $color-white;
   }
 }

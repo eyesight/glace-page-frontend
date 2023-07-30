@@ -29,6 +29,7 @@
 
 .tiles__image-wrapper {
 	@include responsive-ratio(100%, 16, 9, 'img');
+	@include responsive-ratio(100%, 16, 9, 'svg');
 
 	&::after {
 		content: '';
@@ -51,6 +52,14 @@
 
 .tiles__img {
 	object-fit: cover;
+}
+
+.tiles__svg {
+	border: 5px solid var(--color);
+}
+
+.ice__path {
+	fill: var(--color);
 }
 
 .tiles__item-inner {
