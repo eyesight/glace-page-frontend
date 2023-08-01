@@ -28,6 +28,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $color-white;
+}
+
+.swiper__image-wrapper.swiper__image-wrapper--boarder {
+  border: 5px solid var(--color);
+}
+
+.swiper__svg {
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  .bg {
+    fill: transparent;
+  }
 }
 
 img.swiper__image {
